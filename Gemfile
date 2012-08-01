@@ -3,8 +3,12 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.6'
 
 group :development do
-gem 'pg'  
 end
+
+group :production do
+  gem 'pg'
+end
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
