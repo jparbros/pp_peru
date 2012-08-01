@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: pp_peru_development
   pool: 5
-  username: pp_peru
+  username: jparbros
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -43,7 +43,7 @@ test:
   encoding: unicode
   database: pp_peru_test
   pool: 5
-  username: pp_peru
+  username: jparbros
   password:
 
 production:
@@ -51,5 +51,5 @@ production:
   encoding: unicode
   database: pp_peru_production
   pool: 5
-  username: pp_peru
+  username: jparbros
   password:
