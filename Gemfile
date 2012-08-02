@@ -17,4 +17,4 @@ group :test do
 end
 
 gem 'jquery-rails'
-gem 'social_stream'
+gem 'social_stream', '>= 0.19.0'
