@@ -6,7 +6,7 @@ SocialStream::Presence.setup do |config|
   #Configures Authentication Method: "cookie" or "password"
   config.auth_method = "cookie"
   #Configures XMPP Server Password
-  config.xmpp_server_password = "206325f4ed929a4321352684c08bf63e"
+  config.xmpp_server_password = "71d5aa7dc211ac5b4514f6a2e65625a9"
   #Uncomment to enable REST API Security
   #config.secure_rest_api = true
   #Remote or local mode
@@ -29,7 +29,7 @@ SocialStream::Presence.setup do |config|
   #Username of the the Social Stream Admin sid
   config.social_stream_presence_username = "social_stream-presence"
   #Configures Social Stream Rails App Password
-  config.password = "b372822b8e23662e172f0f28e931d5fbbf37b345452b62aa20a9384cd5abc17e"
+  config.password = "370b8d154587ba5559f6ce8b58a2cd3ec3bd98c675d34148734467aa4398c45b"
   
   #OpenTok settings (Only for videochat)
   #Replace with your OpenTok API key.
