@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120801123661) do
+ActiveRecord::Schema.define(:version => 20120802032530) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -339,7 +339,7 @@ ActiveRecord::Schema.define(:version => 20120801123661) do
   add_index "ties", ["relation_id"], :name => "index_ties_on_relation_id"
 
   create_table "users", :force => true do |t|
-    t.string   "encrypted_password",     :limit => 128, :default => "",          :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",            :null => false
     t.string   "password_salt"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -350,8 +350,8 @@ ActiveRecord::Schema.define(:version => 20120801123661) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.integer  "actor_id"
     t.string   "language"
     t.boolean  "connected",                             :default => false
