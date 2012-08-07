@@ -39,6 +39,7 @@ GEM
       paperclip (>= 2.3.4)
       rmagick (>= 2.13.1)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (2.0.4.0)
     builder (3.0.0)
     cancan (1.6.7)
     carrierwave (0.6.2)
@@ -78,6 +79,12 @@ GEM
       hashie
       nokogiri (>= 1.4.0)
       rest-client (~> 1.6.0)
+    haml (3.1.6)
+    haml-rails (0.3.4)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      haml (~> 3.0)
+      railties (~> 3.0)
     has_scope (0.5.1)
     hashie (1.2.0)
     hike (1.2.1)
@@ -300,8 +307,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass
   coffee-rails (~> 3.2.1)
   deface (~> 0.9.1)
+  haml-rails
   jquery-rails
   pg
   rails (= 3.2.6)

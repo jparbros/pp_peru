@@ -16,3 +16,5 @@
  *= require social_stream-presence
  *= require_tree .
  */
+
+body > .container { margin-top: 50px; }

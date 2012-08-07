@@ -1,6 +1,10 @@
 PpPeru::Application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
+  namespace :admin do
+    root :to => 'home#index'
+    resources :news
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
