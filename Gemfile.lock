@@ -307,6 +307,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry
   bootstrap-sass
   coffee-rails (~> 3.2.1)
   deface (~> 0.9.1)

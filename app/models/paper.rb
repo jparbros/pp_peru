@@ -8,4 +8,5 @@ class Paper < ActiveRecord::Base
   # Associations
   #
   belongs_to :author, class_name: 'User'
+  has_many :annotations, as: :annotable
 end

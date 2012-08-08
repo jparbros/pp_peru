@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808022634) do
+ActiveRecord::Schema.define(:version => 20120808132643) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -98,6 +98,21 @@ ActiveRecord::Schema.define(:version => 20120808022634) do
   add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
   add_index "actors", ["email"], :name => "index_actors_on_email"
   add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
+
+  create_table "annotations", :force => true do |t|
+    t.string   "title"
+    t.text     "comment"
+    t.integer  "annotable_id"
+    t.string   "annotable_type"
+    t.integer  "author_id"
+    t.string   "status"
+    t.integer  "reports"
+    t.string   "ancestry"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "annotations", ["ancestry"], :name => "index_annotations_on_ancestry"
 
   create_table "audiences", :force => true do |t|
     t.integer "relation_id"
