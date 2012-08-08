@@ -207,6 +207,13 @@ ActiveRecord::Schema.define(:version => 20120808022634) do
 
   add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
 
+  create_table "news", :force => true do |t|
+    t.string   "title"
+    t.text     "news"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "notifications", :force => true do |t|
     t.string   "type"
     t.text     "body"

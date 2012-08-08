@@ -1,0 +1,20 @@
+%h2 Centro de Noticias
+
+%table.table.table-striped
+	%thead
+		%tr
+			%th ID
+			%th Titulo
+			%th Status
+			%th Acciones
+	%tbody
+		- @news.each do |n|
+			%tr
+				%td= n.id
+				%td= link_to n.title, [:admin, n]
+				%td= n.status
+				%td
+					= link_to 'Editar', edit_admin_news_path(n), :class => 'btn btn-mini'
+					= link_to 'Eliminar', admin_news_path(n), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-mini btn-danger'
+			
+= link_to 'Agregar', new_admin_news_path, :class => 'btn btn-primary'
