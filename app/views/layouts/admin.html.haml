@@ -13,6 +13,7 @@
         .container
           %ul.nav
             %li= link_to 'Centro de Noticias', admin_news_index_path
+            %li= link_to 'Centro de Discusiones', admin_discussions_path
     .container
       -flash.each do |name, msg|
         %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}

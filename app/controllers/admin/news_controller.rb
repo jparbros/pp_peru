@@ -3,6 +3,7 @@ class Admin::NewsController < Admin::BaseController
   def index
     @news = News.all
   end
+  
   def new
     @news = News.new
   end

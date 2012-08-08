@@ -1,0 +1,16 @@
+= form_for [:admin, @discussion], :html => { :class => 'form-horizontal' } do |f|
+	.control-group
+		= f.error_messages
+	.control-group
+		= f.label :title, 'Titulo:',:class => 'control-label'
+		= f.text_field :title, :class => 'text_field'
+	.control-group
+		= f.label :content,'Contenido:',  :class => 'control-label'
+		.controls
+		= f.text_area :content
+	.control-group
+		= f.label :status, 'Estado:', :class => 'control-label'
+		= f.check_box :status
+	.form-actions
+		= f.submit @discussion.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+		= link_to 'Cancelar', admin_discussions_path, :class => 'btn'
