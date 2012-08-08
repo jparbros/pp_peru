@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'haml-rails'
 
 group :development do
+  gem 'annotate'
 end
 
 group :production do
@@ -18,11 +18,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :test do
-  gem 'rspec-rails'
-end
-
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'social_stream', '>= 0.19.0'
 gem 'deface', '~> 0.9.1'
+gem 'ancestry'
 gem "dynamic_form"

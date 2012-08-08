@@ -32,6 +32,8 @@ GEM
       rails (~> 3.0)
     ancestry (1.2.5)
       activerecord (>= 2.2.2)
+    annotate (2.5.0)
+      rake
     arel (3.0.2)
     avatars_for_rails (0.2.6)
       foreigner (>= 0.9.1)
@@ -63,8 +65,6 @@ GEM
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.1)
-    diff-lcs (1.1.3)
-    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -208,19 +208,6 @@ GEM
       mime-types (>= 1.16)
     riddle (1.5.2)
     rmagick (2.13.1)
-    rspec (2.11.0)
-      rspec-core (~> 2.11.0)
-      rspec-expectations (~> 2.11.0)
-      rspec-mocks (~> 2.11.0)
-    rspec-core (2.11.1)
-    rspec-expectations (2.11.2)
-      diff-lcs (~> 1.1.3)
-    rspec-mocks (2.11.1)
-    rspec-rails (2.11.0)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec (~> 2.11.0)
     ruby-imagespec (0.2.0)
     sass (3.1.20)
     sass-rails (3.2.5)
@@ -308,6 +295,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ancestry
+  annotate
   bootstrap-sass
   coffee-rails (~> 3.2.1)
   deface (~> 0.9.1)
@@ -316,7 +305,6 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 3.2.6)
-  rspec-rails
   sass-rails (~> 3.2.3)
   social_stream (>= 0.19.0)
   uglifier (>= 1.0.3)
