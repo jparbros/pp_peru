@@ -1,0 +1,2 @@
+class Entry < Paper
+end

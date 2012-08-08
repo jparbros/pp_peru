@@ -1,3 +1,2 @@
-class News < ActiveRecord::Base
-  attr_accessible :news, :title
+class News < Paper
 end
