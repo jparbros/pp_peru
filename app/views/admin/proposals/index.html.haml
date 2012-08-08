@@ -1,0 +1,19 @@
+%h2 Propuestas
+
+%table.table.table-striped
+	%thead
+		%tr
+			%th ID
+			%th Titulo
+			%th Status
+			%th Acciones
+	%tbody
+		- @proposals.each do |p|
+			%tr
+				%td= p.id
+				%td= link_to p.title, [:admin, p]
+				%td= p.status
+				%td
+					= link_to 'Editar',  edit_admin_proposal_path(p), :class => 'btn btn-mini'
+					= link_to 'Eliminar', admin_proposal_path(p), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-mini btn-danger'
+= link_to 'Agregar', new_admin_proposal_path, :class => 'btn btn-primary'

@@ -5,6 +5,7 @@ PpPeru::Application.routes.draw do
     root :to => 'home#index'
     resources :news
     resources :discussions
+    resources :proposals
   end
   # The priority is based upon order of creation:
   # first created -> highest priority.
