@@ -16,6 +16,8 @@
             %li= link_to 'Centro de Discusiones', admin_discussions_path
             %li= link_to 'Centro de Propuestas', admin_proposals_path
             %li= link_to 'Centro de Entradas', admin_entries_path
+          %ul.nav.pull-right
+            %li= link_to "Salir", destroy_user_session_path, :method => :delete 
     .container
       -flash.each do |name, msg|
         %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
