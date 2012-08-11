@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808132643) do
+ActiveRecord::Schema.define(:version => 20120811231835) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -227,6 +227,18 @@ ActiveRecord::Schema.define(:version => 20120808132643) do
     t.text     "news"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "news_actors", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.string   "avatar",     :default => ""
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  create_table "news_actors_papers", :id => false, :force => true do |t|
+    t.integer "news_actor_id", :null => false
+    t.integer "paper_id",      :null => false
   end
 
   create_table "notifications", :force => true do |t|

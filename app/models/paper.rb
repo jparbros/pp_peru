@@ -23,4 +23,5 @@ class Paper < ActiveRecord::Base
   #
   belongs_to :author, class_name: 'User'
   has_many :annotations, as: :annotable
+  has_and_belongs_to_many :news_actors
 end
