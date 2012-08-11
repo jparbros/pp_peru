@@ -1,0 +1,19 @@
+%h2 Entradas
+
+%table.table.table-striped
+	%thead
+		%tr
+			%th ID
+			%th Titulo
+			%th Status
+			%th Acciones
+	%tbody
+		- @entries.each do |e|
+			%tr
+				%td= e.id
+				%td= link_to e.title, [:admin, e]
+				%td= e.status
+				%td
+					= link_to 'Editar',  edit_admin_entry_path(e), :class => 'btn btn-mini'
+					= link_to 'Eliminar', admin_entry_path(e), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-mini btn-danger'
+= link_to 'Agregar', new_admin_entry_path, :class => 'btn btn-primary'
