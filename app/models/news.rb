@@ -13,5 +13,12 @@
 #
 
 class News < Paper
-  #has_and_belongs_to_many :papers
+  state_machine :status, :initial => :draft do
+    state :draft
+    state :published
+    
+    event :publish do
+      transition :draft => :published
+    end
+  end # end state machine
 end
