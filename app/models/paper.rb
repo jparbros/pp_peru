@@ -26,8 +26,8 @@ class Paper < ActiveRecord::Base
   has_many :annotations, as: :annotable
   has_and_belongs_to_many :news_actors
   
-  def actor_tokens=(ids)
-    self.news_actor_ids = ids.split(',')
+  def actor_tokens=(tokens)
+    self.news_actor_ids = NewsActor.ids_from_tokens(tokens)
   end
   
   

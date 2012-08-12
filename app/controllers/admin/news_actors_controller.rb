@@ -3,7 +3,7 @@ class Admin::NewsActorsController < Admin::BaseController
     @actors = NewsActor.order(:name)
     respond_to do |format|
       format.html
-      format.json { render json: @actors.where("name like ?", "%#{params[:q]}%") }
+      format.json { render json: @actors.tokens(params[:q]) }
     end
   end
 end
