@@ -8,6 +8,9 @@
 		= f.label :content,'Contenido:',  :class => 'control-label'
 		.controls
 		= f.text_area :content
+	.control-group
+		= f.label :actor_tokens, "Actor"
+		= f.text_field :actor_tokens, data: {load: @news.news_actors}
 	.form-actions
 		= f.submit @news.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
 		= link_to 'Cancelar', admin_news_index_path, :class => 'btn'

@@ -16,7 +16,8 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens
+  attr_reader :actor_tokens
 
   #
   # Associations
@@ -24,4 +25,10 @@ class Paper < ActiveRecord::Base
   belongs_to :author, class_name: 'User'
   has_many :annotations, as: :annotable
   has_and_belongs_to_many :news_actors
+  
+  def actor_tokens=(ids)
+    self.news_actor_ids = ids.split(',')
+  end
+  
+  
 end
