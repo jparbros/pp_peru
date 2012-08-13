@@ -13,6 +13,7 @@
  *= require 'admin/colorpicker'
  *= require 'admin/datepicker'
  *= require 'admin/imperio'
+ *= require 'token-input-facebook'
  *= require_tree ./admin
  */
 
