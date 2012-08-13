@@ -1,0 +1,12 @@
+%h1= @news.title
+%div
+	= raw @news.content
+
+%strong 
+	Actores
+	%em
+		- @news.news_actors.each do |a|
+			= "#{a.name} "
+
+= render 'annotations/form' if current_subject
+=# render 

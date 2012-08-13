@@ -1,5 +1,5 @@
 %pre
-	%strong= news.title
+	%strong= link_to news.title, news
 	%div
 	= raw news.content # truncar este content
 	%div
