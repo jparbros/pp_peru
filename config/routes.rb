@@ -9,7 +9,7 @@ PpPeru::Application.routes.draw do
   
   namespace :admin do
     root to: 'home#index'
-
+    resources :news
     resources :discussions
     resources :proposals
     resources :entries

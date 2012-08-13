@@ -19,7 +19,7 @@
             %tr
               %td.center= news.id
               %td= link_to news.title, [:admin, news]
-              %td.center= news.status.humanize
+              %td.center= news.status.try(:humanize)
               %td
                 = link_to admin_news_path(news), :class => 'btn btn-mini' do
                   %i.icon-eye-open
