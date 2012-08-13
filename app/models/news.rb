@@ -13,6 +13,10 @@
 #
 
 class News < Paper
+ 
+ #
+ # State machine 
+ #
   state_machine :status, :initial => :draft do
     state :draft
     state :published
@@ -21,4 +25,5 @@ class News < Paper
       transition :draft => :published
     end
   end # end state machine
+  
 end

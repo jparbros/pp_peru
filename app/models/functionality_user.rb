@@ -9,6 +9,5 @@ module FunctionalityUser
          self.role.eql? role
        end
      end
-   
    end
 end

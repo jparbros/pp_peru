@@ -30,5 +30,16 @@ class Paper < ActiveRecord::Base
     self.news_actor_ids = NewsActor.ids_from_tokens(tokens)
   end
   
-  
+  #
+  #   Scopes
+  #
+  scope :by_status, lambda{|status| where('status = ?', status)}
+
+  #
+  # Instance methods
+  #
+  def actor_tokens=(tokens)
+    self.news_actor_ids = NewsActor.ids_from_tokens(tokens)
+  end
+
 end

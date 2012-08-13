@@ -1,0 +1,10 @@
+%pre
+	%strong= news.title
+	%div
+	= raw news.content # truncar este content
+	%div
+	%strong Actores
+	%em
+		-news.news_actors.each do |a|
+			= "#{a.name} "
+		

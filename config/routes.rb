@@ -1,6 +1,6 @@
 PpPeru::Application.routes.draw do
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
-
+  resources :news
   namespace :admin do
     root :to => 'home#index'
     resources :news

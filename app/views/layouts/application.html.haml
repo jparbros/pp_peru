@@ -12,6 +12,7 @@
 				.container
 					%ul.nav
 						%li= link_to 'Aplicaciones','#applications'
+						%li= link_to 'Centro de Noticias', news_index_path
 					%ul.nav.pull-right
 						%li= link_to "Salir", destroy_user_session_path, :method => :delete
 		.container
