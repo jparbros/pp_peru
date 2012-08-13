@@ -4,6 +4,7 @@ gem 'rails', '3.2.6'
 
 group :development do
   gem 'annotate'
+	gem 'debugger'
 end
 
 group :production do

@@ -55,6 +55,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    columnize (0.3.6)
+    debugger (1.2.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.1.3)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.1.3)
     deep_merge (1.0.0)
     deface (0.9.1)
       nokogiri (~> 1.5.0)
@@ -301,6 +309,7 @@ DEPENDENCIES
   annotate
   bootstrap-sass
   coffee-rails (~> 3.2.1)
+  debugger
   deface (~> 0.9.1)
   dynamic_form
   haml-rails
