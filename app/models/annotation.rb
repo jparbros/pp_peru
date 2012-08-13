@@ -16,17 +16,22 @@
 #
 
 class Annotation < ActiveRecord::Base
-
+  #
+  # Accessors
+  #
+  attr_accessible :ancestry, :annotable_id, :annotable_type, :author_id, :comment, :reports, :status, :title
+  
   #
   # Associations
   #
   belongs_to :annotable, :polymorphic => true
   belongs_to :author, class_name: 'User'
-
+  
   #
-  # Accessors
+  # Delegates
   #
-  attr_accessible :ancestry, :annotable_id, :annotable_type, :author_id, :comment, :reports, :status, :title
+  delegate :name, :to => :author, :prefix => true
+  
 
   #
   # Extends

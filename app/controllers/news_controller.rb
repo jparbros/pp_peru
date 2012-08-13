@@ -7,6 +7,7 @@ class NewsController < ApplicationController
     @news = find_news(params[:id])
     @annotable = @news
     @annotation = @annotable.annotations.new
+    @annotations = @annotable.annotations.includes(author:  :actor)
   end
   
   private

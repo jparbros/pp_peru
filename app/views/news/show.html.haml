@@ -9,4 +9,5 @@
 			= "#{a.name} "
 
 = render 'annotations/form' if current_subject
-=# render 
+%h4 Commentarios
+= render partial: 'annotations/annotation', collection: @annotations
