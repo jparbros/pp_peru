@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require jquery.tokeninput
 //= require social_stream-base
 //= require social_stream-documents

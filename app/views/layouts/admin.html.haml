@@ -3,24 +3,90 @@
   %head
     %title
       Administracion | PP Peru
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    "admin", :media => "all"
+    = javascript_include_tag "admin"
     = csrf_meta_tags
 
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
+    .container-fluid.nopadding
+      .row-fluid
+        .span12
+          #header
+            %a
+              PP Peru
+            .hright
+              .column#userinfo
+                %a{class: 'userinfo dropown-toggle', 'data-toggle' => 'dropdown'}
+                  %span
+                    %strong
+                      Admin
+                %ul.dropdown-menu
+                  %li
+                    %a
+                      Edit Profile
+                  %li.divider
+                  %li
+                    %a
+                      Logout
+
+    .container-fluid#container
+      .row-fluid
+        .span3.leftmenu
           %ul.nav
-            %li= link_to 'Centro de Noticias', admin_news_index_path
-            %li= link_to 'Centro de Discusiones', admin_discussions_path
-            %li= link_to 'Centro de Propuestas', admin_proposals_path
-            %li= link_to 'Centro de Entradas', admin_entries_path
-          %ul.nav.pull-right
-            %li= link_to "Salir", destroy_user_session_path, :method => :delete 
-    .container
-      -flash.each do |name, msg|
-        %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
-          %a{:class => 'close', 'data-dismiss' => 'alert'}x
-          = msg
-      = yield
+            %li{class: active_menu?('home')}
+              %a{href: "#{admin_root_path}"}
+                %span.ico
+                  %i.icon-home
+                %span.text
+                  Dashboard
+
+            %li{class: active_menu?('news')}
+              %a{href: "#{admin_news_index_path}"}
+                %span.ico
+                  %i.icon-file
+                %span.text
+                  Centro de Medios
+
+            %li{class: active_menu?('discussions')}
+              %a{href: "#{admin_discussions_path}"}
+                %span.ico
+                  %i.icon-comment
+                %span.text
+                  Centro de Debate
+
+            %li{class: active_menu?('entries')}
+              %a
+                %span.ico
+                  %i.icon-book
+                %span.text
+                  Centro Educacional
+
+            %li{class: active_menu?('proposals')}
+              %a{href: "#{admin_proposals_path}"}
+                %span.ico
+                  %i.icon-eye-open
+                %span.text
+                  Propuesta Ciudadana
+
+            %li{class: active_menu?('reports')}
+              %a
+                %span.ico
+                  %i.icon-signal
+                %span.text
+                  Reportes
+
+            %li{class: active_menu?('users')}
+              %a
+                %span.ico
+                  %i.icon-user
+                %span.text
+                  Usuarios
+
+        #content.span9
+          - flash.each do |name, msg|
+            %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
+              %a{:class => 'close', 'data-dismiss' => 'alert'}x
+              = msg
+
+          = yield
+

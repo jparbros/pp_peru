@@ -24,5 +24,8 @@ gem 'jquery-rails'
 gem 'social_stream', '>= 0.19.0'
 gem 'deface', '~> 0.9.1'
 gem 'ancestry'
-gem 'dynamic_form'
+gem "dynamic_form"
+gem "ckeditor"
+gem "carrierwave"
+gem "mini_magick"
 gem 'state_machine'

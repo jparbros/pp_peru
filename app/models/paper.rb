@@ -22,7 +22,7 @@ class Paper < ActiveRecord::Base
   #
   # Associations
   #
-  belongs_to :author, class_name: 'User'
+  belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
   has_many :annotations, as: :annotable
   has_and_belongs_to_many :news_actors
   
