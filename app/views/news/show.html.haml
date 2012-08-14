@@ -2,6 +2,9 @@
 %div
 	= raw @news.content
 
+- if current_subject
+	%div{:id => "#{@rate}_#{@news.id}", :class => :rate_news}
+
 %strong 
 	Actores
 	%em

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.tokeninput
+//= require jquery.jrating
 //= require social_stream-base
 //= require social_stream-documents
 //= require social_stream-events

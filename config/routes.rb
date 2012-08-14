@@ -5,6 +5,9 @@ PpPeru::Application.routes.draw do
   
   resources :news, only: [:show, :index] do 
     resources :annotations
+    collection do 
+      post :rates
+    end
   end
   
   namespace :admin do

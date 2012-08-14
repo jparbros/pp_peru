@@ -5,6 +5,7 @@ class NewsActor < ActiveRecord::Base
   # Relations
   #
   has_and_belongs_to_many :papers
+  has_many :ratings, as: :rateable
   
   #
   # Class methods
