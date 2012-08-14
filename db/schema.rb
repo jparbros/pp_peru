@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120811231835) do
+ActiveRecord::Schema.define(:version => 20120814182153) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -323,6 +323,15 @@ ActiveRecord::Schema.define(:version => 20120811231835) do
   end
 
   add_index "profiles", ["actor_id"], :name => "index_profiles_on_actor_id"
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.integer  "author_id"
+    t.float    "rate"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "receipts", :force => true do |t|
     t.integer  "receiver_id"
