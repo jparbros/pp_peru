@@ -1,10 +1,9 @@
-= form_for [@annotable, @annotation], :html => { :class => 'form-horizontal' } do |f|
+= form_for [@annotable, @annotation], :html => { :class => 'form' } do |f|
 	.control-group
 		= f.error_messages
 	.control-group
 		= f.label :comment,'Comentario:',  :class => 'control-label'
-		.controls
-			= f.text_area :comment
+		= f.cktext_area :comment, :toolbar => :Easy, :width => 800, :height => 300
 	.form-actions
 		= f.submit @annotation.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
 	
