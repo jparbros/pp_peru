@@ -10,6 +10,12 @@ PpPeru::Application.routes.draw do
     end
   end
   
+  resources :news_actors, only: [:show, :index] do
+    collection do
+      post :rates
+    end
+  end
+  
   namespace :admin do
     root to: 'home#index'
     resources :news

@@ -13,3 +13,11 @@ jQuery ->
 		showRateInfo: true
 		onSuccess: ->
 			#alert 'fuck yeah'
+			
+	$('.rate_actor').jRating
+		smallStarsPath: '../assets/small.png'
+		phpPath: '/news_actors/rates'
+		rateMax: 5
+		decimalLength: 2
+		showRateInfo: true
+		type: 'small'

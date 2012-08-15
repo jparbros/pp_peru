@@ -2,15 +2,22 @@
 %div
 	= raw @news.content
 
+Califica la Noticia
 - if current_subject
 	%div{:id => "#{@rate}_#{@news.id}", :class => :rate_news}
 
 %strong 
 	Actores
-	%em
-		- @news.news_actors.each do |a|
+%ul
+	- @news.news_actors.each do |a|
+		%li
 			= "#{a.name} "
+			- # TODO fix that calculate of average
+			- if current_subject
+				%div{:id => "#{a.ratings.average(:rate)}_#{a.id}", :class => :rate_actor} 
+			
 
 = render 'annotations/form' if current_subject
 %h4 Commentarios
 = render partial: 'annotations/annotation', collection: @annotations
+

@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
   respond_to :json, :html
+  
   def index
     @news = News.by_status(:published).includes(:news_actors)
   end
