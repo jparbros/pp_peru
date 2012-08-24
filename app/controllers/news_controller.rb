@@ -15,8 +15,13 @@ class NewsController < ApplicationController
   
   def rates
     @news = find_news(params[:id])
-    @news.ratings.create(rate: params[:rate], author: current_subject)
-    respond_with @news
+    if current_subject.have_rateable? @news
+      @news.ratings.create(rate: params[:rate], author: current_subject)
+      message = "Calificacion ha sido guardada"
+    else
+      message = "Ya calificado esta Noticia"
+    end
+    respond_with({notice: message}, location: root_path)
   end
   
   private

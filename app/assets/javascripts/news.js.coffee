@@ -9,15 +9,20 @@ jQuery ->
 		phpPath: '/news/rates'
 		rateMax: 5
 		step: false
-		decimalLength: 2
+		decimalLength: 0
 		showRateInfo: true
-		onSuccess: ->
-			#alert 'fuck yeah'
+		onSuccess: (respond)->
+			$(".alert").removeClass('hidden')
+			$(".alert span").text(respond.notice)
 			
 	$('.rate_actor').jRating
 		smallStarsPath: '../assets/small.png'
 		phpPath: '/news_actors/rates'
 		rateMax: 5
-		decimalLength: 2
+		decimalLength: 0
 		showRateInfo: true
 		type: 'small'
+		onSuccess: (respond)->
+			$(".alert").removeClass('hidden')
+			$(".alert span").text(respond.notice)
+		

@@ -1,3 +1,5 @@
+%div{:class =>"alert alert-success hidden"}
+	%span
 %h1= @news.title
 %div
 	= raw @news.content
@@ -18,6 +20,6 @@ Califica la Noticia
 			
 
 = render 'annotations/form' if current_subject
-%h4 Commentarios
+%h4 Comentarios
 = render partial: 'annotations/annotation', collection: @annotations
 
