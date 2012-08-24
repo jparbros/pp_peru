@@ -1,1 +1,7 @@
-= @user.name
+%div.user_rates
+	- @user.user_rates.each do |type, rates|
+		%strong= (type.eql? 'Paper') ? 'Noticias' : 'Actores'
+		%ul
+			- rates.each do |rate|
+				- rate_type = (rate.rateable.kind_of? News) ? rate.rateable.title : rate.rateable.name
+				%li= "#{rate_type}, #{rate.rate}"

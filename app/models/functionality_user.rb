@@ -33,5 +33,9 @@ module FunctionalityUser
      def have_rate_actor_paper?(actor, paper)
        self.ratings.by_rateable('NewsActor', actor).by_paper(paper).empty?
      end
+     
+     def user_rates
+       self.ratings.includes(:rateable).group_by(&:rateable_type)
+     end
    end
 end
