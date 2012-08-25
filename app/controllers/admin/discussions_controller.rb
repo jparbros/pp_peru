@@ -40,6 +40,13 @@ class Admin::DiscussionsController < Admin::BaseController
       render :edit
     end
   end
+
+  def topics
+    @topics = Topic.order(:name)
+    respond_to do |format|
+      format.json{ render json: @topics.tokens(params[:q])}
+    end
+  end
   
   private 
   

@@ -19,10 +19,12 @@ PpPeru::Application.routes.draw do
   namespace :admin do
     root to: 'home#index'
     resources :news
-    resources :discussions
+    resources :discussions do 
+      get :topics, on: :collection
+    end
     resources :proposals
     resources :entries do
-      get :topics,on: :collection
+      get :topics, on: :collection
     end
     resources :news_actors, only: :index
   end

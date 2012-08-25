@@ -9,7 +9,7 @@
 		.controls
 		= f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
 	.control-group
-		= f.label :topics_tokens, "Actor"
+		= f.label :topics_tokens, "Temas:"
 		= f.text_field :topic_tokens, data: {load: @entry.topics}
 	.form-actions
 		= f.submit @entry.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'

@@ -48,6 +48,7 @@ class Admin::EntriesController < Admin::BaseController
       format.json{ render json: @topics.tokens(params[:q])}
     end
   end
+
   private 
   
   def find_entry(id_entry)
