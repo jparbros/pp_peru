@@ -16,8 +16,8 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens
-  attr_reader :actor_tokens
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :topic_tokens
+  attr_reader :actor_tokens, :topic_tokens
 
   #
   # Associations
@@ -26,6 +26,7 @@ class Paper < ActiveRecord::Base
   has_many :annotations, as: :annotable
   has_many :ratings, as: :rateable
   has_and_belongs_to_many :news_actors
+  has_and_belongs_to_many :topics
   
   #
   # Delegates
@@ -43,6 +44,10 @@ class Paper < ActiveRecord::Base
   #
   def actor_tokens=(tokens)
     self.news_actor_ids = NewsActor.ids_from_tokens(tokens)
+  end
+  
+  def topic_tokens=(tokens)
+    self.topic_ids = Topic.ids_from_tokens(tokens)
   end
 
 end

@@ -13,7 +13,7 @@
 #
 
 class News < Paper
- 
+  
  #
  # State machine 
  #

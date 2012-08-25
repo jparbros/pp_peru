@@ -21,7 +21,9 @@ PpPeru::Application.routes.draw do
     resources :news
     resources :discussions
     resources :proposals
-    resources :entries
+    resources :entries do
+      get :topics,on: :collection
+    end
     resources :news_actors, only: :index
   end
 end

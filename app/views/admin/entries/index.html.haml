@@ -1,19 +1,31 @@
-%h2 Entradas
-
-%table.table.table-striped
-	%thead
-		%tr
-			%th ID
-			%th Titulo
-			%th Status
-			%th Acciones
-	%tbody
-		- @entries.each do |e|
-			%tr
-				%td= e.id
-				%td= link_to e.title, [:admin, e]
-				%td= e.status
-				%td
-					= link_to 'Editar',  edit_admin_entry_path(e), :class => 'btn btn-mini'
-					= link_to 'Eliminar', admin_entry_path(e), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-mini btn-danger'
-= link_to 'Agregar', new_admin_entry_path, :class => 'btn btn-primary'
+.row-fluid
+	.box
+		.box-content
+			.page-header
+				%h1 Centro Educacional
+				= link_to new_admin_entry_path, :class => 'btn-add-resource btn btn-primary' do
+					%i.icon-white.icon-plus
+					Nuevo Centro Educacional
+			%table.table.table-striped.table-bordered
+				%thead
+					%tr
+						%th ID
+						%th Titulo
+						%th Status
+						%th Acciones
+				%tbody
+					- @entries.each do |e|
+						%tr
+							%td.center= e.id
+							%td= link_to e.title, [:admin, e]
+							%td= e.status
+							%td
+								= link_to [:admin, e], :class => 'btn btn-mini' do
+									%i.icon-eye-open
+									Ver
+								= link_to edit_admin_entry_path(e), :class => 'btn btn-mini btn-primary' do
+									%i.icon-edit.icon-white
+									Editar
+								= link_to admin_entry_path(e), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+									%li.icon-white.icon-remove
+									Eliminar
