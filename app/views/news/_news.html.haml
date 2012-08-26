@@ -1,10 +1,20 @@
-%pre
-	%strong= link_to news.title, news
-	%div
-	= raw news.content # truncar este content
-	%div
-	%strong Actores
-	%em
-		-news.news_actors.each do |a|
-			= "#{a.name} "
-		
+%article.entry.has-divider
+  %header
+    .post-format
+      %a{:href => "#"}
+    %h2.entry-title
+      = link_to news.title, news
+    .entry-meta
+      %span.tags
+        Temas:
+        %a{:href => "#"} Standard
+      %span.comments
+        %a{:href => "#"} #{news.annotations.count} Comentarios
+
+
+  .entry-date
+    %span 21
+    OCT
+  .entry-content
+    = news.first_paragraph.html_safe
+    = link_to 'Leer mas...', news, class: 'more-link'

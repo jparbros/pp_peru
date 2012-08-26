@@ -1,0 +1,61 @@
+#page-header > * span:before ,
+#page-header > * span:after ,
+.fancy-title:before ,
+.vcard .overlay-color ,
+.portfolio.compact .entry .entry-body header a.more:hover ,
+#comment-form .leave-a-comment ,
+#comments .leave-a-comment ,
+.blog .entry .post-format a ,
+.back-to-top:hover a ,
+.sticky-nav a:hover ,
+ul.list.tags li a:hover ,
+.toggle.active .indicator ,
+.toggle:hover .indicator ,
+.accordion-panel.active .indicator ,
+.accordion-panel-title:hover .indicator ,
+.tab-group li.active ,
+.widget-title:before ,
+button:hover ,
+.button:hover ,
+#page-header:before ,
+#cap{
+background-color: #22aaee;
+}
+
+.colored ,
+.toggle.active .toggle-title h3 ,
+.toggle .toggle-title:hover h3 ,
+.portfolio .entry .entry-title a:hover ,
+#comments .comments-list .comment .comment-author a:hover ,
+.blog nav a:hover ,
+.blog .entry-content .more-link:hover ,
+.blog .entry .entry-title a:hover ,
+.contact-form .meta span ,
+.twitter-feed a ,
+.toggle.active .toggle-title ,
+.toggle-title:hover ,
+.accordion-panel.active .accordion-panel-title ,
+.accordion-panel-title:hover ,
+dl dt ,
+#main-nav-menu > ul > li.current > a ,
+a:hover{
+color: #22aaee;
+}
+
+input[type=text]:focus ,
+input[type=password]:focus ,
+textarea:focus{
+border-color: #22aaee;
+}
+
+.clients-grid .entry:hover ,
+.portfolio-4 .entry:hover ,
+.portfolio-3 .entry:hover ,
+.portfolio-2 .entry:hover ,
+#main-nav-menu > ul > li.current > a{
+border-bottom-color: #22aaee;
+}
+
+blockquote{
+border-left-color: #22aaee;
+}

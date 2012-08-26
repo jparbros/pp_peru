@@ -13,17 +13,40 @@
 #
 
 class News < Paper
-  
- #
- # State machine 
- #
+
+  #
+  # State machine
+  #
   state_machine :status, :initial => :draft do
     state :draft
     state :published
-    
+    state :archived
+
     event :publish do
       transition :draft => :published
     end
-  end # end state machine
-  
+
+    event :archived do
+      transition published: :archived
+    end
+  end
+
+  #
+  # Callback
+  #
+  after_initialize :parse_content
+
+  #
+  # Delegation
+  #
+  delegate :count, to: :annotations, prefix: true
+
+  def parse_content
+    @content_parsed = Nokogiri::HTML(content)
+  end
+
+  def first_paragraph
+    @content_parsed.css('p').first.to_s
+  end
+
 end

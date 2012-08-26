@@ -1,23 +1,63 @@
 !!! 5
 %html
-	%head
-		%title PP PERU
-		= stylesheet_link_tag    "application", :media => "all"
-		= javascript_include_tag "application"
-		= csrf_meta_tags
+  %head
+    %title PP PERU
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
 
-	%body
-		.navbar.navbar-fixed-top
-			.navbar-inner
-				.container
-					%ul.nav
-						%li= link_to 'Aplicaciones','#applications'
-						%li= link_to 'Centro de Noticias', news_index_path
-					%ul.nav.pull-right
-						%li= link_to "Salir", destroy_user_session_path, :method => :delete
-		.container
-			- flash.each do |name, msg|
-				%div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
-					%a{:class => 'close', 'data-dismiss' => 'alert'} x
-					= msg
-			= yield
+  %body
+    .main-wrap
+
+      %header#header.container-wrap
+        #header-container.container
+          #logo
+            %a#site-title{:href => "index.html"}
+              %img{:alt => "Simplex", :src => "images/logo.png"}/
+
+            %span#site-description
+              Responsive HTML5 Template
+
+          %nav#main-nav-menu
+            %ul
+              %li.nav-menu-item.current
+                %a{:href => "index.html"} Home
+              %li.nav-menu-item
+                = link_to 'Centro de Noticias', news_index_path
+
+          %select#responsive-main-nav-menu{:onchange => "javascript:window.location.replace(this.value);"}
+
+
+      %section#page.container-wrap
+        #page-container.container
+          %header#page-header
+            %h1
+              %span Centro de Noticias
+
+          #page-content
+            .row
+              - flash.each do |name, msg|
+                %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
+                  %a{:class => 'close', 'data-dismiss' => 'alert'} x
+                  = msg
+              = yield
+
+      %footer#page-footer.container-wrap
+        #page-footer-container.container
+
+      %footer#footer.container-wrap
+        #footer-container.container
+          .row
+            #footer-left.span-6
+              © 2012 Constancia
+            #footer-right.span-6
+              #social-links
+                %p
+                  Mantente Conectado
+                %ul
+                  %li.twitter-link
+                    <a href = "#" title = "Twitter">Twitter</a>
+                  %li.vimeo-link
+                    <a href = "#" title = "Vimeo">Vimeo</a>
+                  %li.flickr-link
+                    <a href = "#" title = "Flickr">Flickr</a>

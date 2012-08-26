@@ -1,25 +1,45 @@
-%div{:class =>"alert alert-success hidden"}
-	%span
-%h1= @news.title
-%div
-	= raw @news.content
+%section#content.span-9
+  .blog.single-entry
 
-Califica la Noticia
-- if current_subject
-	%div{:id => "#{@rate}_#{@news.id}", :class => :rate_news}
+    %nav.sticky-nav
+      %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
+      %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
+      %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
 
-%strong 
-	Actores
-%ul
-	- @news.news_actors.each do |a|
-		%li
-			= "#{a.name} "
-			- # TODO fix that calculate of average
-			- if current_subject
-				%div{:id => "#{a.ratings.average(:rate)}_#{a.id}", :class => :rate_actor} 
-			
+    %article.entry.has-divider
+      %header
+        .post-format
+          %a{:href => "#"}
+        %h2.entry-title
+          = link_to @news.title, @news
+        .entry-meta
+          %span.tags
+            Temas:
+            %a{:href => "#"} Standard
+          %span.comments
+            %a{:href => "#comments"} #{@news.annotations_count} Comentarios
 
-= render 'annotations/form' if current_subject
-%h4 Comentarios
-= render partial: 'annotations/annotation', collection: @annotations
 
+      .entry-date
+        %span 21
+        OCT
+      .entry-content
+        = @news.content.html_safe
+
+    %section#comments.has-divider
+      %a.leave-a-comment{:href => "#comment-form", :title => "Leave a Comment"}
+      %h3.comments-title #{@news.annotations_count} Comentarios
+      .leave-a-comment-text
+        %a.meta{:href => "#comment-form"} Deja un comentario
+      %ol.comments-list
+        = render partial: 'annotations/annotation', collection: @news.annotations
+
+    %section#comment-form
+      %span.leave-a-comment
+      %h3.form-title Deja un Comentario
+      %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
+      = render partial: 'annotations/form', locals: {annotable: @news}
+
+
+%aside#sidebar.span-3
+  = render partial: 'right_aside'

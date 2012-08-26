@@ -1,2 +1,5 @@
-%h1 Centro de Noticias
-= render partial: 'news', collection: @news
+%section#content.span-9
+  .blog
+    = render @news
+%aside#sidebar.span-3
+  = render partial: 'right_aside'

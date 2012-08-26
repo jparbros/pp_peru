@@ -13,11 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require jquery.tokeninput
 //= require jquery.jrating
-//= require social_stream-base
-//= require social_stream-documents
-//= require social_stream-events
-//= require social_stream-linkser
-//= require social_stream-presence
-//= require_tree .
+//= require jquery.cookie
+//= require jquery.easing
+//= require scripts

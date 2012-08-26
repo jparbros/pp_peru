@@ -11,12 +11,10 @@
  *= require_self
  *= require token-input-facebook
  *= require jrating
- *= require social_stream-base
- *= require social_stream-documents
- *= require social_stream-events
- *= require social_stream-linkser
- *= require social_stream-presence
- *= require_tree .
+ *= require twitter-bootstrap
+ *= require jrating
+ *= token-input
+ *= require style
  */
 
 body > .container { margin-top: 50px; }
