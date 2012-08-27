@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: ratings
+#
+#  id            :integer          not null, primary key
+#  rateable_id   :integer
+#  rateable_type :string(255)
+#  author_id     :integer
+#  rate          :float
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  paper_id      :integer
+#
+
 =begin
  == Schema Information
 Table name: ratings

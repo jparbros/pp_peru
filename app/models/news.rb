@@ -15,23 +15,6 @@
 class News < Paper
 
   #
-  # State machine
-  #
-  state_machine :status, :initial => :draft do
-    state :draft
-    state :published
-    state :archived
-
-    event :publish do
-      transition :draft => :published
-    end
-
-    event :archived do
-      transition published: :archived
-    end
-  end
-
-  #
   # Callback
   #
   after_initialize :parse_content
@@ -40,6 +23,15 @@ class News < Paper
   # Delegation
   #
   delegate :count, to: :annotations, prefix: true
+
+  #
+  # Class methods
+  #
+  class << self
+    def published
+      by_status(:published).includes(:news_actors)
+    end
+  end
 
   def parse_content
     @content_parsed = Nokogiri::HTML(content)

@@ -4,7 +4,7 @@ gem 'rails', '3.2.6'
 
 group :development do
   gem 'annotate'
-	gem 'debugger'
+  gem 'debugger'
 end
 
 group :production do
@@ -20,12 +20,16 @@ group :assets do
 end
 
 gem 'haml-rails'
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'jquery-rails'
-gem 'social_stream', '>= 0.19.0'
-gem 'deface', '~> 0.9.1'
 gem 'ancestry'
 gem "dynamic_form"
 gem "ckeditor"
 gem "carrierwave"
 gem "mini_magick"
 gem 'state_machine'
+gem 'nokogiri'
+gem 'cancan'

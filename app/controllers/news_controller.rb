@@ -2,23 +2,24 @@ class NewsController < ApplicationController
   respond_to :json, :html
 
   def index
-    @news = News.by_status(:published).includes(:news_actors)
+    @news = News.published.by_permissions(current_user)
   end
 
   def show
     @news = find_news(params[:id])
-    @rate = @news.ratings.average(:rate)
+    @rate = @news.ratings.average(:rate) || 0
+    authorize! :read, @news
   end
 
   def rates
     @news = find_news(params[:id])
-    if current_subject.have_rateable? @news
-      @news.ratings.create(rate: params[:rate], author: current_subject)
+    if current_user.have_rateable? @news
+      @news.ratings.create(rate: params[:rate], author: current_user)
       message = "Calificacion ha sido guardada"
     else
       message = "Ya calificado esta Noticia"
     end
-    respond_with({notice: message}, location: root_path)
+    respond_with({notice: message}, location: news_url(@news))
   end
 
   private

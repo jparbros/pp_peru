@@ -13,4 +13,5 @@
 #
 
 class Discussion < Paper
+
 end

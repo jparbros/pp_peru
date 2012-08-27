@@ -21,10 +21,27 @@
 
 
       .entry-date
-        %span 21
-        OCT
+        %span= @news.published_day
+        = @news.published_month.upcase
       .entry-content
         = @news.content.html_safe
+      .entry-rate
+        - if current_user
+          %h4 Califica esta noticia:
+          %div{:id => "#{@rate}_#{@news.id}", :class => :rate_news}
+
+    %section#actors.has-divider
+      %span.actors-rate
+      %h3.actors-title Califica su actuacion:
+      %ul.actors-rate-list
+        - @news.news_actors.each do |actor|
+          %li
+            %span.actor-image
+              = image_tag '/assets/no-image-user.png'
+            %span.actor-name
+              = "#{actor.name} "
+            - if current_user
+              %div{:id => "#{actor.ratings.average(:rate)}_#{actor.id}", :class => :rate_actor}
 
     %section#comments.has-divider
       %a.leave-a-comment{:href => "#comment-form", :title => "Leave a Comment"}

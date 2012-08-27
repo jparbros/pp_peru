@@ -3,14 +3,14 @@ class AnnotationsController < ApplicationController
 
   def create
     @annotation = @annotable.annotations.new(params[:annotation])
-    @annotation.author = current_subject
+    @annotation.author = current_user
      if @annotation.save
        redirect_to @annotable, notice: "Comentario Creado."
      else
        render :new
-     end 
+     end
   end
-  
+
 
 
   private

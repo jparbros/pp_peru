@@ -16,3 +16,27 @@
 //= require jquery.tokeninput
 //= require ckeditor/init
 //= require_tree ./admin
+
+$(document).ready(function() {
+  $('.leftmenu a').click(function(e){
+      if($(this).siblings('ul').size() == 1){
+        e.preventDefault();
+          var submenu = $(this).siblings('ul');
+          if($(this).hasClass('open')) {
+              if($(this).parents('.leftmenu').hasClass('lefticon')) {
+                  submenu.fadeOut();
+              } else {
+                  submenu.slideUp('fast');
+              }
+              $(this).removeClass('open');
+          } else {
+              if($(this).parents('.leftmenu').hasClass('lefticon')) {
+                  submenu.fadeIn();
+              } else {
+                  submenu.slideDown('fast');
+              }
+              $(this).addClass('open');
+          }
+      }
+  })
+});

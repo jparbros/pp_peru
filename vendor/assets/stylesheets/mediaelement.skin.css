@@ -1,0 +1,106 @@
+.mejs-container{
+width: 100% !important;
+margin-left: -2px;
+background: none;
+}
+
+.mejs-controls div.mejs-time-rail{
+width: 70.89%;
+}
+
+.mejs-container .mejs-controls{
+border: 1px solid #666;
+background: url("player_skin.png") 0 -150px repeat-x #333;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+}
+
+.mejs-container .mejs-controls div{
+width:30px;
+height:30px;
+}
+
+.mejs-container .mejs-controls div button{
+display: none;
+}
+
+.mejs-container .mejs-controls .mejs-play ,
+.mejs-container .mejs-controls .mejs-pause ,
+.mejs-container .mejs-controls .mejs-mute ,
+.mejs-container .mejs-controls .mejs-unmute{
+cursor: pointer;
+border-right: 1px solid #555;
+background: url("player_skin.png") no-repeat;
+}
+
+.mejs-container .mejs-controls .mejs-play{
+background-position: 0 -60px;
+}
+
+.mejs-container .mejs-controls .mejs-play:hover{
+background-position: 0 -90px;
+}
+
+.mejs-container .mejs-controls .mejs-play:active{
+background-position: 0 -120px;
+}
+
+.mejs-container .mejs-controls .mejs-pause{
+background-position: -30px -60px;
+}
+
+.mejs-container .mejs-controls .mejs-pause:hover{
+background-position: -30px -90px;
+}
+
+.mejs-container .mejs-controls .mejs-pause:active{
+background-position: -30px -120px;
+}
+
+.mejs-container .mejs-controls .mejs-mute{
+border-right: none;
+border-left: 1px solid #555;
+background-position: -60px -60px;
+}
+
+.mejs-container .mejs-controls .mejs-mute:hover{
+background-position: -60px -90px;
+}
+
+.mejs-container .mejs-controls .mejs-mute:active{
+background-position: -60px -120px;
+}
+
+.mejs-container .mejs-controls .mejs-unmute{
+border-right: none;
+border-left: 1px solid #555;
+background-position: -90px -60px;
+}
+
+.mejs-container .mejs-controls .mejs-unmute:hover{
+background-position: -90px -90px;
+}
+
+.mejs-container .mejs-controls .mejs-unmute:active{
+background-position: -90px -120px;
+}
+
+.mejs-container .mejs-controls .mejs-time{
+margin: 0;
+padding: 0;
+height: 100%;
+}
+
+.mejs-container .mejs-controls .mejs-time span{
+width: 50px;
+margin: 0;
+font: normal normal 12px/30px 'Open Sans Condensed', Arial, sans-serif;
+text-align: center;
+text-shadow: 1px 1px 1px #333;
+color: #fff;
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-loaded{
+background: url(player_skin.png) 0 -190px repeat-x #ff9900;
+}
