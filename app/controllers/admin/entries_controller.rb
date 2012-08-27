@@ -1,8 +1,10 @@
 class Admin::EntriesController < Admin::BaseController
+  before_filter :find_entry, except: [:index, :new, :create]
+  before_filter :ensure_author!, except: [:index, :new, :create]
   respond_to :html, :js
   
   def index
-    @entries = Entry.all
+    @entries = Entry.by_author(current_user)
   end
   
   def new
@@ -20,21 +22,17 @@ class Admin::EntriesController < Admin::BaseController
   end
   
   def edit
-    @entry = find_entry(params[:id])
   end
   
   def show
-    @entry = find_entry(params[:id])
   end
   
   def destroy
-    @entry = find_entry(params[:id])
     @entry.destroy
     redirect_to admin_entries_path, notice: 'Eliminado Correctamente'
   end
   
   def update
-    @entry = find_entry(params[:id])
     if @entry.update_attributes(params[:entry])
       redirect_to admin_entries_path, notice: 'Actualizado Correctamente'
     else
@@ -51,7 +49,11 @@ class Admin::EntriesController < Admin::BaseController
 
   private 
   
-  def find_entry(id_entry)
-    Entry.find(id_entry)
+  def find_entry
+    @entry = Entry.find(params[:id])
+  end
+  
+  def ensure_author!
+    redirect_to admin_entries_path, notice: 'Recurso no Autorizado' if @entry.author_id != current_user.id
   end
 end

@@ -1,6 +1,8 @@
 class Admin::ProposalsController < Admin::BaseController
+  before_filter :find_proposal, except: [:index, :new, :create]
+  before_filter :ensure_author!, except: [:index, :new, :create]
    def index
-     @proposals = Proposal.all
+     @proposals = Proposal.by_author(current_user)
    end
 
    def new
@@ -18,21 +20,17 @@ class Admin::ProposalsController < Admin::BaseController
    end
 
    def edit
-     @proposal = find_proposal(params[:id])
    end
 
    def show
-     @proposal = find_proposal(params[:id])
    end
 
    def destroy
-     @proposal = find_proposal(params[:id])
      @proposal.destroy
      redirect_to admin_proposals_path, notice: 'Eliminado Correctamente'
    end
 
    def update
-     @proposal = find_proposal(params[:id])
      if @proposal.update_attributes(params[:proposal])
        redirect_to admin_proposals_path, notice: 'Actualizado Correctamente'
      else
@@ -42,7 +40,11 @@ class Admin::ProposalsController < Admin::BaseController
 
    private 
 
-   def find_proposal(id_proposal)
-     Proposal.find(id_proposal)
+   def find_proposal
+     @proposal = Proposal.find(params[:id])
+   end
+   
+   def ensure_author!
+     redirect_to admin_proposals_path, notice: 'Recurso no Autorizado' if @proposal.author_id != current_user.id
    end
 end

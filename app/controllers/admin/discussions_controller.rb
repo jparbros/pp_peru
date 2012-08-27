@@ -1,7 +1,9 @@
 class Admin::DiscussionsController < Admin::BaseController
+  before_filter :find_discussion, except: [:index, :new, :create]
+  before_filter :ensure_author!, except: [:index, :new, :create]
   
   def index
-    @discussions = Discussion.all
+    @discussions = Discussion.by_author(current_user)
   end
   
   def new
@@ -19,21 +21,17 @@ class Admin::DiscussionsController < Admin::BaseController
   end
   
   def edit
-    @discussion = find_discussion(params[:id])
   end
   
   def show
-    @discussion = find_discussion(params[:id])
   end
   
   def destroy
-    @discussion = find_discussion(params[:id])
     @discussion.destroy
     redirect_to admin_discussions_path, notice: 'Eliminado Correctamente'
   end
   
   def update
-    @discussion = find_discussion(params[:id])
     if @discussion.update_attributes(params[:discussion])
       redirect_to admin_discussions_path, notice: 'Actualizado Correctamente'
     else
@@ -50,7 +48,11 @@ class Admin::DiscussionsController < Admin::BaseController
   
   private 
   
-  def find_discussion(id_discussion)
-    Discussion.find(id_discussion)
+  def find_discussion
+    @discussion = Discussion.find(params[:id])
+  end
+  
+  def ensure_author!
+    redirect_to admin_discussion_path, notice: 'Recurso no Autorizado' if @discussion.author_id != current_user.id
   end
 end

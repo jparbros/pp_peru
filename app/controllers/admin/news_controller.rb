@@ -1,7 +1,9 @@
 class Admin::NewsController < Admin::BaseController
+  before_filter :find_news, except: [:index, :new, :create]
+  before_filter :ensure_author!, except: [:index, :new, :create]
   
   def index
-    @news = News.all
+    @news = News.by_author(current_user)
   end
   
   def new
@@ -19,17 +21,14 @@ class Admin::NewsController < Admin::BaseController
   end
   
   def edit
-    @news = find_news(params[:id])
   end
   
   def destroy
-    @news = find_news(params[:id])
     @news.destroy
     redirect_to admin_news_index_path, notice: 'Eliminado Correctamente'
   end
   
   def update
-    @news = find_news(params[:id])
     if @news.update_attributes(params[:news])
       redirect_to admin_news_index_path, notice: 'Actualizado Correctamente'
     else
@@ -39,7 +38,11 @@ class Admin::NewsController < Admin::BaseController
   
   private 
   
-  def find_news(id_news)
-    News.find(id_news)
+  def find_news
+    @news = News.find(params[:id])
+  end
+  
+  def ensure_author!
+    redirect_to admin_news_index_path, notice: 'Recurso no Autorizado' if @news.author_id != current_user.id
   end
 end

@@ -4,14 +4,14 @@ module FunctionalityUser
      #
      # Constans
      #
-     ROLES = ['participant', 'admin']
-     attr_accessible :role
+     ROLES = ['participant', 'admin', 's_admin']
+     attr_accessible :role, :political_party, :political_party_id
      
      #
      # Relations
      #
      has_many :ratings, foreign_key: :author_id
-     
+     belongs_to :political_party
      #
      # Scopes
      #
