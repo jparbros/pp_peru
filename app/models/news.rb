@@ -41,6 +41,15 @@ class News < Paper
   #
   delegate :count, to: :annotations, prefix: true
 
+  #
+  # Class methods
+  #
+  class << self
+    def published
+      by_status(:published).includes(:news_actors)
+    end
+  end
+
   def parse_content
     @content_parsed = Nokogiri::HTML(content)
   end

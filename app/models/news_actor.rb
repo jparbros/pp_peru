@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: news_actors
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)      default(""), not null
+#  avatar     :string(255)      default("")
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class NewsActor < ActiveRecord::Base
   attr_accessible :name, :avatar
   

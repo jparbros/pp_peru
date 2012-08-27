@@ -36,6 +36,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.4.0)
     builder (3.0.0)
+    cancan (1.6.7)
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -94,6 +95,7 @@ GEM
       subexec (~> 0.2.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    nokogiri (1.5.5)
     oauth (0.4.6)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -173,6 +175,7 @@ DEPENDENCIES
   ancestry
   annotate
   bootstrap-sass
+  cancan
   carrierwave
   ckeditor
   coffee-rails (~> 3.2.1)
@@ -182,6 +185,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   mini_magick
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-twitter
