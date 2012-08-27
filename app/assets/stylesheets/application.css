@@ -13,8 +13,9 @@
  *= require jrating
  *= require twitter-bootstrap
  *= require jrating
- *= token-input
+ *= require token-input
  *= require style
+ *= require news
  */
 
 body > .container { margin-top: 50px; }

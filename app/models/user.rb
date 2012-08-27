@@ -25,10 +25,51 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
   # attr_accessible :title, :body
 
-  def admin?
-    role == 'admin'
+
+  #
+  # Constans
+  #
+  ROLES = ['super_admin', 'admin', 'member', 'participant']
+
+  #
+  # Relations
+  #
+  has_many :ratings, foreign_key: :author_id
+
+  #
+  # Instance methods
+  #
+
+  ROLES.each do |role|
+    define_method "#{role}?" do
+      self.role.eql? role
+    end
+  end
+
+  def have_rateable?(rateable)
+    kind = (rateable.kind_of? News)? 'Paper' : 'NewsActor'
+    self.ratings.by_rateable(kind, rateable).empty?
+  end
+
+  def have_rate_actor_paper?(actor, paper)
+    self.ratings.by_rateable('NewsActor', actor).by_paper(paper).empty?
+  end
+
+  def user_rates
+    self.ratings.includes(:rateable).group_by(&:rateable_type)
+  end
+
+  def permission
+    case role
+    when 'super_admin', 'admin'
+      [:admin, :members, :public]
+    when 'member'
+      [:members, :public]
+    when 'participant', nil
+      :public
+    end
   end
 end

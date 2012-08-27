@@ -15,23 +15,6 @@
 class News < Paper
 
   #
-  # State machine
-  #
-  state_machine :status, :initial => :draft do
-    state :draft
-    state :published
-    state :archived
-
-    event :publish do
-      transition :draft => :published
-    end
-
-    event :archived do
-      transition published: :archived
-    end
-  end
-
-  #
   # Callback
   #
   after_initialize :parse_content

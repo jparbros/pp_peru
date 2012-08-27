@@ -16,8 +16,8 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :topic_tokens
-  attr_reader :actor_tokens, :topic_tokens
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility
+  attr_reader :actor_tokens
 
   #
   # Associations
@@ -26,28 +26,60 @@ class Paper < ActiveRecord::Base
   has_many :annotations, as: :annotable
   has_many :ratings, as: :rateable
   has_and_belongs_to_many :news_actors
-  has_and_belongs_to_many :topics
-  
+
+  #
+  # Constants
+  #
+  VISIBILITY = {public: :publico, members: :miembros, admin: :administradores}
+
   #
   # Delegates
   #
   delegate :name, :to => :author, :prefix => true
-  
-  
+
+
   #
   #   Scopes
   #
   scope :by_status, lambda{|status| where('status = ?', status)}
 
   #
+  # State machine
+  #
+  state_machine :status, :initial => :draft do
+    state :draft
+    state :published
+    state :archived
+
+    event :publish do
+      transition [:draft, :archived] => :published
+    end
+
+    event :archive do
+      transition published: :archived
+    end
+  end
+
+
+  #
+  # Class methods
+  #
+
+  class << self
+    def visibility
+      VISIBILITY.collect {|visible| [visible.last.to_s.humanize, visible.first]}
+    end
+
+    def by_permissions(user)
+      where(visibility: user.permission)
+    end
+  end
+
+  #
   # Instance methods
   #
   def actor_tokens=(tokens)
     self.news_actor_ids = NewsActor.ids_from_tokens(tokens)
-  end
-  
-  def topic_tokens=(tokens)
-    self.topic_ids = Topic.ids_from_tokens(tokens)
   end
 
 end

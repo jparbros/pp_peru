@@ -16,4 +16,7 @@
 //= require jquery.jrating
 //= require jquery.cookie
 //= require jquery.easing
+//= require jquery.flexslider-min
+//= require mediaelement.min
 //= require scripts
+//= require news

@@ -1,16 +1,28 @@
 
-= form_for [:admin, @news], :html => { :class => 'form' } do |f|
-	.control-group
-		= f.error_messages
-	.control-group
-		= f.label :title, 'Titulo:',:class => 'control-label'
-		= f.text_field :title, :class => 'text_field'
-	= f.label :content,'Contenido:',  :class => 'control-label'
-	= f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
-		
-	.control-group
-		= f.label :actor_tokens, "Actor"
-		= f.text_field :actor_tokens, data: {load: @news.news_actors}
-	.form-actions
-		= f.submit @news.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
-		= link_to 'Cancelar', admin_news_index_path, :class => 'btn'
+= form_for [:admin, @news], :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.error_messages
+
+  .control-group
+    = f.label :title, 'Titulo:',:class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+
+  .control-group
+    = f.label :content,'Contenido:',  :class => 'control-label'
+    .controls
+      = f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
+
+  .control-group
+    = f.label :actor_tokens, "Involucrados en la noticia:", class: 'control-label'
+    .controls
+      = f.text_field :actor_tokens, data: {load: @news.news_actors}
+
+  .control-group
+    = f.label :visibility, "Visibilidad:", class: 'control-label'
+    .controls
+      = f.select :visibility, Paper.visibility
+
+  .form-actions
+    = f.submit @news.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+    = link_to 'Cancelar', admin_news_index_path, :class => 'btn'

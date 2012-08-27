@@ -1,13 +1,13 @@
 class Admin::NewsController < Admin::BaseController
-  
+
   def index
     @news = News.all
   end
-  
+
   def new
     @news = News.new
   end
-  
+
   def create
     @news = News.new(params[:news])
     @news.author = current_user
@@ -17,17 +17,17 @@ class Admin::NewsController < Admin::BaseController
       render :new
     end
   end
-  
+
   def edit
     @news = find_news(params[:id])
   end
-  
+
   def destroy
     @news = find_news(params[:id])
     @news.destroy
     redirect_to admin_news_index_path, notice: 'Eliminado Correctamente'
   end
-  
+
   def update
     @news = find_news(params[:id])
     if @news.update_attributes(params[:news])
@@ -36,10 +36,10 @@ class Admin::NewsController < Admin::BaseController
       render :edit
     end
   end
-  
-  private 
-  
+
+  private
+
   def find_news(id_news)
-    News.find(id_news)
+    ::News.find(id_news)
   end
 end

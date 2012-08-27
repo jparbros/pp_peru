@@ -1,0 +1,135 @@
+.flexslider{
+position: relative;
+}
+
+.flexslider .controls{
+display: block;
+position:absolute;
+right: 0;
+top: 50%;
+z-index: 9;
+overflow: hidden;
+height: 40px;
+margin-top: -20px;
+}
+
+.flexslider .controls.left-nav{
+right: auto;
+left: 0;
+}
+
+/* direction nav
+/*-----------------------------*/
+
+.flexslider .controls .flex-control-nav ,
+.flexslider .controls a.next ,
+.flexslider .controls a.prev{
+float: left;
+-moz-user-select: none;
+-webkit-user-select: none;
+user-select: none;
+}
+
+.flexslider .controls.right-nav .flex-control-nav ,
+.flexslider .controls.right-nav a.next ,
+.flexslider .controls.right-nav a.prev{
+float: right;
+}
+
+.flexslider .controls a.next ,
+.flexslider .controls a.prev{
+display: block;
+width: 30px;
+height: 40px;
+text-indent: -9999px;
+cursor: pointer;
+background: url(slider-arrow-right.png) no-repeat center center #666;
+-moz-border-radius: 5px 0 0 5px;
+-webkit-border-radius: 5px 0 0 5px;
+border-radius: 5px 0 0 5px;
+}
+
+.flexslider .controls a.prev{
+background: url(slider-arrow-left.png) no-repeat center center #666;
+}
+
+.flexslider .controls a.next:hover ,
+.flexslider .controls a.prev:hover{
+background-color: #22aaee;
+}
+
+.flexslider .controls.left-nav a.next ,
+.flexslider .controls.left-nav a.prev{
+-moz-border-radius: 0 5px 5px 0;
+-webkit-border-radius: 0 5px 5px 0;
+border-radius: 0 5px 5px 0;
+}
+
+
+.flexslider .controls.right-nav a.next ,
+.flexslider .controls.left-nav a.prev{
+position: relative;
+z-index: 10;
+}
+
+.flexslider .controls.right-nav:hover a.next ,
+.flexslider .controls.left-nav:hover a.prev{
+-moz-border-radius: 0;
+-webkit-border-radius: 0;
+border-radius: 0;
+}
+
+/* control nav
+/*-----------------------------*/
+
+.flexslider .controls .flex-control-nav{
+display: inline-block;
+overflow: hidden;
+height: 40px;
+padding: 0 10px;
+background-color: #333;
+}
+
+.flexslider .controls .flex-control-nav li{
+display: block;
+float: left;
+margin: 0 2px;
+margin-top: 16px;
+width: 8px;
+height: 8px;
+}
+
+.flexslider .controls .flex-control-nav li a{
+display: block;
+width: 8px;
+height: 8px;
+cursor: pointer;
+text-indent: -9999px;
+background: #999;
+-moz-border-radius: 99px;
+-webkit-border-radius: 99px;
+border-radius: 99px;
+}
+
+.flexslider .controls .flex-control-nav a:hover{
+background: #fff;
+}
+
+.flexslider .controls .flex-control-nav a.active{
+background: #fff;
+}
+
+.flexslider .slides li{
+position: relative;
+}
+
+.flexslider .slides .flex-caption{
+position: absolute;
+bottom: 0;
+padding: 10px 20px;
+color: #fff;
+background: #666;
+-moz-border-radius: 0 4px 4px 0;
+-webkit-border-radius: 0 4px 4px 0;
+border-radius: 0 4px 4px 0;
+}

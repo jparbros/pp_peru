@@ -20,7 +20,10 @@ PpPeru::Application.routes.draw do
 
   namespace :admin do
     root to: 'home#index'
-    resources :news
+    resources :news do
+      resource :publish, controller: 'news_actions/publish', only: :create
+      resource :archive, controller: 'news_actions/archive', only: :create
+    end
     resources :discussions do
       get :topics, on: :collection
     end

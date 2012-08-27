@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827015859) do
+ActiveRecord::Schema.define(:version => 20120827070046) do
 
   create_table "annotations", :force => true do |t|
     t.string   "title"
@@ -45,10 +45,11 @@ ActiveRecord::Schema.define(:version => 20120827015859) do
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
   create_table "news_actors", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
-    t.string   "avatar",     :default => ""
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "name",               :default => "", :null => false
+    t.string   "avatar",             :default => ""
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.integer  "political_party_id"
   end
 
   create_table "news_actors_papers", :id => false, :force => true do |t|
@@ -62,13 +63,23 @@ ActiveRecord::Schema.define(:version => 20120827015859) do
     t.integer  "author_id"
     t.string   "type"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.integer  "political_party_id"
+    t.string   "visibility"
+    t.datetime "published_at"
   end
 
   create_table "papers_topics", :id => false, :force => true do |t|
     t.integer "topic_id", :null => false
     t.integer "paper_id", :null => false
+  end
+
+  create_table "political_parties", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "ratings", :force => true do |t|
@@ -101,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20120827015859) do
     t.string   "role"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "political_party_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

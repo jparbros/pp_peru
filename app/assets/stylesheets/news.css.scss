@@ -1,3 +1,40 @@
 // Place all the styles related to the news controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.entry-rate {
+  padding-left: 60px;
+  margin-top: 40px;
+}
+
+.actors-title {
+  padding-left: 60px;
+}
+
+.actors-rate {
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-top: 2px;
+  float: left;
+  background: url(/assets/user.png) no-repeat center center #2AE;
+  -moz-border-radius: 99px;
+  -webkit-border-radius: 99px;
+  border-radius: 99px;
+}
+
+ul.actors-rate-list {
+  padding-left: 60px;
+  list-style: none;
+  margin-left: 0;
+
+  li {margin-bottom: 10px;}
+}
+
+.actor-name {
+  display: inline-block;
+  margin-right: 100px;
+  width: 200px;
+}
+
+.rate_actor {display: inline-block;}

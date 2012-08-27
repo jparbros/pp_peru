@@ -72,7 +72,7 @@ module SocialStream
                 :key  => :groups,
                 :html => link_to(image_tag("btn/btn_group.png") + t('group.other'), '#', :id => "toolbar_menu-groups"),
                 :items => [
-                  if current_subject.admin?
+                  if current_user.admin?
                     {
                       :key => :new_group ,
                       :html => link_to(image_tag("btn/btn_group.png")+t('group.new.action'), new_group_path)
@@ -92,7 +92,7 @@ module SocialStream
                 :html => link_to(image_tag("btn/btn_edit.png")+t('menu.information'), [subject, :profile])
               }
 
-              if subject != current_subject
+              if subject != current_user
                 #Like button
                 items << {
                   :key => :like_button,
@@ -105,8 +105,8 @@ module SocialStream
                   #Relation button
                   items << {
                     :key => :subject_relation,
-                    :html => link_to(image_tag("btn/btn_friend.png") + current_subject.contact_to!(subject).status,
-                                     edit_contact_path(current_subject.contact_to!(subject)))
+                    :html => link_to(image_tag("btn/btn_friend.png") + current_user.contact_to!(subject).status,
+                                     edit_contact_path(current_user.contact_to!(subject)))
                   }
 
                   #Send message button
@@ -128,7 +128,7 @@ module SocialStream
 
               items << {
                 :key => :message_inbox,
-                :html => link_to(image_tag("btn/message_inbox.png")+t('message.inbox')+' (' + current_subject.unread_messages_count.to_s + ')',
+                :html => link_to(image_tag("btn/message_inbox.png")+t('message.inbox')+' (' + current_user.unread_messages_count.to_s + ')',
                                  conversations_path,
                                  :remote=> false)
               }
