@@ -13,8 +13,8 @@
 
 
   .entry-date
-    %span 21
-    OCT
+    %span= news.published_day
+    = news.published_month.upcase
   .entry-content
     = news.first_paragraph.html_safe
     = link_to 'Leer mas...', news, class: 'more-link'

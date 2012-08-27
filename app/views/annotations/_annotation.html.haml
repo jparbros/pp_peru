@@ -5,8 +5,6 @@
         %a{:href => "#"}= annotation.author_email
       .comment-meta
         %a.comment-date{:href => "#", :title => "Permalink to this comment"}= annotation.created_at
-        \-
-        %a.comment-reply-link{:href => "#"} Reply
       .comment-body
         = annotation.comment.html_safe
 

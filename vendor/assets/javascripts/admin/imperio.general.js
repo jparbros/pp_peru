@@ -1,14 +1,14 @@
 $(document).ready(function(){
-   
+
     $(window).resize(function(){
         if($(this).width() < 1024) {
             iconmenu();
             if($(window).width() < 570) {
                 $('.table').each(function(){
                     if($(this).find('.table-wrapper').size() == 0) {
-                        $(this).wrap('<div class="table-wrapper"></div>');        
+                        $(this).wrap('<div class="table-wrapper"></div>');
                     }
-                });                
+                });
             }
         } else {
             fullmenu();
@@ -20,17 +20,17 @@ $(document).ready(function(){
         if($(window).width() < 570) {
             $('.table').each(function(){
                 if($(this).find('.table-wrapper').size() == 0) {
-                    $(this).wrap('<div class="table-wrapper"></div>');        
+                    $(this).wrap('<div class="table-wrapper"></div>');
                 }
-            });                
+            });
         }
     } else {
         fullmenu();
-    }    
-    
+    }
+
     // Sticky naviagiot
     $(window).scroll(function(){
-        var el = $('.leftmenu > ul'); 
+        var el = $('.leftmenu > ul');
         if($(window).width() > 479) {
             if ($(this).scrollTop() > 80){
                 el.css({'position':'fixed','top':'10px','width':'22.35%'});
@@ -45,11 +45,13 @@ $(document).ready(function(){
             }
         }
     });
-   
+
     // Navigation submenus
     $('.leftmenu a').click(function(e){
+        e.preventDefault();
+        console.log($(this).siblings('ul').size())
         if($(this).siblings('ul').size() == 1){
-            e.preventDefault();
+
             var submenu = $(this).siblings('ul');
             if($(this).hasClass('open')) {
                 if($(this).parents('.leftmenu').hasClass('lefticon')) {
@@ -68,7 +70,7 @@ $(document).ready(function(){
             }
         }
     });
-    
+
     // Bind the tooltips to menu
     $('.leftmenu').tooltip({
       selector: "a[rel=tooltip]",
@@ -76,7 +78,7 @@ $(document).ready(function(){
     });
 
     $('body').tooltip({
-       selector: '.tooltip' 
+       selector: '.tooltip'
     });
     $('.tooltip-left').tooltip({
        placement: 'left'
@@ -90,24 +92,24 @@ $(document).ready(function(){
     $('.tooltip-bottom').tooltip({
         placement: 'bottom'
     });
-    
+
     //Prettyprint
     window.prettyPrint && prettyPrint()
-    
+
     // Iphone style radio rand checkboxes
     $(".cb-enable").click(function(){
-		var parent = $(this).parents('.switch');
-		$('.cb-disable',parent).removeClass('selected');
-		$(this).addClass('selected');
-		$('.checkbox',parent).attr('checked', true);
-	});
-	$(".cb-disable").click(function(){
-		var parent = $(this).parents('.switch');
-		$('.cb-enable',parent).removeClass('selected');
-		$(this).addClass('selected');
-		$('.checkbox',parent).attr('checked', false);
-	});
-    
+    var parent = $(this).parents('.switch');
+    $('.cb-disable',parent).removeClass('selected');
+    $(this).addClass('selected');
+    $('.checkbox',parent).attr('checked', true);
+  });
+  $(".cb-disable").click(function(){
+    var parent = $(this).parents('.switch');
+    $('.cb-enable',parent).removeClass('selected');
+    $(this).addClass('selected');
+    $('.checkbox',parent).attr('checked', false);
+  });
+
     var placeholder = $('#search input').attr('placeholder');
     $('#search input').focus(function(){
         if($(this).val() == placeholder) {
@@ -118,7 +120,7 @@ $(document).ready(function(){
             $(this).val(placeholder);
         }
     });
-    
+
     // Functions...
     function iconmenu(){
         $('.leftmenu').removeClass('span3').addClass('lefticon').addClass('span1');
@@ -128,12 +130,12 @@ $(document).ready(function(){
         });
         $('#content').removeClass('span9').addClass('span11');
     }
-    
+
     function fullmenu(){
         $('.leftmenu').removeClass('span1').removeClass('lefticon').addClass('span3');
         $('.leftmenu > ul > li > a').each(function(){
             $(this).attr({'rel':'','title':''});
         });
-        $('#content').removeClass('span11').addClass('span9'); 
+        $('#content').removeClass('span11').addClass('span9');
     }
 });

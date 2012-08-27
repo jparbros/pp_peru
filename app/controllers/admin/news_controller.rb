@@ -1,15 +1,15 @@
 class Admin::NewsController < Admin::BaseController
 
   def index
-    @news = News.all
+    @news = ::News.all
   end
 
   def new
-    @news = News.new
+    @news = ::News.new
   end
 
   def create
-    @news = News.new(params[:news])
+    @news = ::News.new(params[:news])
     @news.author = current_user
     if @news.save
       redirect_to admin_news_index_path, notice: 'Creado Correctamente'

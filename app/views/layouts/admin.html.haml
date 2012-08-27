@@ -41,11 +41,23 @@
                   Dashboard
 
             %li{class: active_menu?('news')}
-              %a{href: "#{admin_news_index_path}"}
+              %a{href: ''}
                 %span.ico
                   %i.icon-file
                 %span.text
                   Centro de Medios
+                %span.indicator
+              %ul
+                %li
+                  %a{href: "#{admin_news_index_path}"}
+                    %span.ico
+                      %i.icon-file
+                    %span.text Noticias
+                %li
+                  %a
+                    %span.ico
+                      %i.icon-file
+                    %span.text Actores
 
             %li{class: active_menu?('discussions')}
               %a{href: "#{admin_discussions_path}"}

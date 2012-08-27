@@ -21,8 +21,8 @@
 
 
       .entry-date
-        %span 21
-        OCT
+        %span= @news.published_day
+        = @news.published_month.upcase
       .entry-content
         = @news.content.html_safe
       .entry-rate
