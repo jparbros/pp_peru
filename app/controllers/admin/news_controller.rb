@@ -1,7 +1,9 @@
 class Admin::NewsController < Admin::BaseController
+  before_filter :find_news, except: [:index, :new, :create]
+  before_filter :ensure_author!, except: [:index, :new, :create]
 
   def index
-    @news = ::News.all
+    @news = ::News.by_author(current_user)
   end
 
   def new
@@ -36,8 +38,8 @@ class Admin::NewsController < Admin::BaseController
 
   private
 
-  def find_news(id_news)
-    ::News.find(id_news)
+  def find_news
+    @news = ::News.find params[:id]
   end
   
   def ensure_author!

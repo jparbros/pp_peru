@@ -10,7 +10,7 @@ class NewsActorsController < ApplicationController
     else
       message = "Ya calificaste este actor en esta Noticia"
     end
-    respond_with({notice: message}, location: news_url(@news_actor.news))
+    respond_with({notice: message}, location: news_url(@news_actor))
   end
 
   private
