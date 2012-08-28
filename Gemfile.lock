@@ -63,6 +63,9 @@ GEM
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
       warden (~> 1.1.1)
+    draper (0.17.0)
+      actionpack (~> 3.2)
+      activesupport (~> 3.2)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -183,6 +186,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  draper
   dynamic_form
   haml-rails
   jquery-rails
