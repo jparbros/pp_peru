@@ -31,6 +31,6 @@ PpPeru::Application.routes.draw do
     resources :entries do
       get :topics, on: :collection
     end
-    resources :news_actors, only: :index
+    resources :news_actors
   end
 end

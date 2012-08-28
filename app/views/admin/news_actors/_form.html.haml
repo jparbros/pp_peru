@@ -1,0 +1,14 @@
+= form_for [:admin, @news_actor], :html => { :class => 'form-horizontal' } do |f|
+	.control-group
+		= f.error_messages
+	.control-group
+		= f.label :name, 'Name:',:class => 'control-label'
+		= f.text_field :name, :class => 'text_field'
+	.control-group
+		= image_tag @news_actor.avatar_url(:normal) if @news_actor.avatar?
+	.control-group
+		= f.label :avatar,'avatar',  :class => 'control-label'
+		= f.file_field :avatar
+	.form-actions
+		= f.submit @news_actor.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+		= link_to 'Cancelar', :admin_news_actors, :class => 'btn'
