@@ -1,20 +1,23 @@
 PpPeru::Application.routes.draw do
+
   devise_for :users
+
   root :to => "news#index"
   mount Ckeditor::Engine => '/ckeditor'
 
-  #devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth_callbacks'}
 
-  resources :news, only: [:show, :index] do
-    resources :annotations
+  resources :news_actors, only: [:show, :index] do
     collection do
       post :rates
     end
   end
 
-  resources :news_actors, only: [:show, :index] do
-    collection do
-      post :rates
+  scope '/centro_de_medios' do
+    resources :noticias, controller: :news, only: [:show, :index] do
+      resources :comentarios, controller: :annotations, only: :create
+      collection do
+        post :rates
+      end
     end
   end
 

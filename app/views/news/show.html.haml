@@ -11,7 +11,7 @@
         .post-format
           %a{:href => "#"}
         %h2.entry-title
-          = link_to @news.title, @news
+          = @news.title
         .entry-meta
           %span.tags
             Temas:
@@ -55,7 +55,7 @@
       %span.leave-a-comment
       %h3.form-title Deja un Comentario
       %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
-      = render partial: 'annotations/form', locals: {annotable: @news}
+      = render partial: 'annotations/form', locals: {annotable: @news, annotable_url: noticia_comentarios_path(@news)}
 
 
 %aside#sidebar.span-3

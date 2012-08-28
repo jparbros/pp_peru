@@ -3,7 +3,7 @@
     .post-format
       %a{:href => "#"}
     %h2.entry-title
-      = link_to news.title, news
+      = link_to news.title, noticia_path(news)
     .entry-meta
       %span.tags
         Temas:
@@ -17,4 +17,4 @@
     = news.published_month.upcase
   .entry-content
     = news.first_paragraph.html_safe
-    = link_to 'Leer mas...', news, class: 'more-link'
+    = link_to 'Leer mas...', noticia_path(news), class: 'more-link'

@@ -19,7 +19,7 @@ class NewsController < ApplicationController
     else
       message = "Ya calificado esta Noticia"
     end
-    respond_with({notice: message}, location: news_url(@news))
+    respond_with({notice: message}, location: noticia_url(@news))
   end
 
   private

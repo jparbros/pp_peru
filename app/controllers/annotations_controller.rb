@@ -5,7 +5,7 @@ class AnnotationsController < ApplicationController
     @annotation = @annotable.annotations.new(params[:annotation])
     @annotation.author = current_user
      if @annotation.save
-       redirect_to @annotable, notice: "Comentario Creado."
+       redirect_to @url_to_redirect, notice: "Comentario Creado."
      else
        render :new
      end
@@ -15,7 +15,10 @@ class AnnotationsController < ApplicationController
 
   private
   def load_annotations
-    klass = [News, Entry, Paper, Proposal, Discussion].detect { |c| params["#{c.name.underscore}_id"] }
-    @annotable = klass.find(params["#{klass.name.underscore}_id"])
+    if params[:noticia_id]
+      @annotable = News.find(params[:noticia_id])
+      @url_to_redirect = noticia_url(@annotable)
+    end
   end
+
 end
