@@ -33,3 +33,4 @@ gem "mini_magick"
 gem 'state_machine'
 gem 'nokogiri'
 gem 'cancan'
+gem "socialization"

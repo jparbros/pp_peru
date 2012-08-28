@@ -150,6 +150,8 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    socialization (0.4.0)
+      activerecord
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -192,5 +194,6 @@ DEPENDENCIES
   pg
   rails (= 3.2.6)
   sass-rails (~> 3.2.3)
+  socialization
   state_machine
   uglifier (>= 1.0.3)
