@@ -24,6 +24,12 @@ PpPeru::Application.routes.draw do
   scope '/centro_educacional' do
     resources :entradas, controller: :entries, only: [:show, :index]
   end
+  
+  scope '/centro_de_debate' do
+    resources :debates, controller: :discussions, only: [:show, :index] do
+      resources :comentarios, controller: :annotations, only: :create
+    end
+  end
 
   namespace :admin do
     root to: 'home#index'

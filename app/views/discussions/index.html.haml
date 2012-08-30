@@ -1,0 +1,9 @@
+= selected_menu(:menu_discussions)
+= section_title('Centro De Debates')
+%section#content.span-9
+  %h3
+    Lee y Opina sobre los Debates
+  .blog
+    = render partial: 'discussion', collection: @discussions
+%aside#sidebar.span-3
+  = render partial: 'news/right_aside'

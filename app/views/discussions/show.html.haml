@@ -1,0 +1,47 @@
+= selected_menu(:menu_discussions)
+= section_title('Centro De Debates')
+%section#content.span-9
+  .blog.single-entry
+
+    %nav.sticky-nav
+      %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
+      %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
+      %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
+
+    %article.entry.has-divider
+      %header
+        .post-format
+          %a{:href => "#"}
+        %h2.entry-title
+          = @discussion.title
+        .entry-meta
+          %span.tags
+            Temas:
+            %a{:href => "#"} Standard
+          %span.comments
+            %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
+
+
+      .entry-date
+        %span= @discussion.published_day
+        = @discussion.published_month.upcase
+      .entry-content
+        = @discussion.content.html_safe
+
+    %section#comments.has-divider
+      %a.leave-a-comment{:href => "#comment-form", :title => "Leave a Comment"}
+      %h3.comments-title #{@discussion.annotations_count} Comentarios
+      .leave-a-comment-text
+        %a.meta{:href => "#comment-form"} Deja un comentario
+      %ol.comments-list
+        = render partial: 'annotations/annotation', collection: @discussion.annotations
+
+    %section#comment-form
+      %span.leave-a-comment
+      %h3.form-title Deja un Comentario
+      %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
+      = render partial: 'annotations/form', locals: {annotable: @discussion, annotable_url: debate_comentarios_path(@discussion)}
+
+
+%aside#sidebar.span-3
+  = render partial: 'news/right_aside'

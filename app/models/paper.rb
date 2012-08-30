@@ -42,8 +42,8 @@ class Paper < ActiveRecord::Base
   #
   #   Scopes
   #
-  scope :by_status, lambda{|status| where('status = ?', status)}
-  scope :by_author, lambda{|author| where(author_id: author)} 
+  scope :by_status, lambda{|status| where('status IN (?)', status)}
+  scope :by_author, lambda{|author| where(author_id: author)}
 
   #
   # State machine

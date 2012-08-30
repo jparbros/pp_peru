@@ -1,0 +1,20 @@
+%article.entry.has-divider
+  %header
+    .post-format
+      %a{:href => "#"}
+    %h2.entry-title
+      = link_to discussion.title, debate_path(discussion)
+    .entry-meta
+      %span.tags
+        Temas:
+        %a{:href => "#"} Standard
+      %span.comments
+        %a{:href => "#"} #{discussion.annotations.count} Comentarios
+
+
+  .entry-date
+    %span= discussion.published_day
+    = discussion.published_month.upcase
+  .entry-content
+    = discussion.first_paragraph.html_safe
+    = link_to 'Leer mas...', debate_path(discussion), class: 'more-link'

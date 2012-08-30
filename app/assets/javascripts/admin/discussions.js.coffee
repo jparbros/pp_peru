@@ -18,3 +18,13 @@ jQuery ->
 			$("#alert").removeClass('hidden')
 		else
 			$("#alert").addClass('hidden')
+	
+	$("#end_of_discussion").change ->
+		if $(@).is(':checked')
+			$('.published_end_div').show()
+		else
+			$('.published_end_div').hide()
+			$("#discussion_published_end_at").val(null)
+	
+	unless $("#end_of_discussion").is(':checked')
+		$('.published_end_div').hide()
