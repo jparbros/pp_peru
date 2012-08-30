@@ -15,6 +15,8 @@
 //= require bootstrap
 //= require jquery.tokeninput
 //= require ckeditor/init
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
 //= require_tree ./admin
 
 $(document).ready(function() {

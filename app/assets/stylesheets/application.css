@@ -13,6 +13,7 @@
  *= require jrating
  *= require twitter-bootstrap
  *= require jrating
+ *= require bootstrap-datepicker
  *= require token-input
  *= require style
  *= require news

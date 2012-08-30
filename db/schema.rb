@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828135022) do
+ActiveRecord::Schema.define(:version => 20120830170616) do
 
   create_table "annotations", :force => true do |t|
     t.string   "title"
@@ -27,16 +27,6 @@ ActiveRecord::Schema.define(:version => 20120828135022) do
   end
 
   add_index "annotations", ["ancestry"], :name => "index_annotations_on_ancestry"
-
-  create_table "authentications", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "user_id"
-    t.string   "token"
-    t.string   "secret"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -120,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20120828135022) do
     t.integer  "political_party_id"
     t.string   "visibility"
     t.datetime "published_at"
+    t.datetime "published_end_at"
   end
 
   create_table "papers_topics", :id => false, :force => true do |t|

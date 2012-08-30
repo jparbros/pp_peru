@@ -16,7 +16,7 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at
   attr_reader :actor_tokens, :topic_tokens
 
   #

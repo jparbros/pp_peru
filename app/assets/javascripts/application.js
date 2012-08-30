@@ -19,4 +19,5 @@
 //= require jquery.flexslider-min
 //= require mediaelement.min
 //= require scripts
+//= require bootstrap-datepicker/core
 //= require news
