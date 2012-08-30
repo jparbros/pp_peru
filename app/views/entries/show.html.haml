@@ -1,0 +1,29 @@
+= selected_menu(:menu_entry)
+= section_title('Centro Educacional')
+%section#content.span-9
+  .blog.single-entry
+
+    %nav.sticky-nav
+      %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
+      %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
+      %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
+
+    %article.entry.has-divider
+      %header
+        .post-format
+          %a{:href => "#"}
+        %h2.entry-title
+          = @entry.title
+        .entry-meta
+          %span.tags
+            Temas:
+            %a{:href => "#"} Standard
+
+      .entry-date
+        %span=# @entry.published_day
+        = #@entry.published_month.upcase
+      .entry-content
+        = @entry.content.html_safe
+
+%aside#sidebar.span-3
+  = render partial: 'news/right_aside'

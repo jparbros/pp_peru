@@ -20,10 +20,12 @@
 
           %nav#main-nav-menu
             %ul
-              %li.nav-menu-item.current
+              %li{class: "nav-menu-item #{yield(:menu_home)}"}
                 %a{:href => "index.html"} Home
-              %li.nav-menu-item
+              %li{class: "nav-menu-item #{yield(:menu_news)}"}
                 = link_to 'Centro de Noticias', noticias_path
+              %li{class: "nav-menu-item #{yield(:menu_entry)}"}
+                = link_to 'Centro Educacional', entradas_path
 
           %select#responsive-main-nav-menu{:onchange => "javascript:window.location.replace(this.value);"}
 
@@ -32,7 +34,7 @@
         #page-container.container
           %header#page-header
             %h1
-              %span Centro de Noticias
+              %span= yield(:section_title)
 
           #page-content
             .row

@@ -64,7 +64,10 @@ class Paper < ActiveRecord::Base
     end
   end
 
-
+  #
+  # Callback
+  #
+  after_initialize :parse_content
   #
   # Class methods
   #
@@ -100,6 +103,14 @@ class Paper < ActiveRecord::Base
 
   def published_month
     published_at.strftime '%b'
+  end
+  
+  def parse_content
+    @content_parsed = Nokogiri::HTML(content)
+  end
+
+  def first_paragraph
+    @content_parsed.css('p').first.to_s
   end
 
 end

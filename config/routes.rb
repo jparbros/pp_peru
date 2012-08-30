@@ -20,6 +20,10 @@ PpPeru::Application.routes.draw do
       end
     end
   end
+  
+  scope '/centro_educacional' do
+    resources :entradas, controller: :entries, only: [:show, :index]
+  end
 
   namespace :admin do
     root to: 'home#index'

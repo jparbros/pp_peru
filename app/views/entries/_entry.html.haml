@@ -1,0 +1,17 @@
+%article.entry.has-divider
+  %header
+    .post-format
+      %a{:href => "#"}
+    %h2.entry-title
+      = link_to entry.title, entrada_path(entry)
+    .entry-meta
+      %span.tags
+        Temas:
+        %a{:href => "#"} Standard
+
+  .entry-date
+    %span= #entries.published_day
+    =# entries.published_month.upcase
+  .entry-content
+    = entry.first_paragraph.html_safe
+    = link_to 'Leer mas...', entrada_path(entry), class: 'more-link'

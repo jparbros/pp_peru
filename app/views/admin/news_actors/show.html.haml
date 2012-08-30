@@ -1,0 +1,8 @@
+.row-fluid
+  .box
+    .box-content
+      .page-header
+        %h1 Centro de Medios | Actor
+
+      %h3= @news_actor.name
+      = image_tag @news_actor.avatar_url(:normal) if @news_actor.avatar?
