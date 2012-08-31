@@ -1,6 +1,6 @@
 class Admin::EntriesController < Admin::BaseController
-  before_filter :find_entry, except: [:index, :new, :create]
-  before_filter :ensure_author!, except: [:index, :new, :create]
+  before_filter :find_entry, only: [:edit, :show, :detroy, :update]
+  before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
   respond_to :html, :js
   
   def index

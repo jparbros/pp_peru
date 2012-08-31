@@ -1,3 +1,10 @@
 // Place all the styles related to the admin::discussions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.nested_annotations {
+  margin-left: 30px;
+}
+
+.nested_annotations .nested_annotations .nested_annotations .nested_annotations{
+  margin-left: 0;
+}

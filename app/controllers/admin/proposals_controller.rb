@@ -1,6 +1,6 @@
 class Admin::ProposalsController < Admin::BaseController
-  before_filter :find_proposal, except: [:index, :new, :create]
-  before_filter :ensure_author!, except: [:index, :new, :create]
+  before_filter :find_proposal, only: [:edit, :show, :detroy, :update]
+  before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
    def index
      @proposals = Proposal.by_author(current_user)
    end

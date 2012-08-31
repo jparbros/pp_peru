@@ -10,6 +10,10 @@ class AnnotationsController < ApplicationController
        render :new
      end
   end
+  
+  def new
+    @annotation = @annotable.annotations.build(:parent_id => params[:parent_id])
+  end
 
 
 

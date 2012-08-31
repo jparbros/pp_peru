@@ -1,0 +1,5 @@
+var parent_id = "<%=@annotation.parent_id%>";
+var comment_form =  "<%= escape_javascript(render partial: 'annotations/form', locals: {annotable: @annotable, annotable_url: get_annotable_path(@annotable)} )%>";
+$("li#" + parent_id).append(comment_form);
+$("#add_annotation-" + parent_id).bind('click', false);
+

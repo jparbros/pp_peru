@@ -27,14 +27,24 @@
         = @discussion.published_month.upcase
       .entry-content
         = @discussion.content.html_safe
+    
+    %section#actors.has-divider
+      %span.actors-rate
+      %h3.actors-title Temas: 
+      %ul.actors-rate-list
+        - @discussion.topics.each do |theme|
+          %li
+            %span.actor-name
+              = "#{theme.name} "
 
     %section#comments.has-divider
-      %a.leave-a-comment{:href => "#comment-form", :title => "Leave a Comment"}
+      %a.leave-a-comment{:href => "#comment-form", :title => "Deja un Comentario"}
       %h3.comments-title #{@discussion.annotations_count} Comentarios
       .leave-a-comment-text
         %a.meta{:href => "#comment-form"} Deja un comentario
       %ol.comments-list
-        = render partial: 'annotations/annotation', collection: @discussion.annotations
+        = nested_annotations @discussion.annotations.arrange(order: :created_at) 
+
 
     %section#comment-form
       %span.leave-a-comment

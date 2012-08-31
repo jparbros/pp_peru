@@ -8,3 +8,5 @@
       .comment-body
         = annotation.comment.html_safe
       .comment-actions
+        - if @discussion.opened?
+          = link_to 'Responder', new_debate_comentario_path(@discussion, parent_id: annotation.id), remote: true, id: "add_annotation-#{annotation.id}"

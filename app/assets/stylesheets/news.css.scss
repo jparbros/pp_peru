@@ -38,3 +38,11 @@ ul.actors-rate-list {
 }
 
 .rate_actor {display: inline-block;}
+
+.nested_annotations {
+  margin-left: 30px;
+}
+
+.nested_annotations .nested_annotations .nested_annotations .nested_annotations{
+  margin-left: 0;
+}

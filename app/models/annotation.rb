@@ -19,7 +19,8 @@ class Annotation < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :ancestry, :annotable_id, :annotable_type, :author_id, :comment, :reports, :status, :title
+  attr_accessible :ancestry, :annotable_id, :annotable_type, :author_id, 
+    :comment, :reports, :status, :title, :parent_id
 
   #
   # Associations

@@ -1,5 +1,5 @@
 class Admin::NewsActorsController < Admin::BaseController
-  before_filter :find_news_actor, only: [:show, :edit, :destroy, :update] 
+  before_filter :find_news_actor, only: [:edit, :show, :detroy, :update]
   
   def index
     @news_actors = NewsActor.order(:name)

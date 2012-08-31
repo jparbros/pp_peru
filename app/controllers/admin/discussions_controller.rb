@@ -1,6 +1,6 @@
 class Admin::DiscussionsController < Admin::BaseController
-  before_filter :find_discussion, except: [:index, :new, :create]
-  before_filter :ensure_author!, except: [:index, :new, :create]
+  before_filter :find_discussion, only: [:edit, :show, :detroy, :update]
+  before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
   
   def index
     @discussions = Discussion.by_author(current_user)
