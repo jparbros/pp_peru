@@ -4,7 +4,10 @@ PpPeru::Application.routes.draw do
 
   root :to => "news#index"
   mount Ckeditor::Engine => '/ckeditor'
-  resources :users
+  
+  resources :usuarios, controller: :users do
+    resources :seguidores, controller: 'users_activities/followers', only: [:create, :destroy]
+  end
 
   resources :news_actors, only: [:show, :index] do
     collection do

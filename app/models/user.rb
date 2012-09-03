@@ -16,6 +16,7 @@
 #  role                   :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  name                  :string(255)      default('')
 #
 
 class User < ActiveRecord::Base
@@ -45,6 +46,9 @@ class User < ActiveRecord::Base
 
   include PublicActivity::Model
   tracked
+  acts_as_follower
+  acts_as_followable
+  
   #
   # Instance methods
   #

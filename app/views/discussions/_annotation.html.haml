@@ -2,7 +2,7 @@
   %div
     %img.avatar{:alt => "Image", :src => "/assets/avatar.png"}
       .comment-author
-        %a{:href => "#"}= annotation.author_email
+        = link_to annotation.author_email, usuario_path(annotation.author)
       .comment-meta
         %a.comment-date{:href => "#", :title => "Permalink to this comment"}= annotation.created_at
       .comment-body
