@@ -71,6 +71,10 @@ class User < ActiveRecord::Base
   def user_rates
     self.ratings.includes(:rateable).group_by(&:rateable_type)
   end
+  
+  def user_name
+    name.empty? ? email : name
+  end
 
   def permission
     case role
