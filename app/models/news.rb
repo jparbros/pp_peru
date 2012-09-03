@@ -14,11 +14,8 @@
 
 class News < Paper
 
-  #
-  # Callback
-  #
-  after_initialize :parse_content
 
+  
   #
   # Delegation
   #
@@ -27,18 +24,13 @@ class News < Paper
   #
   # Class methods
   #
+
   class << self
     def published
       by_status(:published).includes(:news_actors)
     end
   end
 
-  def parse_content
-    @content_parsed = Nokogiri::HTML(content)
-  end
-
-  def first_paragraph
-    @content_parsed.css('p').first.to_s
-  end
+  
 
 end

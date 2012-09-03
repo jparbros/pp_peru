@@ -1,0 +1,6 @@
+es:
+  activity:
+    annotation:
+      create: "El Comentario ha sido Creado by"
+      update: 'Someone has edited the article'
+      destroy: 'Some user removed an article!'

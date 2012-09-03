@@ -16,6 +16,7 @@
 #
 
 class Annotation < ActiveRecord::Base
+  before_save :setup_activity
   #
   # Accessors
   #
@@ -38,4 +39,15 @@ class Annotation < ActiveRecord::Base
   # Extends
   #
   has_ancestry
+  include PublicActivity::Model
+  tracked
+  
+  #
+  #Private
+  #
+  
+  def setup_activity
+    self.activity_owner = :author
+    self.activity_params = {title: self.annotable.title, class: self.annotable.class.name}
+  end
 end

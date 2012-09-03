@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
   has_many :ratings, foreign_key: :author_id
 
   #
+  #Extend
+  #
+
+  include PublicActivity::Model
+  tracked
+  #
   # Instance methods
   #
 

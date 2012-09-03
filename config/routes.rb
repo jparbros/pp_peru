@@ -4,7 +4,7 @@ PpPeru::Application.routes.draw do
 
   root :to => "news#index"
   mount Ckeditor::Engine => '/ckeditor'
-
+  resources :users
 
   resources :news_actors, only: [:show, :index] do
     collection do
