@@ -1,0 +1,4 @@
+- if @user == @current_user
+	= "Usted a comenzado aseguir a #{p[:name]}"
+- else
+	= "El #{@user.user_name} a comenzado a seguir #{p[:name]}"

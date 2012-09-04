@@ -86,4 +86,8 @@ class User < ActiveRecord::Base
       :public
     end
   end
+  
+  def activities_by_owner
+    PublicActivity::Activity.where(owner_id: id, owner_type: 'User')
+  end
 end

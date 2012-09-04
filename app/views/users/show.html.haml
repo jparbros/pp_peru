@@ -2,6 +2,6 @@
 
 = link_for_user_follow
 %ul
-- for activity in @activities
+- for activity in @user.activities_by_owner
 	%li
 		= render_activity(activity)

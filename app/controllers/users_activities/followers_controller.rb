@@ -15,6 +15,4 @@ class UsersActivities::FollowersController < ApplicationController
   def find_user
     @user = User.find params[:usuario_id]
   end
-  
-  
 end
