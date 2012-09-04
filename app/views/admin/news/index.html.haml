@@ -30,4 +30,5 @@
                 = link_to admin_news_path(news), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
                   %li.icon-white.icon-remove
                   Eliminar
+                = link_to_by_news_state(news)
 

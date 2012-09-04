@@ -27,7 +27,12 @@ class Paper < ActiveRecord::Base
   has_many :ratings, as: :rateable
   has_and_belongs_to_many :news_actors
   has_and_belongs_to_many :topics
-
+  
+  #
+  # Extend
+  #
+  include PublicActivity::Model
+  tracked
   #
   # Constants
   #
@@ -53,7 +58,7 @@ class Paper < ActiveRecord::Base
     state :published
     state :archived
 
-    before_transition any => :published, :do => :publish_timestamp
+    before_transition any => :published, :do => [:publish_timestamp, :setup_activity]
 
     event :publish do
       transition [:draft, :archived] => :published
@@ -111,6 +116,11 @@ class Paper < ActiveRecord::Base
 
   def first_paragraph
     @content_parsed.css('p').first.to_s
+  end
+  
+  def setup_activity
+    self.activity_owner = :author
+    self.activity_params = {title: self.title}
   end
 
 end
