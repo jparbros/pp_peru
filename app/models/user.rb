@@ -88,6 +88,7 @@ class User < ActiveRecord::Base
   end
   
   def activities_by_owner
-    PublicActivity::Activity.where(owner_id: id, owner_type: 'User')
+    PublicActivity::Activity.where("owner_id IN (?) AND owner_type = 'User'", [id] + follows(User).map(&:followable_id)).
+      includes(:owner).order(:created_at).limit(20)
   end
 end

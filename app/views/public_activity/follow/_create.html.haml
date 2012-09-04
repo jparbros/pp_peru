@@ -1,4 +1,4 @@
-- if @user == @current_user
+- if @user == @current_user and @user == a.owner
 	= "Usted a comenzado aseguir a #{p[:name]}"
 - else
-	= "El #{@user.user_name} a comenzado a seguir #{p[:name]}"
+	= "#{a.owner.user_name} a comenzado a seguir #{p[:name]}"
