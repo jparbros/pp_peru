@@ -33,6 +33,11 @@ PpPeru::Application.routes.draw do
       resources :comentarios, controller: :annotations, only: [:create, :new]
     end
   end
+  
+  resources :annotations, only: :index do
+    resources :reports, only: :create
+    resources :reviews_admins, only: :create
+  end
 
   namespace :admin do
     root to: 'home#index'

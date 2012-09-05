@@ -21,3 +21,4 @@
 //= require scripts
 //= require bootstrap-datepicker/core
 //= require news
+//= require discussions

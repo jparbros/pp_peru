@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   # Relations
   #
   has_many :ratings, foreign_key: :author_id
+  has_many :reports
 
   #
   #Extend

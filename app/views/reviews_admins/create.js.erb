@@ -1,0 +1,5 @@
+var annotation_id = "<%=@annotation.id%>";
+$("#reviews_by_admin-" + annotation_id).hide();
+$("#report_annotation-" + annotation_id).hide();
+$("li#"+ annotation_id + " #alert_a").removeClass('hidden');
+$("li#"+ annotation_id + " #alert_a").text('Los cambios se han guardado correctamente');

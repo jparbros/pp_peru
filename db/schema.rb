@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120903163625) do
+ActiveRecord::Schema.define(:version => 20120905234053) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(:version => 20120903163625) do
     t.string   "annotable_type"
     t.integer  "author_id"
     t.string   "status"
-    t.integer  "reports"
     t.string   "ancestry"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
@@ -144,6 +143,14 @@ ActiveRecord::Schema.define(:version => 20120903163625) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "paper_id"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "author_id"
+    t.integer  "reportable_id"
+    t.string   "reportable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "topics", :force => true do |t|
