@@ -40,8 +40,12 @@ PpPeru::Application.routes.draw do
       resource :publish, controller: 'news_actions/publish', only: :create
       resource :archive, controller: 'news_actions/archive', only: :create
     end
+    
     resources :discussions do
-      get :topics, on: :collection
+      resources :open_discussion, controller: 'discussions_actions/open_discussion', only: :create
+      resources :close_discussion, controller: 'discussions_actions/close_discussion', only: :create
+      resources :archive_discussion, controller: 'discussions_actions/archive_discussion', only: :create
+      get :topics, on: :collection 
     end
     resources :proposals
     resources :entries do

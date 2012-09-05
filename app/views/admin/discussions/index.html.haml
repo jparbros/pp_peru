@@ -29,3 +29,4 @@
 								= link_to admin_discussion_path(d), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
 									%li.icon-white.icon-remove
 									Eliminar
+								= link_to_by_discussion_state(d)

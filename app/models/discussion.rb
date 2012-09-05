@@ -30,7 +30,7 @@ class Discussion < Paper
     before_transition any => :opened, :do => :publish_timestamp
 
     event :open_discussion do
-      transition [:draft, :archived, :closed] => :opened
+      transition [:draft, :archived] => :opened
     end
     
     event :close_discussion do 
