@@ -13103,6 +13103,22 @@ $(document).ready(function(){function a(b,c){$(b).children("li").each(function(b
   });
 
 }).call(this);
+(function() {
+
+  jQuery(function() {
+    $("#show_annotation").click(function() {
+      $(this).parent().find('.comment_content').toggleClass('hidden');
+      return $(this).find('.btn').button('reset');
+    });
+    $("#show_annotation").toggle(function() {
+      return $(this).find('.btn').text("Ocular");
+    }, function() {
+      return $(this).find('.btn').text("Mostrar");
+    });
+    return $('.review_admin_link').tooltip();
+  });
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -13115,6 +13131,7 @@ $(document).ready(function(){function a(b,c){$(b).children("li").each(function(b
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+
 
 
 
