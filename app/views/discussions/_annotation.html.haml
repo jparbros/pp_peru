@@ -16,7 +16,7 @@
           = link_to 'Inapropiado?', annotation_reports_path(annotation), remote: true, method: :post, id: "report_annotation-#{annotation.id}"
         - if current_user.admin? and annotation.have_some_report?
           |
-          = link_to 'El Comentario es Inapropieado', annotation_reviews_admins_path(annotation), remote: true, method: :post, id: "reviews_by_admin-#{annotation.id}", title: 'Como Administrador, usted puede establecer un comentario como apropiado', class: 'review_admin_link'
+          = link_to 'El Comentario no es Inapropieado', annotation_reviews_admins_path(annotation), remote: true, method: :post, id: "reviews_by_admin-#{annotation.id}", title: 'Como Administrador, usted puede establecer un comentario como apropiado', class: 'review_admin_link'
   
   -if annotation.third_report? and current_user
     %span#show_annotation

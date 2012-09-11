@@ -15,4 +15,11 @@ module UsersHelper
       link_to 'Seguir', usuario_seguidores_path(@user), method: :post, class: 'btn btn-primary'
     end    		
   end
+  
+  def path_by_type(p)
+    case p[:class]
+      when 'Discussion' then debate_path(p[:id])
+      when 'News' then noticia_path(p[:id])
+    end
+  end
 end

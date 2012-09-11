@@ -42,6 +42,17 @@ class Discussion < Paper
     end
   end
   
+  
+  #
+  # Intance methods
+  def positive_votes
+    votes.where(tendency: 1).size
+  end
+  
+  def negative_votes
+    votes.where(tendency: -1).size
+  end
+  #
   #
   # Class methods
   #

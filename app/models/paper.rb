@@ -23,6 +23,7 @@ class Paper < ActiveRecord::Base
   # Associations
   #
   has_many :annotations, as: :annotable
+  has_many :votes, as: :votable
   belongs_to :author, :class_name => 'User', :foreign_key => 'author_id'
   has_many :ratings, as: :rateable
   has_and_belongs_to_many :news_actors
@@ -120,7 +121,7 @@ class Paper < ActiveRecord::Base
   
   def setup_activity
     self.activity_owner = :author
-    self.activity_params = {title: self.title}
+    self.activity_params = {title: self.title, id: self.id}
   end
 
 end

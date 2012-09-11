@@ -41,6 +41,7 @@ class Annotation < ActiveRecord::Base
   has_ancestry
   include PublicActivity::Model
   tracked
+  acts_as_likeable
   
   #
   # State machine
@@ -87,7 +88,7 @@ class Annotation < ActiveRecord::Base
   
   def setup_activity
     self.activity_owner = :author
-    self.activity_params = {title: self.annotable.title, class: self.annotable.class.name}
+    self.activity_params = {title: self.annotable.title, class: self.annotable.class.name, id: self.annotable.id}
   end
   
   def reported_by_this_author?(author) 

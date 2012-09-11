@@ -1,7 +1,7 @@
+= selected_menu(:menu_home)
 = section_title(@user.user_name)
 
 = link_for_user_follow
 %ul
 - for activity in @user.activities_by_owner
-	%li
-		= render_activity(activity)
+	%li= render_activity(activity)

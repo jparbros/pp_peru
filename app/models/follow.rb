@@ -1,6 +1,6 @@
 class Follow < ActiveRecord::Base
   acts_as_follow_store
-  before_save :setup_activity
+  before_create :setup_activity
   before_destroy :delete_activity
   
   include PublicActivity::Model
@@ -9,7 +9,7 @@ class Follow < ActiveRecord::Base
   private
   def setup_activity
     self.activity_owner = self.follower
-    self.activity_params = {name: self.followable.user_name}
+    self.activity_params = {name: self.followable.user_name, id: self.followable.id}
   end
   
   def delete_activity

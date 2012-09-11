@@ -1,6 +1,12 @@
-- if @user == @current_user and @user == a.owner
-	= "Usted a comentado sobre #{item_by_class(p[:class])} con el titulo #{p[:title]}"
-- else
-	= "El Usuario #{a.owner.email} a comentado sobre #{item_by_class(p[:class])} con el titulo #{p[:title]}"
+%div
+	- if @user == @current_user and @user == a.owner
+		= "Usted a comentado sobre #{item_by_class(p[:class])} con el titulo"
+	- else
+		El Usuario
+		= link_to a.owner.user_name, usuario_path(a.owner)
+		= "a comentado sobre #{item_by_class(p[:class])} con el titulo"
+	= link_to p[:title], path_by_type(p)
+%div
+	
 
 	

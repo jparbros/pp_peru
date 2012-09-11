@@ -21,7 +21,7 @@
           %nav#main-nav-menu
             %ul
               %li{class: "nav-menu-item #{yield(:menu_home)}"}
-                %a{:href => "index.html"} Home
+                = link_to 'Inicio', usuario_path(current_user) if current_user
               %li{class: "nav-menu-item #{yield(:menu_news)}"}
                 = link_to 'Centro de Noticias', noticias_path
               %li{class: "nav-menu-item #{yield(:menu_entry)}"}

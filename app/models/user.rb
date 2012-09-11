@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
   # Relations
   #
   has_many :ratings, foreign_key: :author_id
-  has_many :reports
+  has_many :reports, foreign_key: :author_id
+  has_many :votes, foreign_key: :author_id
 
   #
   #Extend
@@ -49,6 +50,8 @@ class User < ActiveRecord::Base
   tracked
   acts_as_follower
   acts_as_followable
+  acts_as_liker
+  
   
   #
   # Instance methods

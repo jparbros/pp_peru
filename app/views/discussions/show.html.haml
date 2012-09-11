@@ -36,6 +36,17 @@
           %li
             %span.actor-name
               = "#{theme.name} "
+    
+    %section#votes.has-divider
+      %span.votes-rate
+      %h3.votes-title Vote Por este Debate
+      = link_to debate_votes_path(@discussion, tendency: 1), method: :post, class: 'btn btn-primary' do
+        %i.icon-thumbs-up
+        = @discussion.positive_votes
+      |
+      = link_to debate_votes_path(@discussion, tendency: -1), method: :post, class: 'btn btn-danger' do
+        %i.icon-thumbs-down
+        = @discussion.negative_votes
 
     %section#comments.has-divider
       %a.leave-a-comment{:href => "#comment-form", :title => "Deja un Comentario"}

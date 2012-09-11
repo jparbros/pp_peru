@@ -31,6 +31,7 @@ PpPeru::Application.routes.draw do
   scope '/centro_de_debate' do
     resources :debates, controller: :discussions, only: [:show, :index] do
       resources :comentarios, controller: :annotations, only: [:create, :new]
+      resources :votes, controller: 'discussions_activities/votes', only: :create
     end
   end
   
