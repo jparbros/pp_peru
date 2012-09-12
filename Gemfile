@@ -29,6 +29,7 @@ gem 'ancestry'
 gem "dynamic_form"
 gem "ckeditor"
 gem "carrierwave"
+gem 'fog'
 gem "mini_magick"
 gem 'state_machine'
 gem 'nokogiri'
