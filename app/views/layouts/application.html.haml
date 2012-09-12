@@ -13,10 +13,8 @@
         #header-container.container
           #logo
             %a#site-title{:href => "index.html"}
-              %img{:alt => "Simplex", :src => "images/logo.png"}/
-
             %span#site-description
-              Responsive HTML5 Template
+              = link_for_user_login_or_logout
 
           %nav#main-nav-menu
             %ul

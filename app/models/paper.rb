@@ -84,7 +84,7 @@ class Paper < ActiveRecord::Base
     end
 
     def by_permissions(user)
-      where(visibility: user.permission)
+      where(visibility: user ? user.permission : :public)
     end
   end
 

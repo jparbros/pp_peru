@@ -57,7 +57,10 @@
       %span.leave-a-comment
       %h3.form-title Deja un Comentario
       %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
-      = render partial: 'annotations/form', locals: {annotable: @news, annotable_url: noticia_comentarios_path(@news)}
+      - if current_user  
+        = render partial: 'annotations/form', locals: {annotable: @news, annotable_url: noticia_comentarios_path(@news)}
+      - else
+        Necesitas iniciar sesion para comentar
 
 
 %aside#sidebar.span-3

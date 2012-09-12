@@ -1,5 +1,6 @@
 class DiscussionsActivities::VotesController < ApplicationController
   before_filter :find_discussion
+  before_filter :authenticate_user!
   
   def create
     if @discussion.votes.where(author_id: current_user).empty?
