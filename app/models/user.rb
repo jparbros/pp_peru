@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
   has_many :ratings, foreign_key: :author_id
   has_many :reports, foreign_key: :author_id
   has_many :votes, foreign_key: :author_id
+  
 
   #
   #Extend
@@ -80,6 +81,11 @@ class User < ActiveRecord::Base
     name.empty? ? email : name
   end
 
+  def activities_by_owner
+    PublicActivity::Activity.where("owner_id IN (?) AND owner_type = 'User'", [id] + follows(User).map(&:followable_id)).
+      includes(:owner).order(:created_at).limit(20)
+  end
+  
   def permission
     case role
     when 'super_admin', 'admin'
@@ -91,8 +97,4 @@ class User < ActiveRecord::Base
     end
   end
   
-  def activities_by_owner
-    PublicActivity::Activity.where("owner_id IN (?) AND owner_type = 'User'", [id] + follows(User).map(&:followable_id)).
-      includes(:owner).order(:created_at).limit(20)
-  end
 end
