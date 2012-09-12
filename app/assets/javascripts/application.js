@@ -22,3 +22,12 @@
 //= require bootstrap-datepicker/core
 //= require news
 //= require discussions
+
+
+
+$(document).ready(function() {
+  $('#login-button').click(function(event) {
+    event.preventDefault();
+    $('#login-modal').modal();
+  });
+});

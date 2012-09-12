@@ -20,3 +20,9 @@
  */
 
 body > .container { margin-top: 50px; }
+
+.modal-body label { width: 70px; }
+
+.modal-body .control-label { width: 70px !important; } 
+
+.modal-body .controls { margin-left: 90px !important; }
