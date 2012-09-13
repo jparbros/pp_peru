@@ -9,6 +9,8 @@ PpPeru::Application.routes.draw do
     resources :seguidores, controller: 'users_activities/followers', only: [:create, :destroy]
   end
 
+  match '/auth/:provider/callback', to: 'authentications#create'
+
   resources :news_actors, only: [:show, :index] do
     collection do
       post :rates
@@ -57,11 +59,7 @@ PpPeru::Application.routes.draw do
       get :topics, on: :collection 
     end
     
-    resources :proposals do
-      resource :publish, controller: 'proposals_actions/publish', only: :create
-      resource :archive, controller: 'proposals_actions/archive', only: :create
-    end
-    
+    resources :proposals
     resources :entries do
       get :topics, on: :collection
     end

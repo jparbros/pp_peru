@@ -9,6 +9,8 @@ end
 
 group :production do
   gem 'pg'
+  gem 'bootstrap-sass'
+  gem 'sass-rails',   '~> 3.2.3'
 end
 
 
@@ -29,6 +31,7 @@ gem 'ancestry'
 gem "dynamic_form"
 gem "ckeditor"
 gem "carrierwave"
+gem 'fog'
 gem "mini_magick"
 gem 'state_machine'
 gem 'nokogiri'

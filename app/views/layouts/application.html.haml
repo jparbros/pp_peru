@@ -12,9 +12,8 @@
       %header#header.container-wrap
         #header-container.container
           #logo
-            %a#site-title{:href => "index.html"}
-            %span#site-description
-              = link_for_user_login_or_logout
+            %a#site-title{:href => root_url}
+              %img{:alt => "Simplex", :src => "images/logo.png"}/
 
           %nav#main-nav-menu
             %ul
@@ -26,8 +25,18 @@
                 = link_to 'Centro Educacional', entradas_path
               %li{class: "nav-menu-item #{yield(:menu_discussions)}"}
                 = link_to 'Centro de Debates', :debates
-              %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
-                = link_to 'Propuesta Ciudadana', :propuestas
+              %li.nav-menu-item
+                - if current_user
+                  %a{href: '#'}
+                    Usuario
+                  %ul.sub-menu
+                    %li.nav-menu-item
+                      = link_to 'Salir', destroy_user_session_path, method: :delete
+                    %li.nav-menu-item
+                      = link_to 'Admin', admin_root_path
+                - else
+                  = link_to 'Ingresar', '', id: 'login-button'
+
           %select#responsive-main-nav-menu{:onchange => "javascript:window.location.replace(this.value);"}
 
 
@@ -35,11 +44,7 @@
         #page-container.container
           %header#page-header
             %h1
-              %span= yield(:section_title)
-            - flash.each do |name, msg|
-              %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
-                %a{:class => 'close', 'data-dismiss' => 'alert'} x
-                = msg
+              %span Centro de Medios
 
           #page-content
             .row
@@ -64,3 +69,47 @@
                     <a href = "#" title = "Vimeo">Vimeo</a>
                   %li.flickr-link
                     <a href = "#" title = "Flickr">Flickr</a>
+
+#login-modal.modal.fade
+  .modal-header
+    %button{class: "close", 'data-dismiss' => "modal"}
+      ×
+    %h3
+      Registrarse/Ingresar
+
+    .modal-body
+      .row-fluid
+        .span12
+          %p
+            Escoge una de las siguientes opciones para ingresar:
+      .row-fluid
+        .span8
+          = form_for User.new, url: user_session_path, html: {class: 'form-horizontal'}do |form|
+            .control-group
+              .control-label
+                = form.label :email
+              .controls
+                = form.text_field :email
+            
+            .control-group
+              .control-label
+                = form.label :password
+              .controls
+                = form.text_field :password
+
+            .control-group
+              .control-label
+                = form.label 'recordarme', for: 'user_remember_me'
+              .controls
+                = form.check_box :remember_me
+
+            .control-group
+              .controls
+                = form.submit :ingresar, class: [:btn, 'btn-primary']
+
+
+        .span4
+          Redes Sociales:
+          %p
+            = link_to image_tag('/assets/twitter_64.png'), '/auth/twitter'
+            = link_to image_tag('/assets/facebook_64.png'), '/auth/facebook'
