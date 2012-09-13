@@ -27,7 +27,7 @@ class Discussion < Paper
     state :closed 
     state :archived
 
-    before_transition any => :opened, :do => :publish_timestamp
+    before_transition any => :opened, :do => [:publish_timestamp, :setup_activity]
 
     event :open_discussion do
       transition [:draft, :archived] => :opened

@@ -1,4 +1,6 @@
 - if @user == @current_user and @user == a.owner
-	= "Usted a comenzado aseguir a #{p[:name]}"
+	= "Usted a comenzado aseguir a"
 - else
-	= "#{a.owner.user_name} a comenzado a seguir #{p[:name]}"
+	= link_to a.owner.user_name, usuario_path(a.owner)
+	a comenzado a seguir
+= link_to p[:name],  usuario_path(p[:id])

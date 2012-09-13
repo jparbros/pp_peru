@@ -1,0 +1,6 @@
+- if @user == @current_user and @user == a.owner
+	Usted a publicado el siguiente debate:
+- else
+	= link_to a.owner.user_name, usuario_path(a.owner)
+	a publicado el siguiente debate
+= link_to p[:title], debate_path(p[:id])
