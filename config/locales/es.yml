@@ -1,6 +1,19 @@
+
 es:
   activity:
-    annotation:
+    annotations:
       create: "El Comentario ha sido Creado by"
-      update: 'Someone has edited the article'
-      destroy: 'Some user removed an article!'
+  activerecord:
+    errors:
+      models:
+        proposal:
+          attributes:
+            title:
+              blank: 'El Titulo no puede estar vacio'
+            content:
+              blank: 'Debe de tener un Contenido'
+      template:
+        header: 'No se puedo Guardar'
+        body: 'Intente de nuevo'
+          
+              

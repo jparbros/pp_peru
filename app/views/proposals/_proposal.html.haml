@@ -1,0 +1,18 @@
+%proposal.entry.has-divider
+  %header
+    .post-format
+      %a{:href => "#"}
+    %h2.entry-title
+      = link_to proposal.title, propuesta_path(proposal)
+    .entry-meta
+      %span.tags
+      %span.comments
+        %a{:href => "#"} #{proposal.annotations.count} Comentarios
+
+
+  .entry-date
+    %span= proposal.published_day
+    = proposal.published_month.upcase
+  .entry-content
+    = proposal.first_paragraph.html_safe
+    = link_to 'Leer mas...', propuesta_path(proposal), class: 'more-link'

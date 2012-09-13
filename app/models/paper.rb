@@ -18,7 +18,8 @@ class Paper < ActiveRecord::Base
   #
   attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at
   attr_reader :actor_tokens, :topic_tokens
-
+  
+  validates :content, :title, presence: true
   #
   # Associations
   #

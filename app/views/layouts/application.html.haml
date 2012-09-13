@@ -26,7 +26,8 @@
                 = link_to 'Centro Educacional', entradas_path
               %li{class: "nav-menu-item #{yield(:menu_discussions)}"}
                 = link_to 'Centro de Debates', :debates
-
+              %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
+                = link_to 'Propuesta Ciudadana', :propuestas
           %select#responsive-main-nav-menu{:onchange => "javascript:window.location.replace(this.value);"}
 
 

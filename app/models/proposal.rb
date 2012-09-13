@@ -13,4 +13,8 @@
 #
 
 class Proposal < Paper
+  
+  def self.published
+    by_status(:published)
+  end
 end

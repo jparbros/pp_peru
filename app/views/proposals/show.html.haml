@@ -1,0 +1,25 @@
+= selected_menu(:menu_propuesta)
+= section_title('Propuestas Ciudadanas')
+%section#content.span-9
+  .blog.single-entry
+
+    %nav.sticky-nav
+      %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
+      %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
+      %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
+
+    %article.entry.has-divider
+      %header
+        .post-format
+          %a{:href => "#{propuestas_path}"}
+        %h2.entry-title
+          = @proposal.title
+
+      .entry-date
+        %span= @proposal.published_day
+        = @proposal.published_month.upcase
+      .entry-content
+        = @proposal.content.html_safe
+
+%aside#sidebar.span-3
+  = render partial: 'news/right_aside'

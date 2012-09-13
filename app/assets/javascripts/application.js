@@ -16,6 +16,7 @@
 //= require jquery.jrating
 //= require jquery.cookie
 //= require jquery.easing
+//= require ckeditor/init
 //= require jquery.flexslider-min
 //= require mediaelement.min
 //= require scripts

@@ -1,0 +1,14 @@
+= form_for @proposal, url: propuestas_path, :html => { :class => 'form' } do |f|
+	.control-group
+		= f.error_messages
+		= f.hidden_field :visibility, value: 'public'
+	.control-group
+		= f.label :title, 'Titulo:',:class => 'control-label'
+		= f.text_field :title, :class => 'text_field'
+	.control-group
+		= f.label :content,'Contenido:',  :class => 'control-label'
+		.controls
+		= f.cktext_area :content, :toolbar => :Easy, :width => 800, :height => 400
+	.form-actions
+		= f.submit @proposal.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+		= link_to 'Cancelar',:propuestas, :class => 'btn'
