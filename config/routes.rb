@@ -59,7 +59,12 @@ PpPeru::Application.routes.draw do
       get :topics, on: :collection 
     end
     
-    resources :proposals
+
+    resources :proposals do
+      resource :publish, controller: 'proposals_actions/publish', only: :create
+      resource :archive, controller: 'proposals_actions/archive', only: :create
+    end
+
     resources :entries do
       get :topics, on: :collection
     end
