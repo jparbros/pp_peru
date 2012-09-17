@@ -1,17 +1,15 @@
 = selected_menu(:menu_news)
 = section_title('Centro De Noticias')
-%section#content.span-9
+%section#content.span9
   .blog.single-entry
 
-    %nav.sticky-nav
-      %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
-      %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
-      %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
+    / %nav.sticky-nav
+    /   %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
+    /   %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
+    /   %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
 
     %article.entry.has-divider
       %header
-        .post-format
-          %a{:href => "#"}
         %h2.entry-title
           = @news.title
         .entry-meta
@@ -63,5 +61,5 @@
         Necesitas iniciar sesion para comentar
 
 
-%aside#sidebar.span-3
+%aside#sidebar.span3
   = render partial: 'right_aside'

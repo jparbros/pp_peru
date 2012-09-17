@@ -1,23 +1,22 @@
 = selected_menu(:menu_discussions)
 = section_title('Centro De Debates')
-%section#content.span-9
+%section#content.span12
   .blog.single-entry
 
-    %nav.sticky-nav
-      %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
-      %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
-      %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
+    / %nav.sticky-nav
+    /   %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
+    /   %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
+    /   %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
 
     %article.entry.has-divider
       %header
-        .post-format
-          %a{:href => "#"}
         %h2.entry-title
           = @discussion.title
         .entry-meta
           %span.tags
             Temas:
-            %a{:href => "#"} Standard
+            - @discussion.topics.each do |theme|
+              %a{:href => "#"}= theme.name
           %span.comments
             %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
 
@@ -27,15 +26,6 @@
         = @discussion.published_month.upcase
       .entry-content
         = @discussion.content.html_safe
-    
-    %section#actors.has-divider
-      %span.actors-rate
-      %h3.actors-title Temas: 
-      %ul.actors-rate-list
-        - @discussion.topics.each do |theme|
-          %li
-            %span.actor-name
-              = "#{theme.name} "
     
     %section#votes.has-divider
       %span.votes-rate
@@ -65,7 +55,3 @@
         = render partial: 'annotations/form', locals: {annotable: @discussion, annotable_url: debate_comentarios_path(@discussion)}
       - else
         Necesita Iniciar Sesion para comentar
-
-
-%aside#sidebar.span-3
-  = render partial: 'news/right_aside'
