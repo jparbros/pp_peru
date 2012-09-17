@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role
   # attr_accessible :title, :body
+  attr_accessor :avatar
 
 
   #
@@ -119,6 +120,14 @@ class User < ActiveRecord::Base
      end
      @twitter_user
    end
+   
+   def profile_photo
+     unless avatar.nil?
+       avatar
+     else
+       '/assets/avatar.png'
+     end
+  end
 
    protected
 

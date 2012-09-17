@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    %title Constancia
+    %title Democracia PE
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -12,8 +12,18 @@
       %header#header.container-wrap
         #header-container.container
           #logo
-            %a#site-title{:href => root_url}
-              %img{:alt => "Simplex", :src => "images/logo.png"}/
+            #site-title{:href => root_url}
+              %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
+          #user-profile
+            - if current_user
+              = image_tag current_user.profile_photo, id: 'profile-avatar'
+              %ul#profile-menu
+                %li.nav-menu-item
+                  = link_to 'Salir', destroy_user_session_path, method: :delete
+                %li.nav-menu-item
+                  = link_to 'Admin', admin_root_path
+            - else
+              = link_to 'Ingresar', '', id: 'login-button'
 
       %nav#main-nav-menu.container
         %ul
@@ -27,18 +37,7 @@
             = link_to 'Centro de Debates', :debates
           %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
             = link_to 'Propuesta Ciudadana', :propuestas
-          / %li.nav-menu-item
-          /   - if current_user
-          /     %a{href: '#'}
-          /       Usuario
-          /     %ul.sub-menu
-          /       %li.nav-menu-item
-          /         = link_to 'Salir', destroy_user_session_path, method: :delete
-          /       %li.nav-menu-item
-          /         = link_to 'Admin', admin_root_path
-          /   - else
-          /     = link_to 'Ingresar', '', id: 'login-button'
-
+            
       /%select#responsive-main-nav-menu{:onchange => "javascript:window.location.replace(this.value);"}
 
 

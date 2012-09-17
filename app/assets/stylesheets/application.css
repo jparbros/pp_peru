@@ -22,11 +22,15 @@
 header#header {
   background: url('/assets/header-background.png') repeat-x top #F8F8F8;
   height: 140px;
+  padding-top: 3px;
 }
 
 body {
   background: url('/assets/main-background.png');
 }
+
+#logo { float: left; width: 675px; }
+#user-profile { float: left;}
 
 nav {margin: 35px 0;}
 
@@ -86,7 +90,13 @@ h2.entry-title {
   border-bottom: 1px solid #f1f1f1;
 }
 
-.comment_content img {
+#user-profile { margin: 45px 0 0 -20px; float: left;}
+
+#profile-avatar { float: left;}
+  
+#profile-menu { float: left; }
+
+.comment_content img, #profile-avatar {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   border-radius: 25px;
