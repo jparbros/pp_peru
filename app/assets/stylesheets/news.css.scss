@@ -50,3 +50,11 @@ ul.actors-rate-list {
 .right{
 	float:right;
 }
+
+span.tags a:after{
+	content: ' ,';
+}
+
+span.tags a:last-child:after{
+	content: '';
+}

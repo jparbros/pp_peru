@@ -46,7 +46,6 @@
       %ol.comments-list
         = nested_annotations @discussion.annotations.includes(:author).arrange(order: :created_at) 
 
-
     %section#comment-form
       %span.leave-a-comment
       %h3.form-title Deja un Comentario

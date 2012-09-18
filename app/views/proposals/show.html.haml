@@ -19,5 +19,34 @@
       .entry-content
         = @proposal.content.html_safe
 
-%aside#sidebar.span3
+      %section#votes.has-divider
+        %span.votes-rate
+        %h3.votes-title Vote Por esta propuesta
+        = link_to propuesta_votes_path(@proposal, tendency: 1), method: :post, class: 'btn btn-primary' do
+          %i.icon-thumbs-up
+          = @proposal.positive_votes
+        |
+        = link_to propuesta_votes_path(@proposal, tendency: -1), method: :post, class: 'btn btn-danger' do
+          %i.icon-thumbs-down
+          = @proposal.negative_votes
+
+      %section#comments.has-divider
+        %a.leave-a-comment{:href => "#comment-form", :title => "Leave a Comment"}
+        %h3.comments-title #{@proposal.annotations.count} Comentarios
+        .leave-a-comment-text
+          %a.meta{:href => "#comment-form"} Deja un comentario
+        %ol.comments-list
+          = nested_annotations @proposal.annotations.includes(:author).arrange(order: :created_at) 
+
+      %section#comment-form
+        %span.leave-a-comment
+        %h3.form-title Deja un Comentario
+        %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
+        - if current_user  
+          = render partial: 'annotations/form', locals: {annotable: @proposal, annotable_url: propuesta_comentarios_path(@proposal)}
+        - else
+          Necesitas iniciar sesion para comentar
+
+
+%aside#sidebar.span-3
   = render partial: 'news/right_aside'

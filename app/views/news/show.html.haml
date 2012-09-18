@@ -49,7 +49,7 @@
       .leave-a-comment-text
         %a.meta{:href => "#comment-form"} Deja un comentario
       %ol.comments-list
-        = render partial: 'annotations/annotation', collection: @news.annotations
+        = nested_annotations @news.annotations.includes(:author).arrange(order: :created_at) 
 
     %section#comment-form
       %span.leave-a-comment

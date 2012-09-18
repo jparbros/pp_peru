@@ -1,4 +1,4 @@
-= form_for [annotable, annotable.annotations.build], url: annotable_url, :html => { :class => 'comment-form' } do |form|
+= form_for [annotable, annotable.annotations.build], url: annotable_url, method: :post, :html => { :class => 'comment-form' } do |form|
   .form-input
     = form.text_area :comment
     = form.hidden_field :parent_id, :value => @annotation.parent_id if @annotation

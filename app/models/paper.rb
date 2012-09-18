@@ -124,5 +124,14 @@ class Paper < ActiveRecord::Base
     self.activity_owner = :author
     self.activity_params = {title: self.title, id: self.id}
   end
+  
+  
+  def positive_votes
+     votes.where(tendency: 1).size
+  end
+
+   def negative_votes
+     votes.where(tendency: -1).size
+   end
 
 end

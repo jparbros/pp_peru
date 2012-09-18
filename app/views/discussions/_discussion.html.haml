@@ -5,7 +5,8 @@
     .entry-meta
       %span.tags
         Temas:
-        %a{:href => "#"} Standard
+        - discussion.topics.each do |topic|
+          = link_to topic.name, "#"
       %span.comments
         %a{:href => "#"} #{discussion.annotations.count} Comentarios
 

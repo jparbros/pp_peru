@@ -19,7 +19,7 @@ PpPeru::Application.routes.draw do
 
   scope '/centro_de_medios' do
     resources :noticias, controller: :news, only: [:show, :index] do
-      resources :comentarios, controller: :annotations, only: :create
+      resources :comentarios, controller: :annotations, only: [:create, :new]
       collection do
         post :rates
       end
@@ -37,7 +37,10 @@ PpPeru::Application.routes.draw do
     end
   end
   scope '/propuesta_ciudadana' do
-    resources :propuestas, controller: :proposals, except: :destroy
+    resources :propuestas, controller: :proposals, except: :destroy do
+      resources :comentarios, controller: :annotations, only: [:create, :new]
+      resources :votes, controller: 'proposals_activities/votes', only: :create
+    end
   end
   
   resources :annotations, only: :index do

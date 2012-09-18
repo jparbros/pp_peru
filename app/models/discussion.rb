@@ -44,21 +44,12 @@ class Discussion < Paper
   
   
   #
-  # Intance methods
-  def positive_votes
-    votes.where(tendency: 1).size
-  end
-  
-  def negative_votes
-    votes.where(tendency: -1).size
-  end
-  #
   #
   # Class methods
   #
   
   def self.actives
-    by_status [:opened, :closed]
+    by_status([:opened, :closed]).includes(:topics)
   end
 end
 
