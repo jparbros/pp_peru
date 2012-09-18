@@ -22,6 +22,7 @@ class Admin::UsersController < Admin::BaseController
     @user.password = generated_password
     @user.password_confirmation = generated_password
     if @user.save
+      UserRegistration.welcome(@user, generated_password).deliver
       redirect_to admin_users_path, notice: 'Creado Correctamente'
     else
       render :new
