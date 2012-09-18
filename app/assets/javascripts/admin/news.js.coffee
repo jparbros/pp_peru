@@ -10,3 +10,14 @@ jQuery ->
 	$('#news_topic_tokens').tokenInput '/admin/topics.json'
 		theme: 'facebook'
 		prePopulate: $('#news_topic_tokens').data('load')
+    
+  $('#news_group_tokens').tokenInput '/admin/groups.json'
+    theme: 'facebook'
+    prePopulate: $('#news_topic_tokens').data('load')
+
+  $('#news_visibility').change ->
+    if $(@).val() == 'group'
+      $('#group-tokens').show()
+      
+  if $('#news_visibility').val() == 'group'
+    $('#group-tokens').show()

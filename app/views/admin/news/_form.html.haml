@@ -21,6 +21,10 @@
     = f.label :visibility, "Visibilidad:", class: 'control-label'
     = f.select :visibility, Paper.visibility
 
+  #group-tokens.control-group.hide
+    = f.label :group_tokens, 'Grupos'
+    = f.text_field :group_tokens, data: {load: @news.groups.map(&:attributes).to_json}
+
   .form-actions
     = f.submit @news.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
     = link_to 'Cancelar', admin_news_index_path, :class => 'btn'

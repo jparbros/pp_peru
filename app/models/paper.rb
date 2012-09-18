@@ -20,8 +20,8 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at
-  attr_reader :actor_tokens, :topic_tokens
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at, :group_tokens
+  attr_reader :actor_tokens, :topic_tokens, :group_tokens
   
   validates :content, :title, presence: true
   #
@@ -50,7 +50,7 @@ class Paper < ActiveRecord::Base
   #
   # Constants
   #
-  VISIBILITY = {public: :publico, members: :miembros, admin: :administradores}
+  VISIBILITY = {public: :publico, members: :miembros, admin: :administradores, group: :grupo}
 
   #
   # Delegates
@@ -142,8 +142,12 @@ class Paper < ActiveRecord::Base
      votes.where(tendency: 1).size
   end
 
-   def negative_votes
-     votes.where(tendency: -1).size
-   end
+  def negative_votes
+   votes.where(tendency: -1).size
+  end
+   
+  def group_tokens=(ids)
+   self.group_ids = ids.split(',')
+  end
 
 end
