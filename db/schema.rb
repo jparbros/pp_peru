@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911033700) do
+ActiveRecord::Schema.define(:version => 20120918012936) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -145,6 +145,13 @@ ActiveRecord::Schema.define(:version => 20120911033700) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "provinces", :force => true do |t|
+    t.string   "name"
+    t.integer  "state_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "ratings", :force => true do |t|
     t.integer  "rateable_id"
     t.string   "rateable_type"
@@ -161,6 +168,12 @@ ActiveRecord::Schema.define(:version => 20120911033700) do
     t.string   "reportable_type"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "topics", :force => true do |t|
@@ -185,6 +198,9 @@ ActiveRecord::Schema.define(:version => 20120911033700) do
     t.datetime "updated_at",                             :null => false
     t.integer  "political_party_id"
     t.string   "name",                   :default => ""
+    t.string   "avatar"
+    t.integer  "state_id"
+    t.integer  "province_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

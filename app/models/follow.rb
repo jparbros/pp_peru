@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: follows
+#
+#  id              :integer          not null, primary key
+#  follower_type   :string(255)
+#  follower_id     :integer
+#  followable_type :string(255)
+#  followable_id   :integer
+#  created_at      :datetime
+#
+
 class Follow < ActiveRecord::Base
   acts_as_follow_store
   before_create :setup_activity

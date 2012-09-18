@@ -76,9 +76,7 @@ color: #F8DE65;
 }
 
 h1,h2,h3,h4,h5,h6{
-font-family: 'Droid Serif', Georgia, 'Times New Roman', serif;
-font-style: italic;
-font-weight: normal;
+font-weight: bold;
 color: #333;
 text-shadow: 1px 1px 0 #f6f6f6 , 2px 2px 0 #d6d6d6;
 }

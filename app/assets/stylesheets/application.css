@@ -17,6 +17,7 @@
  *= require token-input
  *= require template
  *= require news
+ *= require users
  */
 
 header#header {
@@ -90,9 +91,9 @@ h2.entry-title {
   border-bottom: 1px solid #f1f1f1;
 }
 
-#user-profile { margin: 45px 0 0 -20px; float: left;}
+#user-profile { margin: 45px 0 0 -20px; float: left; width: 350px;}
 
-#profile-avatar { float: left;}
+#profile-avatar { float: left; margin-right: 10px;}
   
 #profile-menu { float: left; }
 

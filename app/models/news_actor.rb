@@ -2,11 +2,12 @@
 #
 # Table name: news_actors
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)      default(""), not null
-#  avatar     :string(255)      default("")
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                 :integer          not null, primary key
+#  name               :string(255)      default(""), not null
+#  avatar             :string(255)      default("")
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  political_party_id :integer
 #
 
 class NewsActor < ActiveRecord::Base

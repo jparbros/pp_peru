@@ -16,7 +16,11 @@
 #  role                   :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  name                  :string(255)      default('')
+#  political_party_id     :integer
+#  name                   :string(255)      default("")
+#  avatar                 :string(255)
+#  state_id               :integer
+#  province_id            :integer
 #
 
 class User < ActiveRecord::Base
@@ -26,9 +30,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :name, :avatar, :state_id, :province_id
   # attr_accessible :title, :body
-  attr_accessor :avatar
 
 
   #
@@ -54,6 +57,10 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_liker
   
+  #
+  # Uploader
+  #
+  mount_uploader :avatar, AvatarUploader
   
   #
   # Instance methods
@@ -122,8 +129,8 @@ class User < ActiveRecord::Base
    end
    
    def profile_photo
-     unless avatar.nil?
-       avatar
+     unless avatar.blank?
+       avatar.url(:small)
      else
        '/assets/avatar.png'
      end

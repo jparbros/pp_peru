@@ -1,0 +1,79 @@
+.row    
+  .span6
+    %h2 Perfil de usuario
+  
+    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: 'form-horizontal', :multipart => true }) do |f|
+      = devise_error_messages!
+      
+      %fieldset
+        %legend 
+          Informacion Personal
+          
+        .control-group
+          .control-label
+            = f.label :email
+          .controls
+            = f.email_field :email
+
+        .control-group
+          .control-label
+            = f.label :name, 'Nombre'
+          .controls
+            = f.text_field :name
+
+        .control-group
+          .control-label
+            = f.label :state_id, 'Region'
+          .controls
+            = f.collection_select :state_id, State.all, :id, :name, include_blank: true
+    
+        .control-group
+          .control-label
+            = f.label :province_id, 'Provincia'
+          .controls
+            = f.collection_select :province_id, Province.all, :id, :name, include_blank: true
+        
+        .control-group
+          .control-label
+            = f.label :avatar
+          .controls
+            = image_tag current_user.profile_photo, id: 'profile-avatar' if current_user.avatar.present?
+            = f.file_field :avatar
+    
+      %fieldset
+        %legend 
+          Contraseña
+        .control-group
+          .control-label
+            = f.label :password, 'Contraseña'
+            %span.help-block (dejar en blanco si no se quiere cambiar)
+          .controls
+            = f.password_field :password, :autocomplete => "off"
+      
+        .control-group
+          .control-label
+            = f.label :password_confirmation, 'Confirmar contraseña'
+          .controls
+            = f.password_field :password_confirmation
+      
+      .control-group.current-password
+        .control-label
+          = f.label :current_password, 'Contraseña actual'
+          %span.help-block (se necesita la contraseña actual para confirmar los cambios)
+        .controls
+          = f.password_field :current_password
+      
+      .form-actions
+        = f.submit "Actualizar", class: 'btn btn-primary'
+    
+%script
+  $('#user_state_id').change(function(){
+  that = $(this);
+  provinceSelect = $('#user_province_id');
+  provinceSelect.html('');
+  provinceSelect.append($('<option/>'));
+  provincesFiltered = _.filter(window.provinces, function(province){ return province.state_id == parseInt(that.val())});
+  _.each(provincesFiltered, function(province) { provinceSelect.append($('<option/>').val(province.id).html(province.name)) });
+  });
+  window.provinces = #{Province.all.to_json.to_s.html_safe}
+  

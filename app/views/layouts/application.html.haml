@@ -17,11 +17,19 @@
           #user-profile
             - if current_user
               = image_tag current_user.profile_photo, id: 'profile-avatar'
+              %h4
+                - if current_user.name.present?
+                  = current_user.name
+                - else
+                  = link_to 'Ingresa tu nombre', edit_user_registration_path
               %ul#profile-menu
-                %li.nav-menu-item
+                %li
+                  = link_to 'Mi Perfil', edit_user_registration_path
+                - if current_user.admin?
+                  %li
+                    = link_to 'Admin', admin_root_path
+                %li
                   = link_to 'Salir', destroy_user_session_path, method: :delete
-                %li.nav-menu-item
-                  = link_to 'Admin', admin_root_path
             - else
               = link_to 'Ingresar', '', id: 'login-button'
 
