@@ -13,15 +13,36 @@
         %h2.entry-title
           = @entry.title
         .entry-meta
-          %span.tags
-            Temas:
-            %a{:href => "#"} Standard
+          - unless @entry.topics.empty?
+            %span.tags
+              Temas:
+              - @entry.topics do |topic|
+                = link_to topic.name, '#'
+          %span.comments
+            %a{:href => "#comments"} #{@entry.annotations_count} Comentarios
 
       .entry-date
-        %span=# @entry.published_day
-        = #@entry.published_month.upcase
+        %span=@entry.published_day
+        = @entry.published_month.upcase
       .entry-content
         = @entry.content.html_safe
+
+    %section#comments.has-divider
+      %a.leave-a-comment{:href => "#comment-form", :title => "Deja un Comentario"}
+      %h3.comments-title #{@entry.annotations_count} Comentarios
+      .leave-a-comment-text
+        %a.meta{:href => "#comment-form"} Deja un comentario
+      %ol.comments-list
+        = nested_annotations @entry.annotations.includes(:author).arrange(order: :created_at) 
+
+    %section#comment-form
+      %span.leave-a-comment
+      %h3.form-title Deja un Comentario
+      %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
+      - if current_user
+        = render partial: 'annotations/form', locals: {annotable: @entry, annotable_url: entrada_comentarios_path(@entry)}
+      - else
+        Necesita Iniciar Sesion para comentar
 
 %aside#sidebar.span3
   = render partial: 'news/right_aside'

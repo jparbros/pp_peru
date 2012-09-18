@@ -27,7 +27,9 @@ PpPeru::Application.routes.draw do
   end
   
   scope '/centro_educacional' do
-    resources :entradas, controller: :entries, only: [:show, :index]
+    resources :entradas, controller: :entries, only: [:show, :index] do
+      resources :comentarios, controller: :annotations, only: [:create, :new]
+    end
   end
   
   scope '/centro_de_debate' do
@@ -67,7 +69,11 @@ PpPeru::Application.routes.draw do
       resource :archive, controller: 'proposals_actions/archive', only: :create
     end
 
-    resources :entries
+    resources :entries do
+      resource :publish, controller: 'entries_actions/publish', only: :create
+      resource :archive, controller: 'entries_actions/archive', only: :create
+    end
+    
     resources :topics, only: :index
     resources :news_actors
   end

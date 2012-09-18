@@ -28,6 +28,9 @@ class AnnotationsController < ApplicationController
     elsif params[:propuesta_id]
       @annotable = Proposal.find(params[:propuesta_id])
       @url_to_redirect = propuesta_url(@annotable)
+    elsif params[:entrada_id]
+      @annotable = Entry.find(params[:entrada_id])
+      @url_to_redirect = entrada_url(@annotable)
     end
   end
 

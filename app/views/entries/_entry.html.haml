@@ -4,12 +4,13 @@
       = link_to entry.title, entrada_path(entry)
     .entry-meta
       %span.tags
-        Temas:
-        %a{:href => "#"} Standard
-
+        - unless entry.topics.empty?
+          Temas:
+          - entry.topics.each do |topic| 
+            = link_to topic.name, '#'
   .entry-date
-    %span= #entries.published_day
-    =# entries.published_month.upcase
+    %span= entry.published_day
+    = entry.published_month.upcase
   .entry-content
     = entry.first_paragraph.html_safe
     = link_to 'Leer mas...', entrada_path(entry), class: 'more-link'

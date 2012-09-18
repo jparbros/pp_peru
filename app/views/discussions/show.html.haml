@@ -13,10 +13,11 @@
         %h2.entry-title
           = @discussion.title
         .entry-meta
-          %span.tags
-            Temas:
-            - @discussion.topics.each do |theme|
-              %a{:href => "#"}= theme.name
+          - unless @discussion.topics.empty?
+            %span.tags
+              Temas:
+              - @discussion.topics.each do |theme|
+                %a{:href => "#"}= theme.name
           %span.comments
             %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
 

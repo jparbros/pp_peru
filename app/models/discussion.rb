@@ -15,10 +15,6 @@
 class Discussion < Paper
   
   #
-  # Delegations
-  #
-  delegate :count, to: :annotations, prefix: true
-  #
   # State machine
   #
   state_machine :status, :initial => :draft do

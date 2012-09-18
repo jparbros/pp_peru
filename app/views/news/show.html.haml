@@ -13,10 +13,11 @@
         %h2.entry-title
           = @news.title
         .entry-meta
-          %span.tags
-            Temas:
-            - @news.topics.each do |topic|
-              = link_to topic.name, "#"
+          - unless @news.topics.empty?
+            %span.tags
+              Temas:
+              - @news.topics.each do |topic|
+                = link_to topic.name, "#"
           %span.comments
             %a{:href => "#comments"} #{@news.annotations_count} Comentarios
 

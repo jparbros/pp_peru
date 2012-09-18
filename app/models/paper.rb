@@ -31,6 +31,12 @@ class Paper < ActiveRecord::Base
   has_and_belongs_to_many :topics
   
   #
+  # Delegation
+  #
+  delegate :count, to: :annotations, prefix: true
+  
+  
+  #
   # Extend
   #
   include PublicActivity::Model

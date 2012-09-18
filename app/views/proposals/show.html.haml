@@ -12,6 +12,14 @@
       %header
         %h2.entry-title
           = @proposal.title
+        .entry-meta
+          - unless @proposal.topics.empty?
+            %span.tags
+              Temas:
+              - @proposal.topics.each do |theme|
+                %a{:href => "#"}= theme.name
+          %span.comments
+            %a{:href => "#comments"} #{@proposal.annotations_count} Comentarios
 
       .entry-date
         %span= @proposal.published_day

@@ -13,6 +13,10 @@
 #
 
 class Proposal < Paper
+  #
+   # Delegations
+   #
+   delegate :count, to: :annotations, prefix: true
   
   def self.published
     by_status(:published).includes(:topics)

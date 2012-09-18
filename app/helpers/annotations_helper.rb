@@ -4,6 +4,7 @@ module AnnotationsHelper
       when Discussion then debate_comentarios_path(annotable)
       when News then noticia_comentarios_path(annotable)
       when Proposal then propuesta_comentarios_path(annotable)
+      when Entry then entrada_comentarios_path(annotable)
     end
   end
   

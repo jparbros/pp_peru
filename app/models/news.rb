@@ -15,12 +15,6 @@
 class News < Paper
 
 
-  
-  #
-  # Delegation
-  #
-  delegate :count, to: :annotations, prefix: true
-
   #
   # Class methods
   #
