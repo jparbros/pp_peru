@@ -17,10 +17,10 @@
 					- @proposals.each do |p|
 						%tr
 							%td.center= p.id
-							%td= link_to p.title, [:admin, p]
+							%td= link_to p.title, propuesta_url(p), target: :_blank
 							%td= p.status
 							%td
-								= link_to [:admin, p], :class => 'btn btn-mini' do
+								= link_to propuesta_url(p), target: :blank, :class => 'btn btn-mini' do
 									%i.icon-eye-open
 									Ver
 								= link_to edit_admin_proposal_path(p), :class => 'btn btn-mini btn-primary' do

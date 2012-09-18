@@ -17,10 +17,10 @@
 					- @discussions.each do |d|
 						%tr
 							%td.center= d.id
-							%td= link_to d.title, [:admin, d]
+							%td= link_to d.title, debate_url(d), target: :_blank
 							%td= d.status
 							%td
-								= link_to [:admin, d], :class => 'btn btn-mini' do
+								= link_to debate_url(d), :class => 'btn btn-mini', target: :_blank do
 									%i.icon-eye-open
 									Ver
 								= link_to edit_admin_discussion_path(d), :class => 'btn btn-mini btn-primary' do

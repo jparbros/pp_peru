@@ -59,7 +59,6 @@ PpPeru::Application.routes.draw do
       resources :open_discussion, controller: 'discussions_actions/open_discussion', only: :create
       resources :close_discussion, controller: 'discussions_actions/close_discussion', only: :create
       resources :archive_discussion, controller: 'discussions_actions/archive_discussion', only: :create
-      get :topics, on: :collection 
     end
     
 
@@ -68,9 +67,8 @@ PpPeru::Application.routes.draw do
       resource :archive, controller: 'proposals_actions/archive', only: :create
     end
 
-    resources :entries do
-      get :topics, on: :collection
-    end
+    resources :entries
+    resources :topics, only: :index
     resources :news_actors
   end
 end

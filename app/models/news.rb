@@ -27,7 +27,7 @@ class News < Paper
 
   class << self
     def published
-      by_status(:published).includes(:news_actors)
+      by_status(:published).includes(:news_actors, :topics)
     end
   end
 

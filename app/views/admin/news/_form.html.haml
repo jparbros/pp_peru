@@ -1,27 +1,25 @@
 
-= form_for [:admin, @news], :html => { :class => 'form-horizontal' } do |f|
+= form_for [:admin, @news], :html => { :class => 'form' } do |f|
   .control-group
     = f.error_messages
 
   .control-group
     = f.label :title, 'Titulo:',:class => 'control-label'
-    .controls
-      = f.text_field :title, :class => 'text_field'
+    = f.text_field :title, :class => 'text_field'
 
   .control-group
     = f.label :content,'Contenido:',  :class => 'control-label'
-    .controls
-      = f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
+    = f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
 
   .control-group
     = f.label :actor_tokens, "Involucrados en la noticia:", class: 'control-label'
-    .controls
-      = f.text_field :actor_tokens, data: {load: @news.news_actors}
-
+    = f.text_field :actor_tokens, data: {load: @news.news_actors}
+  .control-group
+    = f.label :topics_tokens, 'Temas'
+    = f.text_field :topic_tokens, data: {load: @news.topics}
   .control-group
     = f.label :visibility, "Visibilidad:", class: 'control-label'
-    .controls
-      = f.select :visibility, Paper.visibility
+    = f.select :visibility, Paper.visibility
 
   .form-actions
     = f.submit @news.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'

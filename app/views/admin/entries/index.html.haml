@@ -17,10 +17,10 @@
 					- @entries.each do |e|
 						%tr
 							%td.center= e.id
-							%td= link_to e.title, [:admin, e]
+							%td= link_to e.title, entradas_url(e), target: :_blank
 							%td= e.status
 							%td
-								= link_to [:admin, e], :class => 'btn btn-mini' do
+								= link_to entradas_url(e), target: :_blanck, :class => 'btn btn-mini' do
 									%i.icon-eye-open
 									Ver
 								= link_to edit_admin_entry_path(e), :class => 'btn btn-mini btn-primary' do

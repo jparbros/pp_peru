@@ -6,3 +6,7 @@ jQuery ->
 	$('#news_actor_tokens').tokenInput '/admin/news_actors.json'
 		theme: 'facebook'
 		prePopulate: $('#news_actor_tokens').data('load')
+
+	$('#news_topic_tokens').tokenInput '/admin/topics.json'
+		theme: 'facebook'
+		prePopulate: $('#news_topic_tokens').data('load')

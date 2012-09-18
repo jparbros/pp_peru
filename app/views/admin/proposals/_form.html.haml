@@ -8,6 +8,9 @@
 		= f.label :content,'Contenido:',  :class => 'control-label'
 		.controls
 		= f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
+	.control-group
+		= f.label :topics_tokens, 'Temas'
+		= f.text_field :topic_tokens, data: {load: @proposal.topics}
 	.form-actions
 		= f.submit @proposal.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
 		= link_to 'Cancelar', admin_proposals_path, :class => 'btn'

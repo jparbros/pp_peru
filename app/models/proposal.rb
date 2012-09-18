@@ -15,6 +15,6 @@
 class Proposal < Paper
   
   def self.published
-    by_status(:published)
+    by_status(:published).includes(:topics)
   end
 end

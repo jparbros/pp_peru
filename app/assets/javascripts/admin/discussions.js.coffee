@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
 
-	$('#discussion_topic_tokens').tokenInput '/admin/discussions/topics.json'
+	$('#discussion_topic_tokens').tokenInput '/admin/topics.json'
 		theme: 'facebook'
 		prePopulate: $('#discussion_topic_tokens').data('load')
 
