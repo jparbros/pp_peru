@@ -46,6 +46,9 @@ class User < ActiveRecord::Base
   has_many :reports, foreign_key: :author_id
   has_many :votes, foreign_key: :author_id
   has_many :authentications
+  has_many :memberships
+  has_many :groups, through: :memberships
+  has_many :owned_groups, class_name: 'Group', foreign_key: :owner_id
 
   #
   #Extend

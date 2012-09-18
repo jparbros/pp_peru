@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918012936) do
+ActiveRecord::Schema.define(:version => 20120918133140) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -75,6 +75,13 @@ ActiveRecord::Schema.define(:version => 20120918012936) do
   add_index "follows", ["followable_id", "followable_type"], :name => "fk_followables"
   add_index "follows", ["follower_id", "follower_type"], :name => "fk_follows"
 
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "owner_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "likes", :force => true do |t|
     t.string   "liker_type"
     t.integer  "liker_id"
@@ -85,6 +92,13 @@ ActiveRecord::Schema.define(:version => 20120918012936) do
 
   add_index "likes", ["likeable_id", "likeable_type"], :name => "fk_likeables"
   add_index "likes", ["liker_id", "liker_type"], :name => "fk_likes"
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "mentions", :force => true do |t|
     t.string   "mentioner_type"
@@ -136,6 +150,13 @@ ActiveRecord::Schema.define(:version => 20120918012936) do
   create_table "papers_topics", :id => false, :force => true do |t|
     t.integer "topic_id", :null => false
     t.integer "paper_id", :null => false
+  end
+
+  create_table "permissions", :force => true do |t|
+    t.integer  "group_id"
+    t.integer  "paper_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "political_parties", :force => true do |t|

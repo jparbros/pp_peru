@@ -33,6 +33,8 @@ class Paper < ActiveRecord::Base
   has_many :ratings, as: :rateable
   has_and_belongs_to_many :news_actors
   has_and_belongs_to_many :topics
+  has_many :permissions
+  has_many :groups, through: :permissions
   
   #
   # Delegation
@@ -95,7 +97,7 @@ class Paper < ActiveRecord::Base
     end
 
     def by_permissions(user)
-      where(visibility: (user.try(:permission) || :public))
+      includes(:groups).where("visibility IN (?) OR groups.id IN (?)", (user.try(:permission) || :public), user.group_ids)
     end
   end
 
