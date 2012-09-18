@@ -1,0 +1,18 @@
+= form_for [:admin, @group], :html => { :class => 'form' } do |f|
+  .control-group
+    = f.error_messages
+
+  .control-group
+    = f.label :name, 'Nombre:',:class => 'control-label'
+    = f.text_field :name, :class => 'text_field'
+
+  .control-group
+    = f.label :user_tokens, 'Miembros:',  :class => 'control-label'
+    = f.text_field :user_tokens, data: {load: @group.users.map(&:attributes).to_json} 
+
+  .form-actions
+    = f.submit @group.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+    = link_to 'Cancelar', admin_groups_path, :class => 'btn'
+
+%script
+  $('#group_user_tokens').tokenInput('/admin/users.json', {theme: 'facebook', prePopulate: $('#group_user_tokens').data('load')});
