@@ -47,6 +47,7 @@ class Paper < ActiveRecord::Base
   #
   include PublicActivity::Model
   tracked
+  
   #
   # Constants
   #
@@ -90,6 +91,24 @@ class Paper < ActiveRecord::Base
   #
   # Class methods
   #
+  
+  def self.text_search(query)
+    if query.present?
+      sql = "to_tsvector('simple', title) @@ to_tsquery('simple', :q) or 
+        to_tsvector('simple', content) @@ to_tsquery('simple', :q)"
+      where(sql, q: format(query))
+    else
+      scoped
+    end
+  end
+  
+  def self.by_topics(topic_id)
+    if topic_id.present?  
+      joins(:topics).where('papers_topics.topic_id = ?', topic_id)
+    else
+      scoped
+    end
+  end
 
   class << self
     def visibility
@@ -148,6 +167,13 @@ class Paper < ActiveRecord::Base
    
   def group_tokens=(ids)
    self.group_ids = ids.split(',')
+  end
+  
+  private
+  def self.format(query)
+    query.mb_chars.normalize(:kd).
+      gsub(/[^\x00-\x7F]/n,'').
+      downcase.split(' ').join('|')
   end
 
 end

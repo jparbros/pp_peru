@@ -3,10 +3,11 @@ class ProposalsController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
   
   def index
-    @proposals = Proposal.published.by_permissions(current_user)
+    @proposals = Proposal.text_search(params[:query]).published.by_permissions(current_user).by_topics(params[:topic_id])
   end
   
   def show
+    authorize! :read, @proposal
   end
   
   def create

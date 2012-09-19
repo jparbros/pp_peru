@@ -6,7 +6,7 @@
       %span.tags
         Temas:
         - discussion.topics.each do |topic|
-          = link_to topic.name, "#"
+          = link_to topic.name, debates_path(topic_id: topic.id)
       %span.comments
         %a{:href => "#"} #{discussion.annotations.count} Comentarios
 

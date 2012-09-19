@@ -1,9 +1,11 @@
 class DiscussionsController < ApplicationController
   def index
-    @discussions = Discussion.actives.by_permissions(current_user)
+    @discussions = Discussion.text_search(params[:query]).
+                  actives.by_permissions(current_user).by_topics(params[:topic_id])
   end
   
   def show
     @discussion = Discussion.find params[:id]
+    authorize! :read, @discussion
   end
 end

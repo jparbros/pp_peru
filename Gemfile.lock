@@ -139,6 +139,9 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.0.7)
     pg (0.14.0)
+    pg_search (0.5.5)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyglot (0.3.3)
     public_activity (0.4.0.rc2)
       actionpack (>= 3.0.0)
@@ -221,6 +224,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   pg
+  pg_search
   public_activity (>= 0.4.0.rc2)
   rails (= 3.2.6)
   sass-rails (~> 3.2.3)

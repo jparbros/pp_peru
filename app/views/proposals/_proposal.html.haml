@@ -4,6 +4,11 @@
       = link_to proposal.title, propuesta_path(proposal)
     .entry-meta
       %span.tags
+        - unless proposal.topics.empty?
+          %span.tags
+            Temas:
+            - proposal.topics.each do |topic|
+              = link_to topic.name, propuestas_path(topic_id: topic.id)
       %span.comments
         %a{:href => "#"} #{proposal.annotations.count} Comentarios
 

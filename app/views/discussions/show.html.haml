@@ -1,6 +1,6 @@
 = selected_menu(:menu_discussions)
 = section_title('Centro De Debates')
-%section#content.span12
+%section#content.span9
   .blog.single-entry
 
     / %nav.sticky-nav
@@ -16,8 +16,8 @@
           - unless @discussion.topics.empty?
             %span.tags
               Temas:
-              - @discussion.topics.each do |theme|
-                %a{:href => "#"}= theme.name
+              - @discussion.topics.each do |topic|
+                = link_to topic.name, debates_path(topic_id: topic.id)
           %span.comments
             %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
 
@@ -55,3 +55,6 @@
         = render partial: 'annotations/form', locals: {annotable: @discussion, annotable_url: debate_comentarios_path(@discussion)}
       - else
         Necesita Iniciar Sesion para comentar
+
+%aside#sidebar.span3
+  = render partial: 'right_aside'

@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   
   def index
-    @entries = Entry.order(:published_at) # Todo agregar relgas de publicacion y visibilidad
+    @entries = Entry.text_search(params[:query]).published.by_permissions(current_user).by_topics(params[:topic_id])
   end
 
   def show

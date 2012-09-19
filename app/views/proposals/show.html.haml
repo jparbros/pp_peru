@@ -17,7 +17,7 @@
             %span.tags
               Temas:
               - @proposal.topics.each do |theme|
-                %a{:href => "#"}= theme.name
+                = link_to topic.name, propuestas_path(topic_id: topic.id)
           %span.comments
             %a{:href => "#comments"} #{@proposal.annotations_count} Comentarios
 
@@ -56,5 +56,5 @@
           Necesitas iniciar sesion para comentar
 
 
-%aside#sidebar.span-3
-  = render partial: 'news/right_aside'
+%aside#sidebar.span3
+  = render partial: 'right_aside'
