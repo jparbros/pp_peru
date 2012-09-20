@@ -11,6 +11,6 @@
     %h4.widget-title Temas
     .widget-content
       %ul.list.tags
-        - Topic.all.each do |topic|
+        - Topic.by_type_paper(params[:controller]).each do |topic|
           %li
             = link_to topic.name, index_by_controller(params[:controller], topic_id: topic.id)

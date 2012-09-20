@@ -34,4 +34,8 @@ class Topic < ActiveRecord::Base
     tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
     tokens.split(',')
   end
+  
+  def self.by_type_paper(type)
+    joins(:papers).where("papers.type = ?", type.singularize.capitalize)
+  end
 end
