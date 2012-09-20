@@ -4,9 +4,10 @@
       = link_to news.title, noticia_path(news)
     .entry-meta
       %span.tags
-        Temas:
-        - news.topics.each do |topic|
-          = link_to topic.name, "#"
+        - unless news.topics.empty?
+          Temas:
+          - news.topics.each do |topic|
+            = link_to topic.name, noticias_path(topic_id: topic.id)
       %span.comments
         %a{:href => "#"} #{news.annotations.count} Comentarios
 

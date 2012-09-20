@@ -94,8 +94,8 @@ class Paper < ActiveRecord::Base
   
   def self.text_search(query)
     if query.present?
-      sql = "to_tsvector('simple', title) @@ to_tsquery('simple', :q) or 
-        to_tsvector('simple', content) @@ to_tsquery('simple', :q)"
+      sql = "to_tsvector('spanish', title) @@ to_tsquery('spanish', :q) or 
+        to_tsvector('spanish', content) @@ to_tsquery('spanish', :q)"
       where(sql, q: format(query))
     else
       scoped
@@ -116,7 +116,7 @@ class Paper < ActiveRecord::Base
     end
 
     def by_permissions(user)
-      includes(:groups).where("visibility IN (?) OR groups.id IN (?)", (user.try(:permission) || :public), user.group_ids)
+      includes(:groups).where("visibility IN (?) OR groups.id IN (?)", (user.try(:permission) || :public), user.try(:group_ids))
     end
   end
 

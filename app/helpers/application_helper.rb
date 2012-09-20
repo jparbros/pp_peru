@@ -19,4 +19,13 @@ module ApplicationHelper
       link_to 'Inicar Sesion', new_user_session_path
     end
   end
+  
+  def index_by_controller(controller, options = {})
+    case controller
+      when 'news' then noticias_path(options)
+      when 'discussions' then debates_path(options)
+      when 'entries' then entradas_path(options)
+      when 'proposals' then propuestas_path(options)
+    end
+  end
 end
