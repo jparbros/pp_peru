@@ -15,10 +15,16 @@
  *= require 'admin/imperio'
  *= require 'token-input-facebook'
  *= require bootstrap-datepicker
+ *= require colorpicker
  *= require_tree ./admin
  */
 
 .btn-add-resource {
   float: right;
   margin-top: -35px;
+}
+
+.tinymce {
+  width: 800px; 
+  height: 400px
 }

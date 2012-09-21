@@ -5,6 +5,7 @@
       Administracion | PP Peru
     = stylesheet_link_tag    "admin", :media => "all"
     = javascript_include_tag "admin"
+    = tinymce_assets
     = csrf_meta_tags
 
   %body
@@ -97,6 +98,28 @@
                   %span.text
                     Usuarios
 
+            %li{class: active_menu?('gruops')}
+              %a{href: "#{admin_groups_path}"}
+                %span.ico
+                  %i.icon-th
+                %span.text
+                  Grupos
+
+            %li{class: active_menu?('users')}
+              %a{href: "#{admin_users_path}"}
+                %span.ico
+                  %i.icon-user
+                %span.text
+                  Usuarios
+
+            %li{class: active_menu?('configurations')}
+              %a{href: "#{admin_configuration_path}"}
+                %span.ico
+                  %i.icon-edit
+                %span.text
+                  Configuraciones
+
+
         #content.span9
           - flash.each do |name, msg|
             %div{:class =>"alert alert-#{name == :notice ? 'success' : 'error'}"}
@@ -105,3 +128,4 @@
 
           = yield
 
+= tinymce

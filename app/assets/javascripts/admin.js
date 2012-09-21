@@ -14,9 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.tokeninput
-//= require ckeditor/init
+//= require tinymce-jquery
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require bootstrap-colorpicker
 //= require_tree ./admin
 
 $(document).ready(function() {

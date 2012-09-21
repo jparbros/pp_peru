@@ -116,7 +116,7 @@ class Paper < ActiveRecord::Base
     end
 
     def by_permissions(user)
-      includes(:groups).where("visibility IN (?) OR groups.id IN (?)", (user.try(:permission) || :public), user.try(:group_ids))
+      includes(:groups).where("visibility IN (?) OR groups.id IN (?)", (user.try(:permission) || :public), user.try(:group_ids)|| nil)
     end
   end
 

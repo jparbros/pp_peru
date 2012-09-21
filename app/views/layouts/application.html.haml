@@ -1,7 +1,8 @@
 !!! 5
 %html
   %head
-    %title Democracia PE
+    %title= SiteConfig.site_name
+    %link{href: 'http://fonts.googleapis.com/css?family=Quicksand:400,700|Playball', rel: 'stylesheet', type: 'text/css'}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
@@ -14,6 +15,7 @@
           #logo
             #site-title{:href => root_url}
               %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
+              #site-name= SiteConfig.site_name
           #user-profile
             - if current_user
               = image_tag current_user.profile_photo, id: 'profile-avatar'
