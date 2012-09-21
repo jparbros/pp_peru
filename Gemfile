@@ -33,6 +33,7 @@ gem "ckeditor"
 gem "carrierwave"
 gem 'fog'
 gem "mini_magick"
+gem 'quick_magick'
 gem 'state_machine'
 gem 'nokogiri'
 gem 'cancan'
@@ -40,4 +41,3 @@ gem 'socialization'
 gem 'draper'
 gem 'bootstrap-datepicker-rails'
 gem 'public_activity', '>= 0.4.0.rc2'
-gem 'configurable_engine'

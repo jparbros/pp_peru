@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919025704) do
+ActiveRecord::Schema.define(:version => 20120921024314) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -63,6 +63,24 @@ ActiveRecord::Schema.define(:version => 20120919025704) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
+
+  create_table "configurations", :force => true do |t|
+    t.string   "site_name"
+    t.string   "color1"
+    t.string   "color2"
+    t.string   "color3"
+    t.string   "color4"
+    t.string   "color5"
+    t.string   "comments_limit"
+    t.string   "footer_image"
+    t.string   "header_image"
+    t.string   "background_image"
+    t.boolean  "public_registration"
+    t.text     "home_main_content"
+    t.text     "registration_mail_content"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
   create_table "follows", :force => true do |t|
     t.string   "follower_type"

@@ -26,6 +26,18 @@ header#header {
   padding-top: 3px;
 }
 
+header#header #site-name {
+  font-family: 'Playball', cursive;
+  font-size: 32px;
+  color: #1cbbb4;
+  margin-top: -110px;
+  background-color: #fff;
+  float: left;
+  z-index: 1030;
+  position: relative;
+  padding: 20px;
+}
+
 body {
   background: url('/assets/main-background.png');
 }

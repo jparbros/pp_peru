@@ -86,11 +86,19 @@
                   Grupos
 
             %li{class: active_menu?('users')}
-              %a
+              %a{href: "#{admin_users_path}"}
                 %span.ico
                   %i.icon-user
                 %span.text
                   Usuarios
+
+            %li{class: active_menu?('configurations')}
+              %a{href: "#{admin_configuration_path}"}
+                %span.ico
+                  %i.icon-edit
+                %span.text
+                  Configuraciones
+
 
         #content.span9
           - flash.each do |name, msg|

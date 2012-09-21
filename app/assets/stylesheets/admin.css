@@ -15,6 +15,7 @@
  *= require 'admin/imperio'
  *= require 'token-input-facebook'
  *= require bootstrap-datepicker
+ *= require colorpicker
  *= require_tree ./admin
  */
 

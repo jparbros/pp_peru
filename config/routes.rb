@@ -78,5 +78,6 @@ PpPeru::Application.routes.draw do
     resources :news_actors
     resources :groups
     resources :users
+    resource :configuration, only: [:show, :edit, :update]
   end
 end

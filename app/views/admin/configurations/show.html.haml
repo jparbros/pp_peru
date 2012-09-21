@@ -1,0 +1,49 @@
+.row-fluid
+  .box
+    .box-content
+      .page-header
+        %h1 Configuraciones
+      = link_to 'Editar configuraciones', edit_admin_configuration_path, class: ['btn', 'btn-primary']
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Configuracion
+            %th Valor
+        %tbody
+          %tr
+            %td Nombre del sitio:
+            %td= SiteConfig.site_name
+          %tr
+            %td Color 1
+            %td.center
+              .config-color-sample{style: "background-color: #{SiteConfig.color1};"}
+                = SiteConfig.color1
+          %tr
+            %td Color 2
+            %td.center
+              .config-color-sample{style: "background-color: #{SiteConfig.color2};"}
+                = SiteConfig.color2
+          %tr
+            %td Color 3
+            %td.center
+              .config-color-sample{style: "background-color: #{SiteConfig.color3};"}
+                = SiteConfig.color3
+          %tr
+            %td Color 4
+            %td.center
+              .config-color-sample{style: "background-color: #{SiteConfig.color4};"}
+                = SiteConfig.color4
+          %tr
+            %td Color 5
+            %td.center
+              .config-color-sample{style: "background-color: #{SiteConfig.color5};"}
+                = SiteConfig.color5
+          %tr
+            %td Limite en los comentarios
+            %td.center
+              = SiteConfig.comments_limit.to_i > 0 ? SiteConfig.comments_limit : 'Ilimitado'
+          %tr
+            %td Registro publico
+            %td.center
+              = SiteConfig.public_registration ? 'Si' : 'No'
+              
