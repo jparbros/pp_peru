@@ -13,7 +13,7 @@ jQuery ->
     
   $('#news_group_tokens').tokenInput '/admin/groups.json'
     theme: 'facebook'
-    prePopulate: $('#news_topic_tokens').data('load')
+    prePopulate: $('#news_group_tokens').data('load')
 
   $('#news_visibility').change ->
     if $(@).val() == 'group'
