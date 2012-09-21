@@ -5,6 +5,10 @@ class Admin::BaseController < ApplicationController
   private
 
   def only_admin_user!
-    redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user.admin? or current_user.super_admin?
+  end
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to admin_root_path, :alert => 'No estas Autorizado para ver esta pagina'
   end
 end

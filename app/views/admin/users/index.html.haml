@@ -3,9 +3,10 @@
 		.box-content
 			.page-header
 				%h1 Propuesta Ciudadana
-				= link_to new_admin_user_path, :class => 'btn-add-resource btn btn-primary' do
-					%i.icon-white.icon-plus
-					Nuevo Usuario
+				- if can? :create, User
+					= link_to new_admin_user_path, :class => 'btn-add-resource btn btn-primary' do
+						%i.icon-white.icon-plus
+						Nuevo Usuario
 			%table.table.table-striped.table-bordered
 				%thead
 					%tr
@@ -20,9 +21,17 @@
 							%td= user.email
 							%td= user.name
 							%td
-								= link_to edit_admin_user_path(user), :class => 'btn btn-mini btn-primary' do
-									%i.icon-edit.icon-white
-									Editar
-								= link_to admin_user_path(user), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
-									%li.icon-white.icon-remove
-									Eliminar
+								- if can? :update, User
+									= link_to edit_admin_user_path(user), :class => 'btn btn-mini btn-primary' do
+										%i.icon-edit.icon-white
+										Editar
+								- if can? :destroy, User
+									= link_to admin_user_path(user), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+										%li.icon-white.icon-remove
+										Eliminar
+								- if current_user.super_admin? and (user.moderator? or user.admin? or user.member?)
+									= link_to  admin_user_user_permissions_path(user), :class => :btn do
+										%li.icon-th
+										Permisos
+										
+								

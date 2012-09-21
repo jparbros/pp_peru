@@ -1,25 +1,32 @@
 .row-fluid.quick-actions
-  .span2
-    %a.quick-action{:href => "#{admin_news_index_path}"}
-      %span.icon.file
-      Centro de Medios
-  .span2
-    %a.quick-action{:href => "#{admin_discussions_path}"}
-      %span.icon.conversation
-      Centro de Debates
-  .span2
-    %a.quick-action{:href => "#{admin_entries_path}"}
-      %span.icon.book
-      Centro Educacional
-  .span2
-    %a.quick-action{:href => "#{admin_proposals_path}"}
-      %span.icon.compass
-      Propuesta Ciudadana
-  .span2
-    %a.quick-action{:href => "#{admin_groups_path}"}
-      %span.icon.group
-      Grupos
-  .span2
-    %a.quick-action{:href => "#"}
-      %span.icon.users
-      Users
+  - if can? :read, News
+    .span2
+      %a.quick-action{:href => "#{admin_news_index_path}"}
+        %span.icon.file
+        Centro de Medios 
+
+  - if can? :read, Discussion
+    .span2
+      %a.quick-action{:href => "#{admin_discussions_path}"}
+        %span.icon.conversation
+        Centro de Debates
+  - if can? :read, Entry
+    .span2
+      %a.quick-action{:href => "#{admin_entries_path}"}
+        %span.icon.book
+        Centro Educacional
+  - if can? :read, Proposal
+    .span2
+      %a.quick-action{:href => "#{admin_proposals_path}"}
+        %span.icon.compass
+        Propuesta Ciudadana
+  - if can? :read, Group
+    .span2
+      %a.quick-action{:href => "#{admin_groups_path}"}
+        %span.icon.group
+        Grupos
+  - if can? :read, User
+    .span2
+      %a.quick-action{:href => "#{admin_users_path}"}
+        %span.icon.users
+        Users

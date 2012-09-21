@@ -1,0 +1,24 @@
+.row-fluid
+	.box
+		.box-content
+			.page-header
+				%h1 Permisos para los Administradores
+			= form_tag admin_user_user_permissions_path do |f|
+				%table.table.table-striped.table-bordered
+					%thead
+						%tr
+							%th 
+							%th{colspan: 4, class: :center}Acciones
+						%tr
+							%th Secciones
+							%th Crear
+							%th Eliminar
+							%th Leer
+							%th Actualizar
+					%tbody
+						- @permissions.each do |section, actions|
+							%tr
+								%td.center= section
+								- actions.sort_by(&:action).each do |action|
+									%td.center= check_box_tag 'user_permission_ids[]', action.id,  @user_permission_ids.include?(action.id)
+				= submit_tag 'Actualizar', :class => 'btn btn-primary'

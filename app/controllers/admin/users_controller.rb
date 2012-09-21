@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  
+  authorize_resource
   def index
     @users = if params[:q]
         User.where("name like ?", "%#{params[:q]}%")

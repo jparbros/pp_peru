@@ -46,51 +46,56 @@
                   Centro de Medios
                 %span.indicator
               %ul
-                %li
-                  %a{href: "#{admin_news_index_path}"}
-                    %span.ico
-                      %i.icon-file
-                    %span.text Noticias
-                %li
-                  %a{href: "#{admin_news_actors_path}"}
-                    %span.ico
-                      %i.icon-file
-                    %span.text Actores
+                - if can? :read, News
+                  %li
+                    %a{href: "#{admin_news_index_path}"}
+                      %span.ico
+                        %i.icon-file
+                      %span.text Noticias
+                - if can? :read, NewsActor
+                  %li
+                    %a{href: "#{admin_news_actors_path}"}
+                      %span.ico
+                        %i.icon-file
+                      %span.text Actores
 
-            %li{class: active_menu?('discussions')}
-              %a{href: "#{admin_discussions_path}"}
-                %span.ico
-                  %i.icon-comment
-                %span.text
-                  Centro de Debate
+            - if can? :read, Discussion
+              %li{class: active_menu?('discussions')}
+                %a{href: "#{admin_discussions_path}"}
+                  %span.ico
+                    %i.icon-comment
+                  %span.text
+                    Centro de Debate
+            - if can? :read, Entry
+              %li{class: active_menu?('entries')}
+                %a{href: "#{admin_entries_path}"}
+                  %span.ico
+                    %i.icon-book
+                  %span.text
+                    Centro Educacional
 
-            %li{class: active_menu?('entries')}
-              %a{href: "#{admin_entries_path}"}
-                %span.ico
-                  %i.icon-book
-                %span.text
-                  Centro Educacional
+            - if can? :read, Proposal
+              %li{class: active_menu?('proposals')}
+                %a{href: "#{admin_proposals_path}"}
+                  %span.ico
+                    %i.icon-eye-open
+                  %span.text
+                    Propuesta Ciudadana
+            - if can? :read, Group
+              %li{class: active_menu?('gruops')}
+                %a{href: "#{admin_groups_path}"}
+                  %span.ico
+                    %i.icon-th
+                  %span.text
+                    Grupos
 
-            %li{class: active_menu?('proposals')}
-              %a{href: "#{admin_proposals_path}"}
-                %span.ico
-                  %i.icon-eye-open
-                %span.text
-                  Propuesta Ciudadana
-
-            %li{class: active_menu?('gruops')}
-              %a{href: "#{admin_groups_path}"}
-                %span.ico
-                  %i.icon-th
-                %span.text
-                  Grupos
-
-            %li{class: active_menu?('users')}
-              %a
-                %span.ico
-                  %i.icon-user
-                %span.text
-                  Usuarios
+            - if can? :read, User	
+              %li{class: active_menu?('users')}
+                %a{href: "#{admin_users_path}"}
+                  %span.ico
+                    %i.icon-user
+                  %span.text
+                    Usuarios
 
         #content.span9
           - flash.each do |name, msg|

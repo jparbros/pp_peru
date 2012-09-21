@@ -1,4 +1,5 @@
 class Admin::GroupsController < Admin::BaseController
+  authorize_resource
   
   def index
     @groups = current_user.owned_groups

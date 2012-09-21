@@ -2,6 +2,7 @@ class Admin::EntriesController < Admin::BaseController
   before_filter :find_entry, only: [:edit, :show, :detroy, :update]
   before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
   respond_to :html, :js
+  authorize_resource
   
   def index
     @entries = Entry.by_author(current_user)

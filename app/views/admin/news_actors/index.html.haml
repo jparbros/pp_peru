@@ -3,9 +3,10 @@
     .box-content
       .page-header
         %h1 Centro de Medios | Actores
-        = link_to :new_admin_news_actor, :class => 'btn-add-resource btn btn-primary' do
-          %i.icon-white.icon-plus
-          Nuevo Actor
+        - if can? :create, NewsActor
+          = link_to :new_admin_news_actor, :class => 'btn-add-resource btn btn-primary' do
+            %i.icon-white.icon-plus
+            Nuevo Actor
 
       %table.table.table-striped.table-bordered
         %thead
@@ -24,10 +25,12 @@
                 = link_to admin_news_actor_path(a), :class => 'btn btn-mini' do
                   %i.icon-eye-open
                   Ver
-                = link_to edit_admin_news_actor_path(a), :class => 'btn btn-mini btn-primary' do
-                  %i.icon-edit.icon-white
-                  Editar
-                = link_to admin_news_actor_path(a), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
-                  %li.icon-white.icon-remove
-                  Eliminar
+                - if can? :update, NewsActor
+                  = link_to edit_admin_news_actor_path(a), :class => 'btn btn-mini btn-primary' do
+                    %i.icon-edit.icon-white
+                    Editar
+                - if can? :destroy, NewsActor
+                  = link_to admin_news_actor_path(a), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+                    %li.icon-white.icon-remove
+                    Eliminar
 

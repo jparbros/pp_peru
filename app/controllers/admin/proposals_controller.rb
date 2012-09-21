@@ -1,9 +1,11 @@
 class Admin::ProposalsController < Admin::BaseController
   before_filter :find_proposal, only: [:edit, :show, :detroy, :update]
   before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
-   def index
+  authorize_resource
+  
+  def index
      @proposals = Proposal.by_author(current_user)
-   end
+  end
 
    def new
      @proposal = Proposal.new

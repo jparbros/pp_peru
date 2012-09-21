@@ -77,6 +77,8 @@ PpPeru::Application.routes.draw do
     resources :topics, only: :index
     resources :news_actors
     resources :groups
-    resources :users
+    resources :users do
+      resources :user_permissions, only: [:create, :index]
+    end
   end
 end

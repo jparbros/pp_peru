@@ -1,7 +1,8 @@
 class Admin::NewsController < Admin::BaseController
   before_filter :find_news, only: [:edit, :show, :detroy, :update]
   before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
-
+  authorize_resource
+  
   def index
     @news = ::News.by_author(current_user)
   end

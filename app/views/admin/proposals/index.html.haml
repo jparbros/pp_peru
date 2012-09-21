@@ -3,9 +3,10 @@
 		.box-content
 			.page-header
 				%h1 Propuesta Ciudadana
-				= link_to new_admin_proposal_path, :class => 'btn-add-resource btn btn-primary' do
-					%i.icon-white.icon-plus
-					Nueva Propuesta
+				- if can? :create, Proposal
+					= link_to new_admin_proposal_path, :class => 'btn-add-resource btn btn-primary' do
+						%i.icon-white.icon-plus
+						Nueva Propuesta
 			%table.table.table-striped.table-bordered
 				%thead
 					%tr
@@ -23,10 +24,13 @@
 								= link_to propuesta_url(p), target: :blank, :class => 'btn btn-mini' do
 									%i.icon-eye-open
 									Ver
-								= link_to edit_admin_proposal_path(p), :class => 'btn btn-mini btn-primary' do
-									%i.icon-edit.icon-white
-									Editar
-								= link_to admin_proposal_path(p), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
-									%li.icon-white.icon-remove
-									Eliminar
-								= link_to_by_proposal_state(p)
+								- if can? :update, Proposal
+									= link_to edit_admin_proposal_path(p), :class => 'btn btn-mini btn-primary' do
+										%i.icon-edit.icon-white
+										Editar
+								- if can? :destroy, Proposal
+									= link_to admin_proposal_path(p), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+										%li.icon-white.icon-remove
+										Eliminar
+								- if can? :update, Proposal
+									= link_to_by_proposal_state(p)

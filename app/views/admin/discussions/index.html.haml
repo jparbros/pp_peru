@@ -3,9 +3,10 @@
 		.box-content
 			.page-header
 				%h1 Centro de Debate
-				= link_to new_admin_discussion_path, :class => 'btn-add-resource btn btn-primary' do
-					%i.icon-white.icon-plus
-					Nuevo Centro Debate
+				- if can? :create, Discussion
+					= link_to new_admin_discussion_path, :class => 'btn-add-resource btn btn-primary' do
+						%i.icon-white.icon-plus
+						Nuevo Centro Debate
 			%table.table.table-striped.table-bordered
 				%thead
 					%tr
@@ -23,10 +24,13 @@
 								= link_to debate_url(d), :class => 'btn btn-mini', target: :_blank do
 									%i.icon-eye-open
 									Ver
-								= link_to edit_admin_discussion_path(d), :class => 'btn btn-mini btn-primary' do
-									%i.icon-edit.icon-white
-									Editar
-								= link_to admin_discussion_path(d), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
-									%li.icon-white.icon-remove
-									Eliminar
-								= link_to_by_discussion_state(d)
+								- if can? :update, Discussion
+									= link_to edit_admin_discussion_path(d), :class => 'btn btn-mini btn-primary' do
+										%i.icon-edit.icon-white
+										Editar
+								- if can? :destroy, Discussion
+									= link_to admin_discussion_path(d), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+										%li.icon-white.icon-remove
+										Eliminar
+								- if can? :update, Discussion
+									= link_to_by_discussion_state(d)

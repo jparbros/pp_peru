@@ -1,5 +1,6 @@
 class Admin::NewsActorsController < Admin::BaseController
   before_filter :find_news_actor, only: [:edit, :show, :detroy, :update]
+  authorize_resource
   
   def index
     @news_actors = NewsActor.order(:name)

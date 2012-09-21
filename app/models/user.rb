@@ -30,14 +30,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :name, :avatar, :state_id, :province_id
-  # attr_accessible :title, :body
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :name, 
+    :avatar, :state_id, :province_id, :user_permission_ids
+
 
 
   #
   # Constans
   #
-  ROLES = ['super_admin', 'admin', 'member', 'participant']
+  ROLES = ['super_admin', 'admin', 'member', 'participant', 'moderator']
 
   #
   # Relations
@@ -49,6 +50,7 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, through: :memberships
   has_many :owned_groups, class_name: 'Group', foreign_key: :owner_id
+  has_and_belongs_to_many :user_permissions
 
   #
   #Extend
