@@ -1,35 +1,36 @@
 = form_for [:admin, @discussion], :html => { :class => 'form' } do |f|
-	.control-group
-		= f.error_messages
-	.control-group
-		= f.label :title, 'Titulo:',:class => 'control-label'
-		= f.text_field :title, :class => 'text_field'
-	.control-group
-		= f.label :content,'Contenido:',  :class => 'control-label'
-		.controls
-		= f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
-	.control-group
-		= f.label :topics_tokens, 'Temas'
-		= f.text_field :topic_tokens, data: {load: @discussion.topics}
-	.control-group
-		= f.label :visibility, "Visibilidad:", class: 'control-label'
-		.controls
-			= f.select :visibility, Paper.visibility
+  .control-group
+    = f.error_messages
+  .control-group
+    = f.label :title, 'Titulo:',:class => 'control-label'
+    = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :content,'Contenido:',  :class => 'control-label'
+  .controls
+    = f.text_area :content, class: :tinymce
+  .control-group
+    = f.label :topics_tokens, 'Temas'
+    = f.text_field :topic_tokens, data: {load: @discussion.topics}
+  .control-group
+    = f.label :visibility, "Visibilidad:", class: 'control-label'
+  .controls
+    = f.select :visibility, Paper.visibility
 
   .control-group
     = f.label :group_tokens, 'Grupos'
     = f.text_field :group_tokens, data: {load: @discussion.groups.map(&:attributes).to_json}
 
-	.control-group
-		%label.checkbox
-			Habilitar fin del debate por fecha
-			= check_box_tag 'end_of_discussion', nil, @discussion.published_end_at
-	.control-group.published_end_div
-		#alert.alert.alert-error.hidden
-			La fecha del fin del debate, no puede ser menor a la actual
-		= f.label :published_end, 'Fin de la Discussion'
-		= f.text_field :published_end_at, class: 'discussion_end'
-		
-	.form-actions
-		= f.submit @discussion.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
-		= link_to 'Cancelar', admin_discussions_path, :class => 'btn'
+  .control-group
+    %label.checkbox
+      Habilitar fin del debate por fecha
+      = check_box_tag 'end_of_discussion', nil, @discussion.published_end_at
+  
+  .control-group.published_end_div
+    #alert.alert.alert-error.hidden
+      La fecha del fin del debate, no puede ser menor a la actual
+    = f.label :published_end, 'Fin de la Discussion'
+    = f.text_field :published_end_at, class: 'discussion_end'
+
+  .form-actions
+    = f.submit @discussion.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+    = link_to 'Cancelar', admin_discussions_path, :class => 'btn'

@@ -23,3 +23,8 @@
   float: right;
   margin-top: -35px;
 }
+
+.tinymce {
+  width: 800px; 
+  height: 400px
+}

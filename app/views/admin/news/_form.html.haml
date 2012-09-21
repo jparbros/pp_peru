@@ -9,7 +9,7 @@
 
   .control-group
     = f.label :content,'Contenido:',  :class => 'control-label'
-    = f.cktext_area :content, :toolbar => :Full, :width => 800, :height => 400
+    = f.text_area :content, class: :tinymce
 
   .control-group
     = f.label :actor_tokens, "Involucrados en la noticia:", class: 'control-label'

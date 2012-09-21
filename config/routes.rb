@@ -3,7 +3,6 @@ PpPeru::Application.routes.draw do
   devise_for :users
 
   root :to => "news#index"
-  mount Ckeditor::Engine => '/ckeditor'
   
   resources :usuarios, controller: :users do
     resources :seguidores, controller: 'users_activities/followers', only: [:create, :destroy]

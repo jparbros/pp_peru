@@ -29,7 +29,6 @@ gem 'omniauth-twitter'
 gem 'jquery-rails'
 gem 'ancestry'
 gem "dynamic_form"
-gem "ckeditor"
 gem "carrierwave"
 gem 'fog'
 gem "mini_magick"
@@ -41,3 +40,4 @@ gem 'socialization'
 gem 'draper'
 gem 'bootstrap-datepicker-rails'
 gem 'public_activity', '>= 0.4.0.rc2'
+gem 'tinymce-rails'
