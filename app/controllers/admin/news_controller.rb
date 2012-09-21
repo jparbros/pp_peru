@@ -1,18 +1,19 @@
 class Admin::NewsController < Admin::BaseController
   before_filter :find_news, only: [:edit, :show, :detroy, :update]
   before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
-  authorize_resource
-  
+ 
   def index
     @news = ::News.by_author(current_user)
+    authorize! :read, News
   end
 
   def new
     @news = ::News.new
+    authorize! :read, News
   end
 
   def create
-    @news = ::News.new(params[:news])
+    @news = News.new(params[:news])
     @news.author = current_user
     if @news.save
       redirect_to admin_news_index_path, notice: 'Creado Correctamente'
@@ -22,9 +23,11 @@ class Admin::NewsController < Admin::BaseController
   end
 
   def edit
+    authorize! :update, News
   end
 
   def destroy
+    authorize! :destroy, News
     @news.destroy
     redirect_to admin_news_index_path, notice: 'Eliminado Correctamente'
   end
@@ -40,7 +43,7 @@ class Admin::NewsController < Admin::BaseController
   private
 
   def find_news
-    @news = ::News.find params[:id]
+    @news = News.find params[:id]
   end
   
   def ensure_author!

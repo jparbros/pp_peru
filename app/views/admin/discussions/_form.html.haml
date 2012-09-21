@@ -16,9 +16,9 @@
   .controls
     = f.select :visibility, Paper.visibility
 
-	.control-group
-		= f.label :group_tokens, 'Grupos'
-		= f.text_field :group_tokens, data: {load: @discussion.groups.map(&:attributes).to_json}
+  .control-group
+    = f.label :group_tokens, 'Grupos'
+    = f.text_field :group_tokens, data: {load: @discussion.groups.map(&:attributes).to_json}
 
   .control-group
     %label.checkbox

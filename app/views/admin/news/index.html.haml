@@ -3,9 +3,10 @@
     .box-content
       .page-header
         %h1 Centro de Noticias
-        = link_to new_admin_news_path, :class => 'btn-add-resource btn btn-primary' do
-          %i.icon-white.icon-plus
-          Nueva Noticia
+        - if can? :create, News
+          = link_to new_admin_news_path, :class => 'btn-add-resource btn btn-primary' do
+            %i.icon-white.icon-plus
+            Nueva Noticia
 
       %table.table.table-striped.table-bordered
         %thead
@@ -24,11 +25,14 @@
                 = link_to noticia_url(news), target: :_blank, :class => 'btn btn-mini' do
                   %i.icon-eye-open
                   Ver
-                = link_to edit_admin_news_path(news), :class => 'btn btn-mini btn-primary' do
-                  %i.icon-edit.icon-white
-                  Editar
-                = link_to admin_news_path(news), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
-                  %li.icon-white.icon-remove
-                  Eliminar
-                = link_to_by_news_state(news)
+                - if can? :update, News
+                  = link_to edit_admin_news_path(news), :class => 'btn btn-mini btn-primary' do
+                    %i.icon-edit.icon-white
+                    Editar
+                - if can? :destroy, News
+                  = link_to admin_news_path(news), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+                    %li.icon-white.icon-remove
+                    Eliminar
+                - if can? :update, News
+                  = link_to_by_news_state(news)
 
