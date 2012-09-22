@@ -8,7 +8,7 @@
 
   .control-group
     = f.label :role, "Role:", class: 'control-label'
-    = f.select :role, User::ROLES.collect {|role| [role.humanize, role]}
+    = f.select :role, User.roles_by_user(current_user).collect {|role| [role.humanize, role]}
 
   .form-actions
     = f.submit @user.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'

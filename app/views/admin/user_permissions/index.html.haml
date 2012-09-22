@@ -18,7 +18,7 @@
 					%tbody
 						- @permissions.each do |section, actions|
 							%tr
-								%td.center= section
+								%td.center= section_by_class(section)
 								- actions.sort_by(&:action).each do |action|
 									%td.center= check_box_tag 'user_permission_ids[]', action.id,  @user_permission_ids.include?(action.id)
 				= submit_tag 'Actualizar', :class => 'btn btn-primary'

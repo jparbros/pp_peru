@@ -8,6 +8,7 @@
 
 
 #Setup permissions
+puts "Setup Permisos"
 types = ['Discussion', 'Entry', 'News', 'Proposal', 'User', 'Group', 'NewsActor']
 actions = ['read', 'create', 'update', 'destroy']
 types.each do |type|
@@ -15,5 +16,6 @@ types.each do |type|
     UserPermission.create!(subject_class: type, action: action)
   end
 end
-
+puts 'Setup Configurable'
+Configurable.create
 puts 'Seed terminado....'

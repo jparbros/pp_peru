@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   #
   # Constans
   #
-  ROLES = ['super_admin', 'admin', 'member', 'participant', 'moderator']
+  ROLES = ['super_admin', 'admin', 'moderator', 'member', 'participant']
 
   #
   # Relations
@@ -66,7 +66,17 @@ class User < ActiveRecord::Base
   # Uploader
   #
   mount_uploader :avatar, AvatarUploader
-  
+
+  #
+  # Class Methods
+  #
+  def self.roles_by_user(user)
+    case user.role
+    when 'super_admin' then ROLES
+    when 'admin' then ROLES[1..4]
+    when 'moderator' then ROLES[2..4]
+    end
+  end
   #
   # Instance methods
   #

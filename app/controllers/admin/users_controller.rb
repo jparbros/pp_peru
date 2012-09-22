@@ -1,5 +1,7 @@
 class Admin::UsersController < Admin::BaseController
+  before_filter :valid_user_role!, only: [:update, :create]
   authorize_resource
+  
   def index
     @users = if params[:q]
         User.where("name like ?", "%#{params[:q]}%")
@@ -46,5 +48,12 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find params[:id]
     @user.destroy
     redirect_to admin_users_path, notice: 'Eliminado Correctamente'
+  end
+  
+  private
+  def valid_user_role!
+    if params[:user][:role] == 'super_admin'
+      authorize! :assign_super_admin_role, current_user
+    end
   end
 end

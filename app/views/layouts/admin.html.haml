@@ -98,12 +98,13 @@
                   %span.text
                     Usuarios
 
-            %li{class: active_menu?('configurations')}
-              %a{href: "#{admin_configuration_path}"}
-                %span.ico
-                  %i.icon-edit
-                %span.text
-                  Configuraciones
+            - if current_user.super_admin?
+              %li{class: active_menu?('configurations')}
+                %a{href: "#{admin_configuration_path}"}
+                  %span.ico
+                    %i.icon-edit
+                  %span.text
+                    Configuraciones
 
 
         #content.span9
