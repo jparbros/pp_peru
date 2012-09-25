@@ -1,21 +1,15 @@
-%proposal.entry.has-divider
-  %header
-    %h2.entry-title
-      = link_to proposal.title, propuesta_path(proposal)
-    .entry-meta
-      %span.tags
-        - unless proposal.topics.empty?
-          %span.tags
-            Temas:
-            - proposal.topics.each do |topic|
-              = link_to topic.name, propuestas_path(topic_id: topic.id)
-      %span.comments
-        %a{:href => "#"} #{proposal.annotations.count} Comentarios
-
-
+%article
+  %h1= proposal.title
   .entry-date
     %span= proposal.published_day
     = proposal.published_month.upcase
   .entry-content
     = proposal.first_paragraph.html_safe
     = link_to 'Leer mas...', propuesta_path(proposal), class: 'more-link'
+  
+  %ul.entry-meta
+    %li.tags
+      Temas:
+      - proposal.topics.each do |topic|
+        = link_to topic.name, propuestas_path(topic_id: topic.id), class: :label
+    %li.comments= "#{proposal.annotations_count} Comentarios"

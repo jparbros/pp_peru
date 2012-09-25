@@ -1,41 +1,31 @@
 = selected_menu(:menu_entry)
 = section_title('Centro Educacional')
-%section#content.span9
-  .blog.single-entry
-
-    / %nav.sticky-nav
-    /   %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
-    /   %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
-    /   %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
-
-    %article.entry.has-divider
-      %header
-        %h2.entry-title
-          = @entry.title
-        .entry-meta
-          - unless @entry.topics.empty?
-            %span.tags
-              Temas:
-              - @entry.topics do |topic|
-                = link_to topic.name, entradas_path(topic_id: topic.id)
-          %span.comments
-            %a{:href => "#comments"} #{@entry.annotations_count} Comentarios
-
+%section#content
+  #doc-container.row
+    %article.span11
+      %h2.entry-title
+        = @entry.title
       .entry-date
         %span=@entry.published_day
         = @entry.published_month.upcase
       .entry-content
         = @entry.content.html_safe
 
-    %section#comments.has-divider
-      %a.leave-a-comment{:href => "#comment-form", :title => "Deja un Comentario"}
-      %h3.comments-title #{@entry.annotations_count} Comentarios
-      .leave-a-comment-text
-        %a.meta{:href => "#comment-form"} Deja un comentario
-      %ol.comments-list
-        = nested_annotations @entry.annotations.includes(:author).arrange(order: :created_at) 
+      %ul.entry-meta
+        %li.tags
+          Temas:
+          - @entry.topics do |topic|
+            = link_to topic.name, entradas_path(topic_id: topic.id), class: [:label]
+        %li.comments
+          %a{:href => "#comments"} #{@entry.annotations_count} Comentarios
 
-    %section#comment-form
+
+  #comments.row
+    %ol.comments-list
+      = nested_annotations @entry.annotations.includes(:author).arrange(order: :created_at)
+
+  #comment-form
+    .row
       %span.leave-a-comment
       %h3.form-title Deja un Comentario
       %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
@@ -43,6 +33,3 @@
         = render partial: 'annotations/form', locals: {annotable: @entry, annotable_url: entrada_comentarios_path(@entry)}
       - else
         Necesita Iniciar Sesion para comentar
-
-%aside#sidebar.span3
-  = render 'shared/right_aside'

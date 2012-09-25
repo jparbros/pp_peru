@@ -8,7 +8,7 @@
 	.control-group
 		= f.label :content,'Contenido:',  :class => 'control-label'
 		.controls
-		= f.cktext_area :content, :toolbar => :Easy, :width => 800, :height => 400
+		= f.text_area :content, :toolbar => :Easy, :width => 800, :height => 400
 	.form-actions
 		= f.submit @proposal.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
 		= link_to 'Cancelar',:propuestas, :class => 'btn'

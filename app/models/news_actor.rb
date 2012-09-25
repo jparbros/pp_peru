@@ -37,4 +37,12 @@ class NewsActor < ActiveRecord::Base
     tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
     tokens.split(',')
   end
+  
+  def avatar_photo
+    if avatar.present?
+      avatar
+    else
+      '/assets/no-image-user.png'
+    end
+  end
 end

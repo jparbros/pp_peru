@@ -1,9 +1,9 @@
 = selected_menu(:menu_news)
 = section_title('Centro De Noticias')
-%section#content.span9
-  %h3
-    Lee las noticias sobre tu partido politico y opina sobre su actuaci&oacute;n.
-  .blog
+#documents-container.row
+  %section#content.span8
+    %h1 Lee las noticias sobre tu partido politico y opina sobre su actuaci&oacute;n.
+
     = render @news
-%aside#sidebar.span3
+
   = render 'shared/right_aside'

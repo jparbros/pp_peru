@@ -1,37 +1,27 @@
 = selected_menu(:menu_discussions)
 = section_title('Centro De Debates')
-%section#content.span9
-  .blog.single-entry
-
-    / %nav.sticky-nav
-    /   %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
-    /   %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
-    /   %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
-
-    %article.entry.has-divider
+%section#content
+  #doc-container.row
+    %article.span8
       %header
         %h2.entry-title
           = @discussion.title
-        .entry-meta
-          - unless @discussion.topics.empty?
-            %span.tags
-              Temas:
-              - @discussion.topics.each do |topic|
-                = link_to topic.name, debates_path(topic_id: topic.id)
-          %span.comments
+        .entry-date
+          %span= @discussion.published_day
+          = @discussion.published_month.upcase
+        .entry-content
+          = @discussion.content.html_safe
+        %ul.entry-meta
+          %li.tags
+            Temas:
+            - @discussion.topics.each do |topic|
+              = link_to topic.name, debates_path(topic_id: topic.id), class: [:label]
+          %li.comments
             %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
 
-
-      .entry-date
-        %span= @discussion.published_day
-        = @discussion.published_month.upcase
-      .entry-content
-        = @discussion.content.html_safe
-    
-    %section#votes.has-divider
-      %span.votes-rate
-      %h3.votes-title Vote Por este Debate
-      = link_to debate_votes_path(@discussion, tendency: 1), method: :post, class: 'btn btn-primary' do
+    #sidebar-doc.span3  
+      %h3 Vote Por este Debate
+      = link_to debate_votes_path(@discussion, tendency: 1), method: :post, class: 'btn btn-success' do
         %i.icon-thumbs-up
         = @discussion.positive_votes
       |
@@ -39,15 +29,12 @@
         %i.icon-thumbs-down
         = @discussion.negative_votes
 
-    %section#comments.has-divider
-      %a.leave-a-comment{:href => "#comment-form", :title => "Deja un Comentario"}
-      %h3.comments-title #{@discussion.annotations_count} Comentarios
-      .leave-a-comment-text
-        %a.meta{:href => "#comment-form"} Deja un comentario
-      %ol.comments-list
-        = nested_annotations @discussion.annotations.includes(:author).arrange(order: :created_at) 
+  #comments.row
+    %ol.comments-list
+      = nested_annotations @discussion.annotations.includes(:author).arrange(order: :created_at)
 
-    %section#comment-form
+  #comment-form
+    .row
       %span.leave-a-comment
       %h3.form-title Deja un Comentario
       %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
@@ -55,6 +42,3 @@
         = render partial: 'annotations/form', locals: {annotable: @discussion, annotable_url: debate_comentarios_path(@discussion)}
       - else
         Necesita Iniciar Sesion para comentar
-
-%aside#sidebar.span3
-  = render 'shared/right_aside'

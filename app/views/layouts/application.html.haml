@@ -8,59 +8,52 @@
     = csrf_meta_tags
 
   %body
-    .main-wrap
-
-      %header#header.container-wrap
-        #header-container.container
-          #logo
-            #site-title{:href => root_url}
-              %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
-              #site-name= SiteConfig.site_name
-          #user-profile
-            - if current_user
-              = image_tag current_user.profile_photo, id: 'profile-avatar'
-              %h4
-                - if current_user.name.present?
-                  = current_user.name
-                - else
-                  = link_to 'Ingresa tu nombre', edit_user_registration_path
-              %ul#profile-menu
+    %header#header.container-wrap
+      #header-container.container
+        #logo
+          #site-title{:href => root_url}
+            %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
+            #site-name= SiteConfig.site_name
+        #user-profile
+          - if current_user
+            = image_tag current_user.profile_photo, id: 'profile-avatar'
+            %h4
+              - if current_user.name.present?
+                = current_user.name
+              - else
+                = link_to 'Ingresa tu nombre', edit_user_registration_path
+            %ul#profile-menu
+              %li
+                = link_to 'Mi Perfil', edit_user_registration_path
+              - if current_user.admin?
                 %li
-                  = link_to 'Mi Perfil', edit_user_registration_path
-                - if current_user.admin?
-                  %li
-                    = link_to 'Admin', admin_root_path
-                %li
-                  = link_to 'Salir', destroy_user_session_path, method: :delete
-            - else
-              = link_to 'Ingresar', '', id: 'login-button'
+                  = link_to 'Admin', admin_root_path
+              %li
+                = link_to 'Salir', destroy_user_session_path, method: :delete
+          - else
+            = link_to 'Ingresar', '', id: 'login-button'
 
-      %nav#main-nav-menu.container
-        %ul
-          %li{class: "nav-menu-item #{yield(:menu_home)}"}
-            = link_to 'Inicio', usuario_path(current_user) if current_user
-          %li{class: "nav-menu-item #{yield(:menu_news)}"}
-            = link_to 'Centro de Noticias', noticias_path
-          %li{class: "nav-menu-item #{yield(:menu_entry)}"}
-            = link_to 'Centro Educacional', entradas_path
-          %li{class: "nav-menu-item #{yield(:menu_discussions)}"}
-            = link_to 'Centro de Debates', :debates
-          %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
-            = link_to 'Propuesta Ciudadana', :propuestas
+    %nav#main-nav-menu.container
+      %ul
+        %li{class: "nav-menu-item #{yield(:menu_home)}"}
+          = link_to 'Inicio', usuario_path(current_user) if current_user
+        %li{class: "nav-menu-item #{yield(:menu_news)}"}
+          = link_to 'Centro de Noticias', noticias_path
+        %li{class: "nav-menu-item #{yield(:menu_entry)}"}
+          = link_to 'Centro Educacional', entradas_path
+        %li{class: "nav-menu-item #{yield(:menu_discussions)}"}
+          = link_to 'Centro de Debates', :debates
+        %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
+          = link_to 'Propuesta Ciudadana', :propuestas
             
-      /%select#responsive-main-nav-menu{:onchange => "javascript:window.location.replace(this.value);"}
 
+    .container
+      = yield
 
-      %section#page.container-wrap
-        #page-container.container
-          #page-content
-            .row
-              = yield
+    %footer#page-footer.container-wrap
+      #page-footer-container.container
 
-      %footer#page-footer.container-wrap
-        #page-footer-container.container
-
-      %footer#footer
+    %footer#footer
           
 
 #login-modal.modal.fade

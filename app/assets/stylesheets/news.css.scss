@@ -3,12 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .entry-rate {
-  padding-left: 60px;
-  margin-top: 40px;
+
 }
 
 .actors-title {
-  padding-left: 60px;
 }
 
 .actors-rate {
@@ -24,20 +22,30 @@
 }
 
 ul.actors-rate-list {
-  padding-left: 60px;
   list-style: none;
   margin-left: 0;
 
-  li {margin-bottom: 10px;}
+  li {
+    display: inline-block;
+    margin-bottom: 10px;
+    
+    .actor-image, .actor-name { float: left;}
+    
+    .actor-image {
+      width: 50px;
+      
+      img {
+        -moz-border-radius: 25px;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+      }
+    }
+    
+    .actor-name {
+      width: 150px;
+    }
+  }
 }
-
-.actor-name {
-  display: inline-block;
-  margin-right: 100px;
-  width: 200px;
-}
-
-.rate_actor {display: inline-block;}
 
 .nested_annotations {
   margin-left: 30px;

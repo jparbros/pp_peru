@@ -1,19 +1,15 @@
-%article.entry.has-divider
-  %header
-    %h2.entry-title
-      = link_to discussion.title, debate_path(discussion)
-    .entry-meta
-      %span.tags
-        Temas:
-        - discussion.topics.each do |topic|
-          = link_to topic.name, debates_path(topic_id: topic.id)
-      %span.comments
-        %a{:href => "#"} #{discussion.annotations.count} Comentarios
-
-
+%article
+  %h2= discussion.title
   .entry-date
     %span= discussion.published_day
     = discussion.published_month.upcase
   .entry-content
     = discussion.first_paragraph.html_safe
     = link_to 'Leer mas...', debate_path(discussion), class: 'more-link'
+  %ul.entry-meta
+    %li.tags
+      Temas:
+      - discussion.topics.each do |topic|
+        = link_to topic.name, debates_path(topic_id: topic.id), class: [:label]
+    %li.comments
+      %a{:href => "#"} #{discussion.annotations.count} Comentarios

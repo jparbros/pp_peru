@@ -1,20 +1,16 @@
-%article.entry.has-divider
-  %header
-    %h2.entry-title
-      = link_to news.title, noticia_path(news)
-    .entry-meta
-      %span.tags
-        - unless news.topics.empty?
-          Temas:
-          - news.topics.each do |topic|
-            = link_to topic.name, noticias_path(topic_id: topic.id)
-      %span.comments
-        %a{:href => "#"} #{news.annotations.count} Comentarios
-
-
+%article
+  %h2= news.title
   .entry-date
     %span= news.published_day
     = news.published_month.upcase
   .entry-content
     = news.first_paragraph.html_safe
     = link_to 'Leer mas...', noticia_path(news), class: 'more-link'
+  
+  %ul.entry-meta
+    %li.tags
+      Temas:
+      - news.topics.each do |topic|
+        = link_to topic.name, noticias_path(topic_id: topic.id), class: :label
+    %li.comments
+      %a{:href => "#"} #{news.annotations.count} Comentarios

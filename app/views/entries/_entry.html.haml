@@ -1,16 +1,16 @@
-%article.entry.has-divider
-  %header
-    %h2.entry-title
-      = link_to entry.title, entrada_path(entry)
-    .entry-meta
-      %span.tags
-        - unless entry.topics.empty?
-          Temas:
-          - entry.topics.each do |topic| 
-            = link_to topic.name, '#'
+%article
+  %h2.entry-title
+    =  entry.title
   .entry-date
     %span= entry.published_day
     = entry.published_month.upcase
   .entry-content
     = entry.first_paragraph.html_safe
     = link_to 'Leer mas...', entrada_path(entry), class: 'more-link'
+  %ul.entry-meta
+    %li.tags
+      Temas:
+      - entry.topics.each do |topic| 
+        = link_to topic.name, index_by_controller(params[:controller], topic_id: topic.id), class: :label
+    %li.comments
+      %a{:href => "#"} #{entry.annotations_count} Comentarios

@@ -1,10 +1,10 @@
 = selected_menu(:menu_propuesta)
 = section_title('Propuestas Ciudadanas')
 = link_to 'Agrega una Propuesta', :new_propuesta, class: 'btn btn-primary right' if current_user
-%section#content.span9
-  %h3
-    Propuestas Ciudadanas, Aporta tus ideas
-  .blog
+#documents-container.row
+  %section#content.span8
+    %h1 Propuestas Ciudadanas, Aporta tus ideas
+
     = render partial: 'proposal', collection: @proposals
-%aside#sidebar.span3
+
   = render 'shared/right_aside'

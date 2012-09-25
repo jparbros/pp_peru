@@ -1,9 +1,8 @@
 = selected_menu(:menu_discussions)
 = section_title('Centro De Debates')
-%section#content.span9
-  %h3
-    Lee y Opina sobre los Debates
-  .blog
+#documents-container.row
+  %section#content.span8
+    %h1 Lee y Opina sobre los Debates
     = render partial: 'discussion', collection: @discussions
-%aside#sidebar.span3
+
   = render 'shared/right_aside'

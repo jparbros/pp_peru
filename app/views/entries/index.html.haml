@@ -1,9 +1,8 @@
 = selected_menu(:menu_entry)
 = section_title('Centro Educacional')
-%section#content.span9
-  %h3
-    Lee las propuestas educativas
-  .blog
+#documents-container.row
+  %section#content.span8
+    %h1 Lee las propuestas educativas
     = render partial: 'entry', collection: @entries
-%aside#sidebar.span3
+
   = render 'shared/right_aside'

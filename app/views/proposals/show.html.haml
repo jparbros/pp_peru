@@ -1,60 +1,44 @@
 = selected_menu(:menu_propuesta)
 = section_title('Propuestas Ciudadanas')
-%section#content.span9
-  .blog.single-entry
-
-    / %nav.sticky-nav
-    /   %a.twitter{:href => "#", :title => "Share this on Twitter"} Twitter
-    /   %a.facebook{:href => "#", :title => "Share this on Facebook"} Facebook
-    /   %a.googleplus{:href => "#", :title => "Share this on Google Plus"} Google Plus
-
-    %article.entry.has-divider
+%section#content
+  #doc-container.row
+    %article.span8
       %header
         %h2.entry-title
           = @proposal.title
-        .entry-meta
-          - unless @proposal.topics.empty?
-            %span.tags
-              Temas:
-              - @proposal.topics.each do |theme|
-                = link_to topic.name, propuestas_path(topic_id: topic.id)
-          %span.comments
+        .entry-date
+          %span= @proposal.published_day
+          = @proposal.published_month.upcase
+        .entry-content
+          = @proposal.content.html_safe
+        %ul.entry-meta
+          %li.tags
+            Temas:
+            - @proposal.topics.each do |theme|
+              = link_to topic.name, propuestas_path(topic_id: topic.id)
+          %li.comments
             %a{:href => "#comments"} #{@proposal.annotations_count} Comentarios
 
-      .entry-date
-        %span= @proposal.published_day
-        = @proposal.published_month.upcase
-      .entry-content
-        = @proposal.content.html_safe
+    #sidebar-doc.span3  
+      %h3 Vote Por esta propuesta
+      = link_to propuesta_votes_path(@proposal, tendency: 1), method: :post, class: 'btn btn-success' do
+        %i.icon-thumbs-up
+        = @proposal.positive_votes
+      |
+      = link_to propuesta_votes_path(@proposal, tendency: -1), method: :post, class: 'btn btn-danger' do
+        %i.icon-thumbs-down
+        = @proposal.negative_votes
 
-      %section#votes.has-divider
-        %span.votes-rate
-        %h3.votes-title Vote Por esta propuesta
-        = link_to propuesta_votes_path(@proposal, tendency: 1), method: :post, class: 'btn btn-primary' do
-          %i.icon-thumbs-up
-          = @proposal.positive_votes
-        |
-        = link_to propuesta_votes_path(@proposal, tendency: -1), method: :post, class: 'btn btn-danger' do
-          %i.icon-thumbs-down
-          = @proposal.negative_votes
+  #comments.row
+    %ol.comments-list
+      = nested_annotations @proposal.annotations.includes(:author).arrange(order: :created_at) 
 
-      %section#comments.has-divider
-        %a.leave-a-comment{:href => "#comment-form", :title => "Leave a Comment"}
-        %h3.comments-title #{@proposal.annotations.count} Comentarios
-        .leave-a-comment-text
-          %a.meta{:href => "#comment-form"} Deja un comentario
-        %ol.comments-list
-          = nested_annotations @proposal.annotations.includes(:author).arrange(order: :created_at) 
-
-      %section#comment-form
-        %span.leave-a-comment
-        %h3.form-title Deja un Comentario
-        %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
-        - if current_user  
-          = render partial: 'annotations/form', locals: {annotable: @proposal, annotable_url: propuesta_comentarios_path(@proposal)}
-        - else
-          Necesitas iniciar sesion para comentar
-
-
-%aside#sidebar.span3
-  = render 'shared/right_aside'
+  #comment-form
+    .row
+      %span.leave-a-comment
+      %h3.form-title Deja un Comentario
+      %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
+      - if current_user  
+        = render partial: 'annotations/form', locals: {annotable: @proposal, annotable_url: propuesta_comentarios_path(@proposal)}
+      - else
+        Necesitas iniciar sesion para comentar
