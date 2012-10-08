@@ -1,3 +1,25 @@
+# == Schema Information
+#
+# Table name: configurations
+#
+#  id                        :integer          not null, primary key
+#  site_name                 :string(255)
+#  color1                    :string(255)
+#  color2                    :string(255)
+#  color3                    :string(255)
+#  color4                    :string(255)
+#  color5                    :string(255)
+#  comments_limit            :string(255)
+#  footer_image              :string(255)
+#  header_image              :string(255)
+#  background_image          :string(255)
+#  public_registration       :boolean
+#  home_main_content         :text
+#  registration_mail_content :text
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#
+
 class Configurable < ActiveRecord::Base
   
   #

@@ -1,0 +1,36 @@
+// Place all the styles related to the admin::strategic_objectives controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+#objectives{
+	.objective_title{
+		font-size: 15pt;
+	}
+	
+	.nested_strategic_objective {
+	  margin-left: 30px;
+		.objective_title{
+			font-size: 12pt;
+		}
+		.dl-horizontal dt{
+			text-align: left;
+			width: 125px;
+		}
+	}
+	
+} // end Objectives
+ 
+.hide{
+	display:none;
+}
+
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #C66;
+  &:first-letter { text-transform: uppercase; }
+}

@@ -1,0 +1,15 @@
+= form_for [:admin, @strategic_objective], validate: true, html: { class: 'form-horizontal', id: :form_strategic_objective } do |form|
+	= form.hidden_field :parent_id, value: @strategic_objective.parent_id
+	.control-group
+		= form.label :title, 'Titulo:'
+		= form.text_field :title
+
+	- unless @strategic_objective.is_root?
+		.control-group
+			= form.label :description, 'Descripcion:'
+			= form.text_area :description, class: :span8, rows: '3'
+		.control-group
+			= form.label :date_objective, 'Fecha de Entrega:'
+			= form.text_field :date_objective, class: :date_objective
+	
+	= form.submit 'Crear', class: 'btn btn-primary'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921152907) do
+ActiveRecord::Schema.define(:version => 20121008144218) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -149,6 +149,11 @@ ActiveRecord::Schema.define(:version => 20120921152907) do
     t.datetime "published_end_at"
   end
 
+  create_table "papers_strategic_objectives", :id => false, :force => true do |t|
+    t.integer "strategic_objective_id", :null => false
+    t.integer "paper_id",               :null => false
+  end
+
   create_table "papers_topics", :id => false, :force => true do |t|
     t.integer "topic_id", :null => false
     t.integer "paper_id", :null => false
@@ -198,6 +203,18 @@ ActiveRecord::Schema.define(:version => 20120921152907) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "strategic_objectives", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "accomplished"
+    t.date     "date_objective"
+    t.string   "ancestry"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "strategic_objectives", ["ancestry"], :name => "index_strategic_objectives_on_ancestry"
 
   create_table "topics", :force => true do |t|
     t.string   "name",       :default => "", :null => false

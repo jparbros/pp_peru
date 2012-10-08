@@ -27,8 +27,9 @@ class News < Paper
     def published
       by_status(:published).includes(:news_actors, :topics)
     end
+    
+    def news_by_title(query)
+      by_status(:published).where("title like ?", "%#{query}%")
+    end
   end
-
-  
-
 end

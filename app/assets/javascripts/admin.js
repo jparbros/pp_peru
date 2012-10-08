@@ -18,6 +18,8 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
 //= require bootstrap-colorpicker
+//= require best_in_place
+//= require rails.validations
 //= require_tree ./admin
 
 $(document).ready(function() {
@@ -42,4 +44,8 @@ $(document).ready(function() {
           }
       }
   })
+});
+
+$(document).on("focus", "[name='date_objective']", '.date_objective', function(e){
+    $(this).datepicker({"format": "yyyy-mm-dd", "autoclose": true, "language": 'es'});
 });

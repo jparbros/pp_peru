@@ -80,5 +80,6 @@ PpPeru::Application.routes.draw do
       resources :user_permissions, only: [:create, :index]
     end
     resource :configuration, only: [:show, :edit, :update]
+    resources :strategic_objectives
   end
 end

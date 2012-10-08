@@ -1,0 +1,25 @@
+%div{id: strategic_objective.id,  class: 'strategic_objective'}
+	%dl.dl-horizontal
+		- unless strategic_objective.is_root?
+			%dt Objetivo: 
+			%dd
+				%div.objective_title= best_in_place [:admin, strategic_objective], :title, nil: 'Click Para Editar'
+		-else
+			%div.objective_title= best_in_place [:admin, strategic_objective], :title, nil: 'Click Para Editar'
+		- unless strategic_objective.is_root?
+			%dt Description:
+			%dd= best_in_place [:admin, strategic_objective], :description, type: :textarea, nil: 'Click Para Editar'
+			%dt Fecha Del Objetivo:
+			%dd= best_in_place [:admin, strategic_objective], :date_objective, type: :date, nil: 'Click Para Editar'
+			%dt Objetivo Cumplido?
+			%dd=best_in_place [:admin, strategic_objective], :accomplished, :type => :checkbox, :collection => ["No", "Si"]
+			%dt Noticas:
+			%dd
+				%div{id: strategic_objective.id, class: 'objective_news'}
+					= news_for_objectives(strategic_objective)
+				= form_for [:admin, strategic_objective], method: :put, remote: true, html: {class: :hide} do |f|
+					= f.text_field :paper_tokens, data: {load: strategic_objective.papers}
+		
+	.comment-actions
+		- if strategic_objective.is_root?
+			= link_to 'Agregar Objetivo Especifico', new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn-add-resource'

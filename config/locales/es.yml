@@ -12,8 +12,10 @@ es:
               blank: 'El Titulo no puede estar vacio'
             content:
               blank: 'Debe de tener un Contenido'
+        strategic_objective:
+          attributes:
+            title:
+              blank: 'El titulo del objetivo no puede estar vacio'
       template:
         header: 'No se puedo Guardar'
         body: 'Intente de nuevo'
-          
-              

@@ -1,0 +1,11 @@
+var form = "<%= j (render 'form' )%>";
+<% if @strategic_objective.is_root? -%>
+	$(".strategic_objectives").append(form);
+<% else -%>
+	var parent_id = "<%= @strategic_objective.parent_id %>";
+	$('#sub-' + parent_id).append(form);
+<% end -%> //end if 
+
+$("#add_strategic_objectives").bind('click', false);
+$(".add_new_objective").bind('click', false); 
+$('#form_strategic_objective').validate();  // Activar Client side validations
