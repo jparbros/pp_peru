@@ -21,6 +21,11 @@ class Admin::StrategicObjectivesController < Admin::BaseController
     respond_with @strategic_objective
   end
   
+  def destroy
+    @strategic_objective.destroy
+    respond_with @strategic_objective, location: :admin_strategic_objectives
+  end
+  
   private
   def find_strategic_objective
     @strategic_objective = StrategicObjective.find params[:id]

@@ -1,4 +1,8 @@
 %div{id: strategic_objective.id,  class: 'strategic_objective'}
+	%p.actions.right
+		- if strategic_objective.is_root?
+			= link_to 'Agregar Objetivo Especifico', new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn btn-mini btn-primary'
+			= link_to 'Eliminar Seccion', admin_strategic_objective_path(strategic_objective), method: :delete, confirm: 'Esta seguro?', class: 'btn btn-danger btn-mini'
 	%dl.dl-horizontal
 		- unless strategic_objective.is_root?
 			%dt Objetivo: 
@@ -8,7 +12,7 @@
 			%div.objective_title= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :title, type: :input, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
 		- unless strategic_objective.is_root?
 			%dt Description:
-			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :description, type: :textarea, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
+			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :description, type: :textarea, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective), html_attrs: {rows: '3', class: :span8}
 			%dt Fecha Del Objetivo:
 			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :date_objective, type: :date, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
 			%dt Objetivo Cumplido?
@@ -22,7 +26,5 @@
 						= f.text_field :paper_tokens, data: {load: strategic_objective.papers}
 				-else
 					= news_for_objectives(strategic_objective, 'Sin Noticias')
-		
-	.comment-actions
-		- if strategic_objective.is_root?
-			= link_to 'Agregar Objetivo Especifico', new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn-add-resource'
+			%dt Acciones:
+			%dd= link_to 'Eliminar Objetivo', admin_strategic_objective_path(strategic_objective), method: :delete, confirm: 'Esta seguro?', class: 'btn btn-danger btn-mini'
