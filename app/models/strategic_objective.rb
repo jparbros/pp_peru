@@ -18,7 +18,7 @@ class StrategicObjective < ActiveRecord::Base
   #
   # Validations
   #
-  validates :title, :presence => true
+  validates :title, :date_objective, :presence => true
   
   #
   # Associations

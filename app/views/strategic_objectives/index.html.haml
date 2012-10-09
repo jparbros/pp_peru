@@ -1,0 +1,16 @@
+#documents-container.row
+	%section#content.span8
+		%h1 Objetivos del Partido
+
+	#timeline
+		%ul#dates
+			- @strategic_objectives.each do |objective|
+				%li
+					%a{href: '#'}= objective.date_objective
+		%ul#issues
+			- @strategic_objectives.each do |objective|
+				%li{id: objective.date_objective}
+					%p= "Titulo: #{objective.title}"
+					%p= "Descripcion: #{objective.description}"
+		%a{href: '#', id: 'next'} +
+		%a{href: '#', id: 'prev'} -

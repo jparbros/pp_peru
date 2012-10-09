@@ -37,11 +37,16 @@ PpPeru::Application.routes.draw do
       resources :votes, controller: 'discussions_activities/votes', only: :create
     end
   end
+  
   scope '/propuesta_ciudadana' do
     resources :propuestas, controller: :proposals, except: :destroy do
       resources :comentarios, controller: :annotations, only: [:create, :new]
       resources :votes, controller: 'proposals_activities/votes', only: :create
     end
+  end
+  
+  scope '/objetivos_estrategicos' do
+    resources :objetivos, controller: :strategic_objectives
   end
   
   resources :annotations, only: :index do
