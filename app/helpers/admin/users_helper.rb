@@ -8,6 +8,7 @@ module Admin::UsersHelper
     when 'User' then 'Usuarios'
     when 'Group' then 'Grupos'
     when 'NewsActor' then 'Centro de Medios | Actores'
+    when 'StrategicObjective' then 'Objetivos Estrategicos'
     end
   end
 end

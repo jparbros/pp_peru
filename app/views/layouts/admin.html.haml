@@ -97,13 +97,14 @@
                     %i.icon-user
                   %span.text
                     Usuarios
+            - if can? :read, StrategicObjective
+              %li{class: active_menu?('strategic_objectives')}
+                %a{href: "#{admin_strategic_objectives_path}"}
+                  %span.ico
+                    %i.icon-tasks
+                  %span.text
+                    Objetivos Estrategicos
 
-            %li{class: active_menu?('strategic_objectives')}
-              %a{href: "#{admin_strategic_objectives_path}"}
-                %span.ico
-                  %i.icon-tasks
-                %span.text
-                  Objetivos Estrategicos
             - if current_user.super_admin?
               %li{class: active_menu?('configurations')}
                 %a{href: "#{admin_configuration_path}"}
