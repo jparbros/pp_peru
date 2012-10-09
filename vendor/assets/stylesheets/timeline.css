@@ -47,21 +47,21 @@ h1,h2,h4,h5,h6 {
 		overflow: hidden;
 		margin: 100px auto;
 		position: relative;
-		background: url('../images/dot.gif') left 45px repeat-x;
+		background: url('/assets/dot.gif') left 45px repeat-x;
 	}
 		#dates {
-			width: 800px;
+			width: 100% !important;
 			height: 80px;
 			overflow: hidden;
 		}
 			#dates li {
 				list-style: none;
 				float: left;
-				width: 100px;
+				width: auto;
 				height: 50px;
 				font-size: 24px;
 				text-align: center;
-				background: url('../images/biggerdot.png') center bottom no-repeat;
+				background: url('/assets/biggerdot.png') center bottom no-repeat;
 			}
 				#dates a {
 					line-height: 38px;
@@ -118,7 +118,6 @@ h1,h2,h4,h5,h6 {
 					margin-right: 70px;
 					font-weight: normal;
 					line-height: 22px;
-					text-shadow: #000 1px 1px 2px;
 				}
 		
 		#grad_left,
@@ -130,11 +129,11 @@ h1,h2,h4,h5,h6 {
 		}
 			#grad_left {
 		        left: 0;
-		        background: url('../images/grad_left.png') repeat-y;
+		        background: url('/assets/grad_left.png') repeat-y;
 			}
 			#grad_right {
 		        right: 0;
-		        background: url('../images/grad_right.png') repeat-y;
+		        background: url('/assets/grad_right.png') repeat-y;
 			}
 		
 		#next,
@@ -156,11 +155,11 @@ h1,h2,h4,h5,h6 {
 			}
 			#next {
 				right: 0;
-				background-image: url('../images/next.png');
+				background-image: url('/assets/next.png');
 			}
 			#prev {
 				left: 0;
-				background-image: url('../images/prev.png');
+				background-image: url('/assets/prev.png');
 			}
 				#next.disabled,
 				#prev.disabled {
