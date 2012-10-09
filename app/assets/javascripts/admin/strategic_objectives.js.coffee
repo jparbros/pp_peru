@@ -26,7 +26,7 @@ jQuery ->
 				noResultsText: 'No se encontro'
 				propertyToSearch: 'title'
 				prePopulate: $("#edit_strategic_objective_#{form_id} > input").data('load')
-	
+		
 		$("#edit_strategic_objective_#{form_id} > .token-input-list-facebook").focusout ->
 			$(@).parent().submit()
 		

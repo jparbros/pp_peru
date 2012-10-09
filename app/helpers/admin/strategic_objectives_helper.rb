@@ -6,7 +6,7 @@ module Admin::StrategicObjectivesHelper
     end.join.html_safe
   end
   
-  def news_for_objectives(strategic_objective)
-    strategic_objective.papers.empty? ?  'Click Para Editar' :  strategic_objective.papers.map(&:title).join(',')
+  def news_for_objectives(strategic_objective, message = 'Click Para Editar')
+    strategic_objective.papers.empty? ?  message :  strategic_objective.papers.map(&:title).join(',')
   end
 end

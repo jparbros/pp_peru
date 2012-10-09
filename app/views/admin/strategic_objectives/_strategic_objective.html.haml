@@ -3,22 +3,25 @@
 		- unless strategic_objective.is_root?
 			%dt Objetivo: 
 			%dd
-				%div.objective_title= best_in_place [:admin, strategic_objective], :title, nil: 'Click Para Editar'
+				%div.objective_title= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :title, type: :input, nil: 'Click Para Editar',url: admin_strategic_objective_path(strategic_objective)
 		-else
-			%div.objective_title= best_in_place [:admin, strategic_objective], :title, nil: 'Click Para Editar'
+			%div.objective_title= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :title, type: :input, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
 		- unless strategic_objective.is_root?
 			%dt Description:
-			%dd= best_in_place [:admin, strategic_objective], :description, type: :textarea, nil: 'Click Para Editar'
+			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :description, type: :textarea, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
 			%dt Fecha Del Objetivo:
-			%dd= best_in_place [:admin, strategic_objective], :date_objective, type: :date, nil: 'Click Para Editar'
+			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :date_objective, type: :date, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
 			%dt Objetivo Cumplido?
-			%dd=best_in_place [:admin, strategic_objective], :accomplished, :type => :checkbox, :collection => ["No", "Si"]
+			%dd=best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :accomplished, type: :checkbox, collection: ["No", "Si"], url: admin_strategic_objective_path(strategic_objective)
 			%dt Noticas:
 			%dd
-				%div{id: strategic_objective.id, class: 'objective_news'}
-					= news_for_objectives(strategic_objective)
-				= form_for [:admin, strategic_objective], method: :put, remote: true, html: {class: :hide} do |f|
-					= f.text_field :paper_tokens, data: {load: strategic_objective.papers}
+				- if can? :update, strategic_objective.id
+					%div{id: strategic_objective.id, class: 'objective_news'}
+						= news_for_objectives(strategic_objective)
+					= form_for [:admin, strategic_objective], method: :put, remote: true, html: {class: :hide} do |f|
+						= f.text_field :paper_tokens, data: {load: strategic_objective.papers}
+				-else
+					= news_for_objectives(strategic_objective, 'Sin Noticias')
 		
 	.comment-actions
 		- if strategic_objective.is_root?
