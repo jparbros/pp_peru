@@ -16,3 +16,15 @@
             
       %a{href: '#', id: 'next'} +
       %a{href: '#', id: 'prev'} -
+
+    %h3
+      Objetivos:
+      = @strategic_objectives.size
+      
+      %span.not-completed
+        Objetivos no cumplidos
+        = StrategicObjective.where("accomplished IS NULL AND ancestry IS NOT NULL").count
+      
+      %span.completed
+        Objetivos cumplidos
+        = StrategicObjective.where("accomplished = true AND ancestry IS NOT NULL").count

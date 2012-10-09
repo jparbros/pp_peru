@@ -54,3 +54,12 @@ h2.entry-title {
   -moz-border-radius: 25px;
   border-radius: 25px;
 }*/
+
+span.not-completed {
+  background-color: #FF9999;
+  margin: 0 60px;
+}
+
+span.completed {
+  background-color: #DFFFBF;
+}
