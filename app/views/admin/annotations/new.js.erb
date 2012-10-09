@@ -1,0 +1,4 @@
+var annotation_form = "<%= j(render 'form')%>";
+var id_objective ="<%= @annotable.id %>";
+$('#' + id_objective + '.strategic_objective').append(annotation_form);
+//$("#add_annotation-" + parent_id).bind('click', false);

@@ -9,7 +9,7 @@
 
 			#objectives
 				#objectives-list
-					= nested_strategic_objectives @strategic_objectives.arrange(order: :created_at)
+					= nested_strategic_objectives @strategic_objectives.includes({annotations: :author}, :papers).arrange(order: :created_at)
 			%div.strategic_objectives
 				
 				

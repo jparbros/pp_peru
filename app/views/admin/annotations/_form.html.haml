@@ -1,0 +1,5 @@
+= form_for [:admin, @annotable, @annotation], html: { class: 'comment-form' } do |f|
+  .form-input
+    = f.text_area :comment, class: :span8, rows: '3'
+    = f.hidden_field :parent_id, value: @annotation.parent_id
+  = f.submit :Comentar, class: [:btn, 'btn-primary']

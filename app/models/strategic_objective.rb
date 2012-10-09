@@ -23,7 +23,7 @@ class StrategicObjective < ActiveRecord::Base
   #
   # Associations
   #
-  has_many :annotations
+  has_many :annotations, as: :annotable
   has_and_belongs_to_many :papers
   #
   # Extends

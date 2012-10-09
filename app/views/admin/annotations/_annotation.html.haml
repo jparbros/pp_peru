@@ -1,0 +1,19 @@
+%li{id: annotation.id,  class: 'comment'}
+	.comment-container.row
+		.comment-author.span3
+			%img.avatar{:alt => "Image", :src => "#{annotation.author.profile_photo}"}
+			.comment-meta
+			%span.author-name
+				= annotation.author.name 
+				%br/
+				= link_to annotation.author_email, usuario_path(annotation.author)
+				%br/
+				%a.comment-date= annotation.created_at
+
+		.span8.comment_content{class: "#{class_by_annotation(annotation)}"}
+			#alert_a.alert.hide
+			.comment-body
+				= annotation.comment.html_safe
+			%ul.comment-actions
+				%li.recomment
+					= #link_to 'Responder', new_admin_strategic_objective_annotation_path(strategic_objective, parent_id: annotation.id), remote: true, id: "add_annotation-#{annotation.id}"

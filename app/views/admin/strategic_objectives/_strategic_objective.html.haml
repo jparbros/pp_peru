@@ -2,7 +2,7 @@
 	%p.actions.right
 		- if strategic_objective.is_root?
 			= link_to 'Agregar Objetivo Especifico', new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn btn-mini btn-primary'
-			= link_to 'Eliminar Seccion', admin_strategic_objective_path(strategic_objective), method: :delete, confirm: 'Esta seguro?', class: 'btn btn-danger btn-mini'
+			= link_to 'Eliminar Seccion', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
 	%dl.dl-horizontal
 		- unless strategic_objective.is_root?
 			%dt Objetivo: 
@@ -27,4 +27,12 @@
 				-else
 					= news_for_objectives(strategic_objective, 'Sin Noticias')
 			%dt Acciones:
-			%dd= link_to 'Eliminar Objetivo', admin_strategic_objective_path(strategic_objective), method: :delete, confirm: 'Esta seguro?', class: 'btn btn-danger btn-mini'
+			%dd
+				= link_to 'Eliminar Objetivo', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
+				= link_to 'Agregar un Comentario', new_admin_strategic_objective_annotation_path(strategic_objective), remote: true, class: 'btn btn-mini btn-primary'
+	
+	#comments.row
+		%ol.comments-list
+			= render strategic_objective.annotations, {strategic_objective: strategic_objective}
+			= #admin_nested_annotations(strategic_objective.annotations.arrange(order: :created_at), strategic_objective)
+		
