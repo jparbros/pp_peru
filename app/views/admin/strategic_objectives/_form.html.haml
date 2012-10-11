@@ -4,7 +4,7 @@
 		= form.label :title, 'Titulo:'
 		= form.text_field :title
 
-	- unless @strategic_objective.is_root?
+	- if @strategic_objective.specific?
 		.control-group
 			= form.label :description, 'Descripcion:'
 			= form.text_area :description, class: :span8, rows: '3'

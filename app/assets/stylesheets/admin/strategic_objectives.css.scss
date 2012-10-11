@@ -4,19 +4,25 @@
 //
 #objectives{
 	.objective_title{
-		font-size: 15pt;
+		font-size: 16pt;
 	}
 	
 	.nested_strategic_objective {
 	  margin-left: 30px;
 		.objective_title{
-			font-size: 12pt;
+			font-size: 14pt;
 		}
 		.dl-horizontal dt{
 			text-align: left;
 			width: 125px;
 		}
+		.nested_strategic_objective{
+			.objective_title{
+				font-size: 12pt;
+			}	
+		}
 	}
+	
 	
 } // end Objectives
  
@@ -26,6 +32,8 @@
 .right{
 	float: right;
 }
+
+
 .purr {
   position: fixed;
   top: 30px;

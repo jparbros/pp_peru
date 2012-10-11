@@ -1,5 +1,5 @@
 var form = "<%= j(render 'form')%>";
-<% if @strategic_objective.is_root? -%>
+<% if @strategic_objective.general? -%>
 	$(".strategic_objectives").append(form);
 <% else -%>
 	var parent_id = "<%= @strategic_objective.parent_id %>";

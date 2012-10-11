@@ -16,4 +16,8 @@ module Admin::StrategicObjectivesHelper
         content_tag(:div, admin_nested_annotations(sub_annotations, strategic_objective), class: 'nested_admin_annotations')
     end.join.html_safe
   end
+  
+  def add_for_link(strategic_objective)
+    strategic_objective.general? ? 'Agregar Objetivo Estrategico' : 'Agregar Objetivo Especifico'
+  end
 end

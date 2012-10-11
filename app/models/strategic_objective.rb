@@ -15,10 +15,11 @@
 class StrategicObjective < ActiveRecord::Base
   attr_accessible :ancestry, :description, :title, :date_objective, :parent_id, :accomplished, :paper_tokens
   attr_reader :paper_tokens
+  TYPES = [{depth: 0, name: 'general'}, {depth:  1, name: 'strategic'}, {depth: 2, name: 'specific'}]
   #
   # Validations
   #
-  validates :title, :presence => true
+  validates :title, presence: true
   
   #
   # Associations
@@ -37,4 +38,9 @@ class StrategicObjective < ActiveRecord::Base
     self.paper_ids = ids.split(',')
   end
   
+  TYPES.each do |type|
+    define_method "#{type[:name]}?" do
+      self.depth.eql? type[:depth]
+    end
+  end
 end
