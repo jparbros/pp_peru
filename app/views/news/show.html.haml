@@ -14,7 +14,7 @@
         %li.tags
           Temas:
           - @news.topics.each do |topic|
-            = link_to topic.name, "#", class: [:label]
+            = link_to topic.name, noticias_path(topic_id: topic.id), class: [:label]
         %li.comments
           %a{:href => "#comments"} #{@news.annotations_count} Comentarios
 
