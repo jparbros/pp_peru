@@ -1,0 +1,22 @@
+.row-fluid
+	.box
+		.box-content
+			.page-header
+				%h1 Roles
+			%table.table.table-striped.table-bordered
+				%thead
+					%tr
+						%th ID
+						%th Nombre
+						%th Acciones
+				%tbody
+					- @roles.each do |role|
+						- unless role.name == 'super_admin'
+							%tr
+								%td.center= role.id
+								%td.center= role.name.humanize
+								%td
+									= link_to  admin_role_role_permissions_path(role), :class => :btn do
+										%li.icon-th
+										Configurar Permisos
+										

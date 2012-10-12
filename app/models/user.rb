@@ -30,15 +30,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :name, 
-    :avatar, :state_id, :province_id, :user_permission_ids
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role_id, :name, 
+    :avatar, :state_id, :province_id
 
 
 
-  #
-  # Constans
-  #
-  ROLES = ['super_admin', 'admin', 'moderator', 'member', 'participant']
 
   #
   # Relations
@@ -50,8 +46,13 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, through: :memberships
   has_many :owned_groups, class_name: 'Group', foreign_key: :owner_id
-  has_and_belongs_to_many :user_permissions
-
+  belongs_to :role
+  
+  #
+  # Delegates
+  #
+  delegate :name, to: :role, prefix: true
+  delegate :role_permissions, to: :role, prefix: false
   #
   #Extend
   #
@@ -71,19 +72,19 @@ class User < ActiveRecord::Base
   # Class Methods
   #
   def self.roles_by_user(user)
-    case user.role
-    when 'super_admin' then ROLES
-    when 'admin' then ROLES[1..4]
-    when 'moderator' then ROLES[2..4]
+    case user.role_name
+    when 'super_admin' then Role.scoped
+    when 'admin' then Role.by_roles(%w(admin member participant))
+    when 'moderator' then Role.by_roles(%w(member participant))
     end
   end
   #
   # Instance methods
   #
 
-  ROLES.each do |role|
-    define_method "#{role}?" do
-      self.role.eql? role
+  Role.all.each do |role|
+    define_method "#{role.name}?" do
+      self.role_id.eql? role.id
     end
   end
 
@@ -110,7 +111,7 @@ class User < ActiveRecord::Base
   end
   
   def permission
-    case role
+    case role_name
     when 'super_admin', 'admin'
       [:admin, :members, :public]
     when 'member'

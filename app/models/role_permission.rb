@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: user_permissions
+# Table name: role_permissions
 #
 #  id            :integer          not null, primary key
 #  action        :string(255)
@@ -9,7 +9,7 @@
 #  updated_at    :datetime         not null
 #
 
-class UserPermission < ActiveRecord::Base
+class RolePermission < ActiveRecord::Base
   attr_accessible :action, :subject_class
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :roles
 end

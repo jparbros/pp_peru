@@ -52,7 +52,7 @@ class Admin::UsersController < Admin::BaseController
   
   private
   def valid_user_role!
-    if params[:user][:role] == 'super_admin'
+    if params[:user][:role_id] == 1
       authorize! :assign_super_admin_role, current_user
     end
   end

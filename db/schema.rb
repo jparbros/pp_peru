@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008144218) do
+ActiveRecord::Schema.define(:version => 20121011160326) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -198,6 +198,24 @@ ActiveRecord::Schema.define(:version => 20121008144218) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "role_permissions", :force => true do |t|
+    t.string   "action"
+    t.string   "subject_class"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "role_permissions_roles", :id => false, :force => true do |t|
+    t.integer "role_permission_id", :null => false
+    t.integer "role_id",            :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "states", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -222,21 +240,9 @@ ActiveRecord::Schema.define(:version => 20121008144218) do
     t.datetime "updated_at",                 :null => false
   end
 
-  create_table "user_permissions", :force => true do |t|
-    t.string   "action"
-    t.string   "subject_class"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-  end
-
-  create_table "user_permissions_users", :id => false, :force => true do |t|
-    t.integer "user_permission_id", :null => false
-    t.integer "user_id",            :null => false
-  end
-
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",            :null => false
+    t.string   "encrypted_password",     :default => "",            :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -245,14 +251,15 @@ ActiveRecord::Schema.define(:version => 20121008144218) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "role"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "political_party_id"
     t.string   "name",                   :default => ""
     t.string   "avatar"
     t.integer  "state_id"
     t.integer  "province_id"
+    t.string   "role_c",                 :default => "participant"
+    t.integer  "role_id",                :default => 1
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

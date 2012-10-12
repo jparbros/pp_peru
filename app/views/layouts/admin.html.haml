@@ -105,6 +105,14 @@
                   %span.text
                     Objetivos Estrategicos
 
+            - if can? :read, Role
+              %li{class: active_menu?('admin_roles')}
+                %a{href: "#{admin_roles_path}"}
+                  %span.ico
+                    %i.icon-th
+                  %span.text
+                    Administracion de Roles
+
             - if current_user.super_admin?
               %li{class: active_menu?('configurations')}
                 %a{href: "#{admin_configuration_path}"}

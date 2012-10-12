@@ -29,9 +29,3 @@
 									= link_to admin_user_path(user), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
 										%li.icon-white.icon-remove
 										Eliminar
-								- if current_user.super_admin? and (user.moderator? or user.admin? or user.member?)
-									= link_to  admin_user_user_permissions_path(user), :class => :btn do
-										%li.icon-th
-										Permisos
-										
-								

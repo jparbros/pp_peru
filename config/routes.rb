@@ -81,12 +81,14 @@ PpPeru::Application.routes.draw do
     resources :topics, only: :index
     resources :news_actors
     resources :groups
-    resources :users do
-      resources :user_permissions, only: [:create, :index]
-    end
+    resources :users
     resource :configuration, only: [:show, :edit, :update]
     resources :strategic_objectives do
       resources :annotations, only: [:create, :new]
+    end
+    
+    resources :roles, only: :index do
+      resources :role_permissions, only: [:index, :create]
     end
   end
 end
