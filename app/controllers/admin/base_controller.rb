@@ -5,7 +5,7 @@ class Admin::BaseController < ApplicationController
   private
 
   def only_admin_user!
-    redirect_to root_path unless current_user.admin? or current_user.super_admin?
+    redirect_to root_path if current_user.participant?
   end
   
   rescue_from CanCan::AccessDenied do |exception|
