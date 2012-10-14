@@ -4,14 +4,20 @@
 			= link_to add_for_link(strategic_objective), new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn btn-mini btn-primary'
 			= link_to 'Eliminar Seccion', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
 	%dl.dl-horizontal
-		%div.objective_title= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :title, type: :input, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
+		%div.objective_title= best_in_place_for_objectives(strategic_objective, :title)
+		
 		- if strategic_objective.specific?
+			
 			%dt Description:
-			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :description, type: :textarea, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective), html_attrs: {rows: '3', class: :span8}
+			%dd=best_in_place_for_objectives(strategic_objective, :description, type: :textarea, html_attrs:{rows:3, class: :span8})
 			%dt Fecha Del Objetivo:
-			%dd= best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :date_objective, type: :date, nil: 'Click Para Editar', url: admin_strategic_objective_path(strategic_objective)
+			%dd= best_in_place_for_objectives(strategic_objective, :date_objective, type: :date)
 			%dt Objetivo Cumplido?
-			%dd=best_in_place_if (can? :update, strategic_objective), [:admin, strategic_objective], :accomplished, type: :checkbox, collection: ["No", "Si"], url: admin_strategic_objective_path(strategic_objective)
+			%dd= best_in_place_for_objectives(strategic_objective, :accomplished, type: :checkbox, collection: ["No", "Si"])
+			%dt Tipo de Objetivo:
+			%dd= best_in_place_for_objectives(strategic_objective, :type_id, type: :select, collection: options_for_types_objective)
+			%dt Descripcion del Tipo Objetivo
+			%dd= best_in_place_for_objectives(strategic_objective, :type_description)
 			%dt Noticas:
 			%dd
 				- if can? :update, strategic_objective.id
@@ -29,5 +35,4 @@
 	#comments.row
 		%ol.comments-list
 			= render strategic_objective.annotations, {strategic_objective: strategic_objective}
-			= #admin_nested_annotations(strategic_objective.annotations.arrange(order: :created_at), strategic_objective)
 		
