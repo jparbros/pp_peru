@@ -1,0 +1,43 @@
+= form_for [:admin, attendee], validate: true,  html: {class: 'form-horizontal'} do |f|
+	.control-group
+		.control-label
+			= f.label :name, 'Nombre:'
+		.controls
+			= f.text_field :name
+	.control-group
+		.control-label
+			= f.label :sexo, 'Sexo:'
+		.controls
+			= f.select :gender, Attendee::GENDER.collect {|gender| [gender[:name], gender[:id]]}
+	.control-group
+		.control-label
+			= f.label :birthday, 'Fecha De Nacimiento:'
+		.controls
+			= f.text_field :birthday
+	.control-group
+		.control-label
+			= f.label :instruction, 'Institucion'
+		.controls
+			= f.text_field :instruction
+	.control-group
+		.control-label
+			= f.label :dni, 'DNI:'
+		.controls
+			= f.text_field :dni
+	.control-group
+		.control-label
+			= f.label :estate, 'Estado:'
+		.controls
+			= f.select :state_id, State.all.collect {|state| [state.name.humanize, state.id]}
+	.control-group
+		.control-label
+			= f.label :province, 'Providencia:'
+		.controls
+			= f.select :province_id, Province.all.collect {|province| [province.name.humanize, province.id]}
+
+	.control-group
+		.controls
+			= f.submit (attendee.new_record? ? 'Crear' : 'Actualizar'), class: [:btn, 'btn-primary']
+
+
+

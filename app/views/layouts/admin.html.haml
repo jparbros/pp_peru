@@ -97,6 +97,14 @@
                     %i.icon-user
                   %span.text
                     Usuarios
+
+            - if can? :read, Attendee
+              %li{class: active_menu?('attendees')}
+                %a{href: "#{admin_attendees_path}"}
+                  %span.ico
+                    %i.icon-check
+                  %span.text Asistentes
+			                    
             - if can? :read, StrategicObjective
               %li{class: active_menu?('strategic_objectives')}
                 %a{href: "#{admin_strategic_objectives_path}"}

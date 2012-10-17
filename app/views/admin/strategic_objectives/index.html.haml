@@ -11,6 +11,16 @@
 				#objectives-list
 					= nested_strategic_objectives @strategic_objectives.includes({annotations: :author}, :papers).arrange(order: :created_at)
 			%div.strategic_objectives
-				
-				
-				
+
+
+
+#attended-modal.modal.fade
+	.modal-header
+		%button{class: "close", 'data-dismiss' => "modal"} ×
+		%h3 Crear Asistente
+		.modal-body
+			.row-fluid
+				.span12
+			.row-fluid
+				.span8
+					= render 'admin/attendees/form', {attendee: Attendee.new}

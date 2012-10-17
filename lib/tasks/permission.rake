@@ -1,6 +1,6 @@
 desc "Establecer los permisos de la aplicacion"
 task :permission => [:environment] do
-  types = ['Discussion', 'Entry', 'News', 'Proposal', 'User', 'Group', 'NewsActor', 'StrategicObjective']
+  types = ['Discussion', 'Entry', 'News', 'Proposal', 'User', 'Group', 'NewsActor', 'StrategicObjective', 'Attendee']
   actions = ['read', 'create', 'update', 'destroy']
   types.each do |type|
     u_p = RolePermission.find_by_subject_class type

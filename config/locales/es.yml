@@ -16,6 +16,11 @@ es:
           attributes:
             title:
               blank: 'El titulo del objetivo no puede estar vacio'
+        attendee:
+          attributes:
+            name:
+              blank: 'El nombre no puede estar vacio'
+
       template:
         header: 'No se puedo Guardar'
         body: 'Intente de nuevo'

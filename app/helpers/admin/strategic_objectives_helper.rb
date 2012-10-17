@@ -7,7 +7,11 @@ module Admin::StrategicObjectivesHelper
   end
   
   def news_for_objectives(strategic_objective, message = 'Click Para Editar')
-    strategic_objective.papers.empty? ?  message :  strategic_objective.papers.map(&:title).join(',')
+    strategic_objective.papers.empty? ?  message :  strategic_objective.papers.map(&:title).join(', ')
+  end
+  
+  def attendees_for_objectives(strategic_objective, message = 'Click Para Editar')
+    strategic_objective.attendees.empty? ?  message :  strategic_objective.attendees.map(&:name).join(', ')
   end
   
   def admin_nested_annotations(annotations, strategic_objective)

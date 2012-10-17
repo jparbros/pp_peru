@@ -16,11 +16,18 @@
 
 class StrategicObjective < ActiveRecord::Base
   attr_accessible :ancestry, :description, :title, :date_objective, :parent_id,
-   :accomplished, :paper_tokens, :type_id, :type_description
-  attr_reader :paper_tokens
+   :accomplished, :paper_tokens, :type_id, :type_description, :attendee_tokens
+  
+  attr_reader :paper_tokens, :attendee_tokens
+  
+  #
+  # Constant
+  #
   TYPES = [{depth: 0, name: 'general'}, {depth:  1, name: 'strategic'}, {depth: 2, name: 'specific'}]
-  TYPES_OBJECTIVE = [{id: 0, name: 'Num. De Reuniones'}, {id:  1, name: '% De Jovenes'}, {id: 2, name: 'Otras ..'}]
-  # de reuniones, % de jóvenes; sobre poblaciones discriminadas, género...
+  TYPES_OBJECTIVE = [{id: 1, name: 'Num. De Reuniones'}, 
+    {id:  2, name: 'Aumentar el Porcentaje de participacion en los jovenes'}, 
+    {id: 3, name: 'Otras ..'}]
+
   #
   # Validations
   #
@@ -31,6 +38,7 @@ class StrategicObjective < ActiveRecord::Base
   #
   has_many :annotations, as: :annotable
   has_and_belongs_to_many :papers
+  has_and_belongs_to_many :attendees
   #
   # Extends
   #
@@ -41,6 +49,10 @@ class StrategicObjective < ActiveRecord::Base
   #
   def paper_tokens=(ids)
     self.paper_ids = ids.split(',')
+  end
+  
+  def attendee_tokens=(ids)
+    self.attendee_ids = ids.split(',')
   end
   
   TYPES.each do |type|

@@ -1,0 +1,29 @@
+.row-fluid
+	.box
+		.box-content
+			.page-header
+				%h1 Asistentes
+				- if can? :create, Attendee
+					= link_to new_admin_attendee_path, :class => 'btn-add-resource btn btn-primary' do
+						%i.icon-white.icon-plus
+						Nuevo Asistente
+			%table.table.table-striped.table-bordered
+				%thead
+					%tr
+						%th ID
+						%th Nombre
+						%th Acciones
+				%tbody
+					- @attendees.each do |a|
+						%tr
+							%td.center= a.id
+							%td= a.name
+							%td
+								- if can? :update, Attendee
+									= link_to edit_admin_attendee_path(a), :class => 'btn btn-mini btn-primary' do
+										%i.icon-edit.icon-white
+										Editar
+								- if can? :destroy, Attendee
+									= link_to admin_attendee_path(a), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
+										%li.icon-white.icon-remove
+										Eliminar

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121013180813) do
+ActiveRecord::Schema.define(:version => 20121014185623) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -37,6 +37,23 @@ ActiveRecord::Schema.define(:version => 20121013180813) do
   end
 
   add_index "annotations", ["ancestry"], :name => "index_annotations_on_ancestry"
+
+  create_table "attendees", :force => true do |t|
+    t.string   "name"
+    t.string   "gender"
+    t.date     "birthday"
+    t.integer  "state_id"
+    t.string   "instruction"
+    t.string   "dni"
+    t.integer  "province_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "attendees_strategic_objectives", :id => false, :force => true do |t|
+    t.integer "strategic_objective_id", :null => false
+    t.integer "attendee_id",            :null => false
+  end
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"

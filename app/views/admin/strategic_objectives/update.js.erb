@@ -1,5 +1,11 @@
 var form_id = "<%= @strategic_objective.id %>";
-$("#edit_strategic_objective_" + form_id).addClass('hide');
+
+$("#form_objective_news_" + form_id).addClass('hide');
 $('#' + form_id + ' .objective_news').text('');
 $('#' + form_id + ' .objective_news').text("<%=j news_for_objectives(@strategic_objective) %>");
 $('#' + form_id + ' .objective_news').removeClass('hide');
+
+$("#form_objective_attendee_" + form_id).addClass('hide');
+$('#' + form_id + ' .objective_attendees').text('');
+$('#' + form_id + ' .objective_attendees').text("<%=j attendees_for_objectives(@strategic_objective) %>");
+$('#' + form_id + ' .objective_attendees').removeClass('hide');

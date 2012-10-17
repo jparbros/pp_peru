@@ -82,6 +82,7 @@ PpPeru::Application.routes.draw do
     resources :news_actors
     resources :groups
     resources :users
+    resources :attendees
     resource :configuration, only: [:show, :edit, :update]
     resources :strategic_objectives do
       resources :annotations, only: [:create, :new]
