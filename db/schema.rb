@@ -260,8 +260,8 @@ ActiveRecord::Schema.define(:version => 20121014185623) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "",            :null => false
-    t.string   "encrypted_password",     :default => "",            :null => false
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -270,14 +270,14 @@ ActiveRecord::Schema.define(:version => 20121014185623) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                        :null => false
-    t.datetime "updated_at",                                        :null => false
+    t.string   "role_c"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
     t.integer  "political_party_id"
     t.string   "name",                   :default => ""
     t.string   "avatar"
     t.integer  "state_id"
     t.integer  "province_id"
-    t.string   "role_c",                 :default => "participant"
     t.integer  "role_id",                :default => 1
   end
 

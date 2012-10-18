@@ -82,9 +82,11 @@ class User < ActiveRecord::Base
   # Instance methods
   #
 
-  Role.all.each do |role|
-    define_method "#{role.name}?" do
-      self.role_id.eql? role.id
+  if Role.table_exists?
+    Role.all.each do |role|
+      define_method "#{role.name}?" do
+        self.role_id.eql? role.id
+      end
     end
   end
 
