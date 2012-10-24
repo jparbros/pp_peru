@@ -16,6 +16,10 @@ class Topic < ActiveRecord::Base
   #
 
   has_and_belongs_to_many :papers
+  #
+  # Extends
+  #
+  has_ancestry
 
   #
   # Class Methods
@@ -37,5 +41,13 @@ class Topic < ActiveRecord::Base
   
   def self.by_type_paper(type)
     joins(:papers).where("papers.type = ?", type.singularize.capitalize)
+  end
+  
+  def self.tree(tree = [])
+    arrange.map do |parent, childrens|
+      tree << {id: parent.id, label: parent.name, 
+        children: childrens.map{|children, a| {id: children.id, label: children.name}}}
+    end
+    tree
   end
 end

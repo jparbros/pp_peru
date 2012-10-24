@@ -16,6 +16,7 @@
  *= require 'token-input-facebook'
  *= require bootstrap-datepicker
  *= require colorpicker
+ *= require 'admin/jqtree'
  *= require_tree ./admin
  */
 

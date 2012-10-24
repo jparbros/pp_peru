@@ -78,7 +78,7 @@ PpPeru::Application.routes.draw do
       resource :archive, controller: 'entries_actions/archive', only: :create
     end
     
-    resources :topics, only: :index
+    resources :topics, only: [:index, :create]
     resources :news_actors
     resources :groups
     resources :users

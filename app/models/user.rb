@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
   #
   delegate :name, to: :role, prefix: true
   delegate :role_permissions, to: :role, prefix: false
+  
   #
   #Extend
   #

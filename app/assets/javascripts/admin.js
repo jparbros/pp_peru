@@ -19,6 +19,7 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
 //= require bootstrap-colorpicker
 //= require best_in_place
+//= require 'admin/tree.jquery'
 //= require rails.validations
 //= require_tree ./admin
 
