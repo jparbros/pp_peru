@@ -9,7 +9,7 @@
 #
 
 class Topic < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :parent_id
 
   #
   # Relations
