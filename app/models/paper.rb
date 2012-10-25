@@ -128,8 +128,8 @@ class Paper < ActiveRecord::Base
     self.news_actor_ids = NewsActor.ids_from_tokens(tokens)
   end
 
-  def topic_tokens=(tokens)
-    self.topic_ids = Topic.ids_from_tokens(tokens)
+  def topic_tokens=(ids)
+    self.topic_ids = ids.split(',')
   end
 
   def publish_timestamp

@@ -3,7 +3,7 @@ class Admin::TopicsController < Admin::BaseController
     @topics = Topic.scoped
     respond_to do |format|
       format.html
-      format.json{ render json: (params[:q] ?  @topics.tokens(params[:q]) : @topics.tree)}
+      format.json{ render json: @topics.topics_by_index(params[:q])}
     end
   end
 

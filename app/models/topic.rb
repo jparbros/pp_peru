@@ -10,7 +10,7 @@
 
 class Topic < ActiveRecord::Base
   attr_accessible :name, :parent_id
-
+  scope :only_children, where("ancestry is not null")
   #
   # Relations
   #
@@ -26,12 +26,11 @@ class Topic < ActiveRecord::Base
   #
 
   def self.tokens(query)
-    topics = where("name like ?", "%#{query}%")
-    if topics.empty?
-      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
-    else
-      topics
-    end
+    where("name like ?", "%#{query}%").only_children
+  end
+  
+  def self.topics_by_index(query)
+    query ? tokens(query) : tree
   end
   
   def self.ids_from_tokens(tokens)
@@ -44,7 +43,7 @@ class Topic < ActiveRecord::Base
   end
   
   def self.tree(tree = [])
-    arrange.map do |parent, childrens|
+    arrange(order: :name).map do |parent, childrens|
       tree << {id: parent.id, label: parent.name, 
         children: childrens.map{|children, a| {id: children.id, label: children.name}}}
     end
