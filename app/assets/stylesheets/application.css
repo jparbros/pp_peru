@@ -19,6 +19,7 @@
  *= require base
  *= require news
  *= require users
+ *= require 'admin/jqtree'
  */
 
 /*

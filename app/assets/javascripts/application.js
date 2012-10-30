@@ -25,6 +25,7 @@
 //= require news
 //= require discussions
 //= require strategic_objectives
+//= require 'admin/tree.jquery'
 
 
 

@@ -10,6 +10,9 @@ PpPeru::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'authentications#create'
 
+
+  resources :topics, only: [:index]
+  
   resources :news_actors, only: [:show, :index] do
     collection do
       post :rates
