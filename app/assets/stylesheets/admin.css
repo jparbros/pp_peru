@@ -17,6 +17,8 @@
  *= require bootstrap-datepicker
  *= require colorpicker
  *= require 'admin/jqtree'
+ *= require fileuploader
+ *= require jquery.Jcrop.min
  *= require_tree ./admin
  */
 
@@ -28,4 +30,14 @@
 .tinymce {
   width: 800px; 
   height: 400px
+}
+
+body .modal {
+  width: 90%;
+  left: 20%;
+}
+
+.home-main-content {
+  width: 900px;
+  height: 600px;
 }

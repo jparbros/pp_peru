@@ -3,7 +3,7 @@
     .box-content
       .page-header
         %h1 Editar Configuraciones
-      = form_for [:admin, @configuration], url: admin_configuration_path, :html => { :class => 'form form-horizontal' } do |f|
+      = form_for [:admin, @configuration], url: admin_configuration_path, :html => { :class => 'form form-horizontal', multipart: true } do |f|
         .control-group
           = f.label :site_name, 'Nombre del sitio:',:class => 'control-label'
           .controls
@@ -64,9 +64,84 @@
           .controls
             = f.check_box :public_registration
 
+        .control-group
+          = f.label :background_image, 'Imagen principal:',:class => 'control-label'
+          .controls#main-image-controls
+            %button.btn.btn-success#button-main-image
+              %i.icon-upload.icon-white
+              Subir Imagen
+            = hidden_field_tag 'configurable[image_x]'
+            = hidden_field_tag 'configurable[image_y]'
+        
+        .control-group
+          = f.label :home_main_content, 'Contenido del home:', :class => 'control-label'
+          .controls
+            = f.text_area :home_main_content, class: 'tinymce home-main-content'
+        
+        
+        
+
         .form-actions
           = f.submit 'Actualizar', :class => 'btn btn-primary'
           = link_to 'Cancelar', admin_configuration_path, :class => 'btn'
+
+#main-image-upload.modal.hide.fade
+  .modal-header
+    %button{:type => "button", :class => "close", "data-dismiss" => "modal", "aria-hidden" => "true"}
+      &times;
+    %h3 Subir Imagen Principal
+
+  .modal-body
+    #images-container
+  .modal-footer
+    %button.btn#main-image-close-button Cerrar
+    %button.btn.btn-primary#main-image-upload-button Subir Imagen
       
 %script
+  var jcrop_api;
   $('div[id*="config-color"]').colorpicker();
+  
+  $('#button-main-image').click(function(event){
+  event.preventDefault();
+  fileInput =  $('<input/>').attr('type','file').attr('name','configurable[background_image]').addClass('hide').attr('id','main-image-input');
+  $('form').append(fileInput);
+  
+  fileInput.change(function() {
+  input = this;
+  if (input.files && input.files[0]) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+  imageTag = $('<img/>').attr('src', e.target.result);
+  $('#images-container').html(imageTag);
+  jcrop_api = imageTag.Jcrop({
+  setSelect: [ 0, 0, 675, 140 ],
+  addClass: 'jcrop-dark',
+  allowSelect: false,
+  allowResize: false,
+  onChange: function(c) {
+  $('#configurable_image_x').val(c.x);
+  $('#configurable_image_y').val(c.y);
+  }
+  });
+  };
+  reader.readAsDataURL(input.files[0]);
+  }
+  $('#main-image-upload').modal();
+  });
+  
+  fileInput.click();
+  });
+  
+  $('#main-image-close-button').click(function(){
+  $('#main-image-input').remove();
+  $('#main-image-controls span.help-block').remove();
+  $('#main-image-upload').modal('hide');
+  });
+  
+  
+    
+  $('#main-image-upload-button').click(function() {
+  help_block = $('<span/>').addClass('help-block').html('Haga click en Actualizar para subir la imagen');
+  $('#main-image-controls').append(help_block);
+  $('#main-image-upload').modal('hide');
+  });

@@ -21,6 +21,8 @@
 //= require best_in_place
 //= require 'admin/tree.jquery'
 //= require rails.validations
+//= require fileuploader.min
+//= require jquery.Jcrop.min
 //= require_tree ./admin
 
 $(document).ready(function() {

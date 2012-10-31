@@ -12,7 +12,7 @@ class Admin::ConfigurationsController < Admin::BaseController
   def update
     authorize! :config_site, :update
     @configuration = Configurable.first
-    if @configuration.update_attributes(params[:configurable])
+    if @configuration.update_attributes!(params[:configurable])
       SiteConfig.reload
       redirect_to admin_configuration_url
     else

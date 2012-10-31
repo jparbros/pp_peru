@@ -28,11 +28,15 @@
       #header-container.container
         #logo
           #site-title{:href => root_url}
-            %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
+            - if SiteConfig.background_image.present?
+              = image_tag SiteConfig.background_image
+            - else
+              %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
             #site-name= SiteConfig.site_name
         #user-profile
           - if current_user
-            = image_tag current_user.profile_photo, id: 'profile-avatar'
+            #profile-avatar-container
+              = image_tag current_user.profile_photo, id: 'profile-avatar'
             %h4
               - if current_user.name.present?
                 = current_user.name

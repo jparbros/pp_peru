@@ -25,7 +25,10 @@ class Configurable < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :color1, :color2, :color3, :color4, :color5, :comments_limit, :footer_image, :header_image, :home_main_content, :background_image, :site_name, :public_registration, :registration_mail_content
+  attr_accessible :color1, :color2, :color3, :color4, :color5, :comments_limit, :footer_image, :header_image, 
+                  :home_main_content, :background_image, :site_name, :public_registration, :registration_mail_content, 
+                  :image_x, :image_y
+  attr_accessor :image_x, :image_y
   
   #
   # Uploaders
@@ -34,10 +37,14 @@ class Configurable < ActiveRecord::Base
   mount_uploader :footer_image, FooterImageUploader
   mount_uploader :background_image, BackgroundImageUploader
   
-  set_table_name 'configurations'
+  self.table_name = 'configurations'
         
   def array_colors
     [color1, color2, color3, color4, color5]
+  end
+  
+  def home_main_content_safe
+    home_main_content.gsub('\"','"')
   end
   
 end

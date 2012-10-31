@@ -48,9 +48,20 @@ header {
     }
   }
 
-  #profile-avatar { float: left; margin-right: 10px;}
+  #profile-avatar-container { 
+    float: left; 
+    margin-right: 10px;
+    border: 10px solid #f8f8f8;
+    border-radius: 50px;
+  }
   #profile-menu { float: left; }
   
+}
+
+.comment_content img, #profile-avatar {
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
 }
 
 /*
@@ -122,6 +133,10 @@ section {
     h2 {
       font-size: 30px;
       margin: 20px 0;
+    }
+    
+    #home {
+      padding: 20px;
     }
     
     .entry-date {
@@ -313,7 +328,7 @@ section {
           float: left;
           margin-right: 15px;
         
-          &:last {margin-right: 0;}
+          &:last-child {margin-right: 0;}
         }
       }
     }

@@ -46,4 +46,12 @@
             %td Registro publico
             %td.center
               = SiteConfig.public_registration ? 'Si' : 'No'
+          %tr
+            %td Imagen Principal
+            %td.center
+              = image_tag SiteConfig.background_image
               
+          %tr
+            %td Contenido del home
+            %td.center
+              =  SiteConfig.home_main_content.html_safe
