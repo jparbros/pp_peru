@@ -28,3 +28,10 @@ jQuery ->
 	
 	unless $("#end_of_discussion").is(':checked')
 		$('.published_end_div').hide()
+
+  $('#discussion_visibility').change ->
+    if $(@).val() == 'group'
+      $('#group-tokens').show()
+      
+  if $('#discussion_visibility').val() == 'group'
+    $('#group-tokens').show()

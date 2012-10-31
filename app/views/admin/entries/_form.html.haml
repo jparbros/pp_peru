@@ -1,16 +1,22 @@
 = form_for [:admin, @entry], :html => { :class => 'form' } do |f|
-	.control-group
-		= f.error_messages
-	.control-group
-		= f.label :title, 'Titulo:',:class => 'control-label'
-		= f.text_field :title, :class => 'text_field'
-	.control-group
-		= f.label :content,'Contenido:',  :class => 'control-label'
-		.controls
-		= f.text_area :content, class: :tinymce
-	.control-group
-		= f.label :topics_tokens, "Temas:"
-		= f.text_field :topic_tokens, data: {load: @entry.topics}
-	.form-actions
-		= f.submit @entry.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
-		= link_to 'Cancelar', admin_entries_path, :class => 'btn'
+  .control-group
+    = f.error_messages
+  .control-group
+    = f.label :title, 'Titulo:',:class => 'control-label'
+    = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :content,'Contenido:',  :class => 'control-label'
+  .controls
+    = f.text_area :content, class: :tinymce
+  .control-group
+    = f.label :topics_tokens, "Temas:"
+    = f.text_field :topic_tokens, data: {load: @entry.topics}
+  .control-group
+    = f.label :visibility, "Visibilidad:", class: 'control-label'
+    = f.select :visibility, Paper.visibility
+  #group-tokens.control-group.hide
+    = f.label :group_tokens, 'Grupos'
+    = f.text_field :group_tokens, data: {load: @entry.groups.map(&:attributes).to_json}
+  .form-actions
+    = f.submit @entry.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
+    = link_to 'Cancelar', admin_entries_path, :class => 'btn'

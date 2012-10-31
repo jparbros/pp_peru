@@ -6,3 +6,10 @@ jQuery ->
 	$('#proposal_topic_tokens').tokenInput '/admin/topics.json'
 		theme: 'facebook'
 		prePopulate: $('#proposal_topic_tokens').data('load')
+
+  $('#proposal_visibility').change ->
+    if $(@).val() == 'group'
+      $('#group-tokens').show()
+      
+  if $('#proposal_visibility').val() == 'group'
+    $('#group-tokens').show()

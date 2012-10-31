@@ -16,7 +16,7 @@
   .controls
     = f.select :visibility, Paper.visibility
 
-  .control-group
+  #group-tokens.control-group.hide
     = f.label :group_tokens, 'Grupos'
     = f.text_field :group_tokens, data: {load: @discussion.groups.map(&:attributes).to_json}
 

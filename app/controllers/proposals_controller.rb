@@ -14,6 +14,7 @@ class ProposalsController < ApplicationController
      @proposal = Proposal.new(params[:proposal])
      @proposal.author = current_user
      if @proposal.save
+       @proposal.publish!
        redirect_to propuestas_path, notice: 'Su propuesta se a Creado Correctamente, Espere hasta que sea autorizada'
      else
        render :new

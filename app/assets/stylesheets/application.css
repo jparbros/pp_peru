@@ -64,3 +64,8 @@ span.not-completed {
 span.completed {
   background-color: #DFFFBF;
 }
+
+textarea.tinymce {
+  width: 800px;
+  height: 400px;
+}
