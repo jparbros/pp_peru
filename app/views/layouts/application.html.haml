@@ -56,7 +56,7 @@
     %nav#main-nav-menu.container
       %ul
         %li{class: "nav-menu-item #{yield(:menu_home)}"}
-          = link_to 'Inicio', usuario_path(current_user) if current_user
+          = link_to 'Inicio', root_path
         %li{class: "nav-menu-item #{yield(:menu_news)}"}
           = link_to 'Centro de Noticias', noticias_path
         %li{class: "nav-menu-item #{yield(:menu_entry)}"}
