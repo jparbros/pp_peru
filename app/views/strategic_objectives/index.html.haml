@@ -7,10 +7,13 @@
         - @strategic_objectives.each do |objective|
           %li
             %a{href: '#'}= objective.date_objective
+
       %ul#issues
         - @strategic_objectives.each do |objective|
           %li{id: objective.date_objective}
-            %h3= objective.title
+            %h3
+              %span.label= objective.root.title
+              = objective.title
             %p= objective.description
             %h3 Actualizaciones
             
