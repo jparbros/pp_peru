@@ -1,33 +1,29 @@
 #documents-container.row
   %section#content.span12
-    %h1 Objetivos del Partido
-
-    #timeline
-      %ul#dates
-        - @strategic_objectives.each do |objective|
-          %li
-            %a{href: '#'}= objective.date_objective
-
-      %ul#issues
-        - @strategic_objectives.each do |objective|
-          %li{id: objective.date_objective}
-            %h3
-              %span.label= objective.root.title
-              = objective.title
-            %p= objective.description
-            %h3 Actualizaciones
-            
-      %a{href: '#', id: 'next'} +
-      %a{href: '#', id: 'prev'} -
-
-    %h3
-      Objetivos:
-      = @strategic_objectives.size
+    %h1 Buenas Practicas  
+    
+    .accordion#buenas-practicas
+      - StrategicObjective.roots.each_with_index do  |objective_root, index|
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{'data-toggle' => "collapse", href: "#collapse#{index}", "data-parent" => "#buenas-practicas"}
+              = objective_root.title
+          .accordion-body.collapse{id: "collapse#{index}"}
+            .accordion-inner
+              #timeline
+                %ul#dates
+                  - objective_root.children.each do |objective|
+                    %li
+                      %a{href: '#'}= objective.date_objective
       
-      %span.not-completed
-        Objetivos no cumplidos
-        = StrategicObjective.where("accomplished IS NULL AND ancestry IS NOT NULL").count
-      
-      %span.completed
-        Objetivos cumplidos
-        = StrategicObjective.where("accomplished = true AND ancestry IS NOT NULL").count
+                %ul#issues
+                  - objective_root.children.each do |objective|
+                    %li{id: objective.date_objective}
+                      %h3
+                        %span.label= objective.root.title
+                        = objective.title
+                      %p= objective.description
+                      %h3 Actualizaciones
+              
+                %a{href: '#', id: 'next'} +
+                %a{href: '#', id: 'prev'} -
