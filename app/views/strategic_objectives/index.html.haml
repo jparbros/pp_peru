@@ -10,20 +10,23 @@
               = objective_root.title
           .accordion-body.collapse{id: "collapse#{index}"}
             .accordion-inner
-              #timeline
-                %ul#dates
-                  - objective_root.children.each do |objective|
-                    %li
-                      %a{href: '#'}= objective.date_objective
-      
-                %ul#issues
-                  - objective_root.children.each do |objective|
-                    %li{id: objective.date_objective}
-                      %h3
-                        %span.label= objective.root.title
-                        = objective.title
-                      %p= objective.description
-                      %h3 Actualizaciones
-              
-                %a{href: '#', id: 'next'} +
-                %a{href: '#', id: 'prev'} -
+              %ul
+                - objective_root.children.each do |objective|
+                  %li= objective.title
+              / #timeline
+              /   %ul#dates
+              /     - objective_root.children.each do |objective|
+              /       %li
+              /         %a{href: '#'}= objective.date_objective
+              /       
+              /   %ul#issues
+              /     - objective_root.children.each do |objective|
+              /       %li{id: objective.date_objective}
+              /         %h3
+              /           %span.label= objective.root.title
+              /           = objective.title
+              /         %p= objective.description
+              /         %h3 Actualizaciones
+              / 
+              /   %a{href: '#', id: 'next'} +
+              /   %a{href: '#', id: 'prev'} -
