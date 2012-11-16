@@ -51,8 +51,11 @@ PpPeru::Application.routes.draw do
   end
   
   scope '/objetivos_estrategicos' do
-    resources :objetivos, controller: :strategic_objectives
+    resources :buenas_practicas, controller: :strategic_objectives, only: [:index]
+    resources :objetivos, controller: :objectives, only: [:index]
   end
+  
+  
   
   resources :annotations, only: :index do
     resources :reports, only: :create

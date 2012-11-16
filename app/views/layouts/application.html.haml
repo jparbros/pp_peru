@@ -55,8 +55,6 @@
 
     %nav#main-nav-menu.container
       %ul
-        %li{class: "nav-menu-item #{yield(:menu_home)}"}
-          = link_to 'Inicio', root_path
         %li{class: "nav-menu-item #{yield(:menu_news)}"}
           = link_to 'Centro de Noticias', noticias_path
         %li{class: "nav-menu-item #{yield(:menu_entry)}"}
@@ -66,7 +64,9 @@
         %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
           = link_to 'Propuesta Ciudadana', :propuestas
         %li{class: "nav-menu-item #{yield(:menu_objetivos)}"}
-          = link_to 'Buenas Practicas', :objetivos
+          = link_to 'Buenas Practicas', buenas_practicas_path
+        %li{class: "nav-menu-item"}
+          = link_to 'Objetivos', objetivos_path
             
 
     .container
