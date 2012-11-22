@@ -29,6 +29,10 @@ jQuery ->
 	unless $("#end_of_discussion").is(':checked')
 		$('.published_end_div').hide()
 
+  $('#discussion_group_tokens').tokenInput '/admin/groups.json'
+    theme: 'facebook'
+    prePopulate: $('#discussion_group_tokens').data('load')
+
   $('#discussion_visibility').change ->
     if $(@).val() == 'group'
       $('#group-tokens').show()
