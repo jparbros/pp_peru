@@ -4,13 +4,13 @@ class Admin::UsersController < Admin::BaseController
   
   def index
     @users = if params[:q]
-        User.where("name like ?", "%#{params[:q]}%")
+        User.where("name like ? or email like ?", "%#{params[:q]}%", "%#{params[:q]}%")
       else
         User.all
       end
     respond_to do |format|
       format.html
-      format.json{ render json: @users.map(&:attributes) }
+      format.json{ render json: @users.map(&:group_search) }
     end
   end
   

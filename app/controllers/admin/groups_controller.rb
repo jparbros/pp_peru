@@ -34,7 +34,7 @@ class Admin::GroupsController < Admin::BaseController
   
   def update
     @group = Group.find params[:id]
-    if @group.update_attributes(params[:discussion])
+    if @group.update_attributes(params[:group])
       redirect_to admin_groups_path, notice: 'Actualizado Correctamente'
     else
       render :edit

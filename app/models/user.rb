@@ -154,6 +154,10 @@ class User < ActiveRecord::Base
        '/assets/avatar.png'
      end
   end
+  
+  def group_search
+    {id: id, name: (name.blank? ? email : name)}
+  end
 
    protected
 
