@@ -45,7 +45,7 @@
             %ul#profile-menu
               %li
                 = link_to 'Mi Perfil', edit_user_registration_path
-              - unless current_user.participant?
+              - unless current_user.admin_access?
                 %li
                   = link_to 'Admin', admin_root_path
               %li

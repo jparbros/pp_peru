@@ -123,6 +123,10 @@ class User < ActiveRecord::Base
       :public
     end
   end
+  
+  def admin_access?
+    permission.include? :admin
+  end
 
   def apply_omniauth(omniauth)
      case omniauth['provider']
