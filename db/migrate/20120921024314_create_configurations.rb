@@ -17,6 +17,6 @@ class CreateConfigurations < ActiveRecord::Migration
 
       t.timestamps
     end
-    Configuration.create
+    Configurable.create
   end
 end
