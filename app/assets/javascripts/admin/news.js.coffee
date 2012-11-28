@@ -18,6 +18,8 @@ jQuery ->
   $('#news_visibility').change ->
     if $(@).val() == 'group'
       $('#group-tokens').show()
+    else
+      $('#group-tokens').hide()
       
   if $('#news_visibility').val() == 'group'
     $('#group-tokens').show()

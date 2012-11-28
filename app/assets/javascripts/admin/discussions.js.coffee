@@ -7,6 +7,19 @@ jQuery ->
 		theme: 'facebook'
 		prePopulate: $('#discussion_topic_tokens').data('load')
 
+  $('#discussion_group_tokens').tokenInput '/admin/groups.json'
+    theme: 'facebook'
+    prePopulate: $('#discussion_group_tokens').data('load')
+
+  $('#discussion_visibility').change ->
+    if $(@).val() == 'group'
+      $('#group-tokens').show()
+    else
+      $('#group-tokens').hide()
+      
+  if $('#discussion_visibility').val() == 'group'
+    $('#group-tokens').show()
+
 	$('.discussion_end').datepicker
 		format: 'dd/mm/yyyy'
 		autoclose: true
@@ -28,14 +41,3 @@ jQuery ->
 	
 	unless $("#end_of_discussion").is(':checked')
 		$('.published_end_div').hide()
-
-  $('#discussion_group_tokens').tokenInput '/admin/groups.json'
-    theme: 'facebook'
-    prePopulate: $('#discussion_group_tokens').data('load')
-
-  $('#discussion_visibility').change ->
-    if $(@).val() == 'group'
-      $('#group-tokens').show()
-      
-  if $('#discussion_visibility').val() == 'group'
-    $('#group-tokens').show()
