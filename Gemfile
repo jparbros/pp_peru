@@ -11,6 +11,7 @@ group :production do
   gem 'pg'
   gem 'bootstrap-sass'
   gem 'sass-rails',   '~> 3.2.3'
+  gem 'unicorn'
 end
 
 
