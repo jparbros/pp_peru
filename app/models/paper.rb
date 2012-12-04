@@ -65,6 +65,7 @@ class Paper < ActiveRecord::Base
   #
   scope :by_status, lambda{|status| where('status IN (?)', status)}
   scope :by_author, lambda{|author| where(author_id: author)}
+  scope :recents, order('papers.created_at DESC')
 
   #
   # State machine
