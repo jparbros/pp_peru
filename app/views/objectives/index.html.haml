@@ -1,6 +1,15 @@
-%section#content
-  #doc-container.row
-    .span12
-      .page-header
-        %h1 Objetivos del partido
-      
+#documents-container.row
+  %section#content.span12
+    %h1 Objetivos del Partido
+    
+    .accordion#buenas-practicas
+      - @objetivos.each_with_index do  |objective_root, index|
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{'data-toggle' => "collapse", href: "#collapse#{index}", "data-parent" => "#buenas-practicas"}
+              = objective_root.title
+          .accordion-body.collapse{id: "collapse#{index}"}
+            .accordion-inner
+              %ul
+                - objective_root.children.each do |objective|
+                  %li= objective.title

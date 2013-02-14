@@ -2,7 +2,7 @@ class NewsController < ApplicationController
   respond_to :json, :html
   
   def index
-    @news = News.text_search(params[:query]).recents.published.by_permissions(current_user).by_topics(params[:topic_id])
+    @news = News.text_search(params[:query]).published.by_permissions(current_user).by_topics(params[:topic_id]).recents
   end
 
   def show

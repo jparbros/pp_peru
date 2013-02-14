@@ -1,30 +1,34 @@
-%li{id: annotation.id,  class: 'comment'}
-  .comment-container.row
-    .comment-author.span3
-      %img.avatar{:alt => "Image", :src => "#{annotation.author.profile_photo}"}
-      .comment-meta
-        %span.author-name
-          = annotation.author.name 
-        %br/
-        = link_to annotation.author_email, usuario_path(annotation.author)
-        %br/
-        %a.comment-date{:href => "#", :title => "Permalink to this comment"}= annotation.created_at
+- if annotation.can_show? || current_user.admin_access?
+  %li{id: annotation.id,  class: "comment #{annotation.cant_show? ? 'reported' : '' }"}
+    .comment-container.row
+      .comment-author.span3
+        %img.avatar{:alt => "Image", :src => "#{annotation.author.profile_photo}"}
+        .comment-meta
+          %span.author-name
+            = annotation.author.name 
+          %br/
+          = link_to annotation.author_email, usuario_path(annotation.author)
+          %br/
+          %a.comment-date{:href => "#", :title => "Permalink to this comment"}= annotation.created_at
 
-    .span8.comment_content{class: " #{class_by_annotation(annotation)}"}
-      #alert_a.alert.hide
-      .comment-body
-        = annotation.comment.html_safe
-      %ul.comment-actions
-        - if current_user
-          %li.recomment
-            = link_to 'Responder', new_entrada_comentario_path(@entry, parent_id: annotation.id), remote: true, id: "add_annotation-#{annotation.id}"
-          - unless annotation.revised_by_admin?
-            %li.report
-              = link_to 'Reportar Inapropiado', annotation_reports_path(annotation), remote: true, method: :post, id: "report_annotation-#{annotation.id}"
-          - if current_user.admin? and annotation.have_some_report?
-            %li
-              = link_to 'El Comentario no es Inapropieado', annotation_reviews_admins_path(annotation), remote: true, method: :post, id: "reviews_by_admin-#{annotation.id}", title: 'Como Administrador, usted puede establecer un comentario como apropiado', class: 'review_admin_link'
+      .span8.comment_content{class: " #{class_by_annotation(annotation)}"}
+        #alert_a.alert.hide
+        .comment-body
+          = annotation.comment.html_safe
+        %ul.comment-actions
+          - if current_user
+            - if annotation.can_show?
+              %li.recomment
+                = link_to 'Responder', new_entrada_comentario_path(@entry, parent_id: annotation.id), remote: true, id: "add_annotation-#{annotation.id}"
+            - unless annotation.revised_by_admin? || annotation.cant_show?
+              %li.report
+                = link_to 'Reportar Inapropiado', annotation_reports_path(annotation), remote: true, method: :post, id: "report_annotation-#{annotation.id}"
+            - if current_user.admin_access? and annotation.cant_show?
+              %li
+                = link_to 'El Comentario no es Inapropieado', annotation_reviews_admins_path(annotation), remote: true, method: :post, id: "reviews_by_admin-#{annotation.id}", title: 'Como Administrador, usted puede establecer un comentario como apropiado', class: 'review_admin_link'
+        - if current_user.admin_access? and annotation.cant_show?
+          .alert.alert-error Este comentario ha sido marcado tres veces como inapropiado o por el administrador y no se muestra a los usuarios.
   
-      -if annotation.third_report? and current_user
-        %span#show_annotation
-          %button{type: 'button', class: 'btn', 'data-toggle' => 'button'} Mostrar
+        -if annotation.third_report? and current_user
+          %span#show_annotation
+            %button{type: 'button', class: 'btn', 'data-toggle' => 'button'} Mostrar

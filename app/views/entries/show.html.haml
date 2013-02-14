@@ -6,8 +6,7 @@
       %h2.entry-title
         = @entry.title
       .entry-date
-        %span=@entry.published_day
-        = @entry.published_month.upcase
+        %span=@entry.published_date
       .entry-content
         = @entry.content.html_safe
 

@@ -137,6 +137,10 @@ class Paper < ActiveRecord::Base
     self.published_at = Time.now
   end
 
+  def published_date
+    I18n.l(published_at.to_date, format: :short).titleize
+  end
+
   def published_day
     published_at.strftime '%d'
   end

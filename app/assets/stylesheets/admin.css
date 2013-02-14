@@ -41,3 +41,10 @@ body .modal {
   width: 900px;
   height: 600px;
 }
+
+#header > a {
+  font-size: 48px;
+  line-height: 1;
+  color: white;
+  margin: 20px;
+}

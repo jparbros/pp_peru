@@ -1,8 +1,7 @@
 %article
   %h1= proposal.title
   .entry-date
-    %span= proposal.published_day
-    = proposal.published_month.upcase
+    %span= proposal.published_date
   .entry-content
     = proposal.first_paragraph.html_safe
     = link_to 'Leer mas...', propuesta_path(proposal), class: 'more-link'

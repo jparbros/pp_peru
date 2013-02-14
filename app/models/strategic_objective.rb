@@ -16,7 +16,8 @@
 
 class StrategicObjective < ActiveRecord::Base
   attr_accessible :ancestry, :description, :title, :date_objective, :parent_id,
-   :accomplished, :paper_tokens, :type_id, :type_description, :attendee_tokens
+   :accomplished, :paper_tokens, :type_id, :type_description, :attendee_tokens,
+   :political_party_objective
   
   attr_reader :paper_tokens, :attendee_tokens
   

@@ -7,8 +7,7 @@
         %h2.entry-title
           = @discussion.title
         .entry-date
-          %span= @discussion.published_day
-          = @discussion.published_month.upcase
+          %span= @discussion.published_date
         .entry-content
           = @discussion.content.html_safe
         %ul.entry-meta

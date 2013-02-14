@@ -5,7 +5,7 @@ class Admin::EntriesController < Admin::BaseController
   authorize_resource
   
   def index
-    @entries = Entry.by_author(current_user)
+    @entries = Entry.by_permissions(current_user).recents
   end
   
   def new

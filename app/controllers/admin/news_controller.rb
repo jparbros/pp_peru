@@ -3,7 +3,7 @@ class Admin::NewsController < Admin::BaseController
   before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
  
   def index
-    @news = ::News.scoped
+    @news = ::News.by_permissions(current_user).recents
     respond_to do |format|
       format.html{authorize! :read, News}
       format.json {render json: @news.news_by_title(params[:q])}

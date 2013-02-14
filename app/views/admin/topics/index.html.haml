@@ -1,25 +1,23 @@
 .row-fluid
-	.box
-		.box-content
-			.page-header
-				%h1  Categorías y Temas
-			%div{:id => :tree, 'data-url' => admin_topics_path(format: :json)}
-			%h2 Crear un Nuevo Tema o Categoría
-			
-			= form_for [:admin, Topic.new], validate: true,  html: {class: 'form-horizontal'} do |f|
-				.control-group
-					.control-label
-						= f.label :name, 'Nombre:'
-					.controls
-						= f.text_field :name
-				.control-group
-					.control-label
-						= f.label :parent_id, 'Categoría:'
-					.controls
-						= f.select :parent_id,  @topics.roots.collect{|topic| [topic.name, topic.id]}, {include_blank: true}
-				.control-group
-					.controls
-						= f.submit 'Crear' , class: [:btn, 'btn-primary']
+  .box
+    .box-content
+      .page-header
+        %h1  Categorías y Temas
+      %div{:id => :tree, 'data-url' => admin_topics_path(format: :json)}
+      %h2 Crear un Nuevo Tema o Categoría
+      
+      = form_for [:admin, Topic.new], validate: true,  html: {class: 'form-horizontal'} do |f|
+        .control-group
+          .control-label
+            = f.label :name, 'Nombre:'
+          .controls
+            = f.text_field :name
+        .control-group
+          .control-label
+            = f.label :parent_id, 'Categoría:'
+          .controls
+            = f.select :parent_id,  @topics.roots.collect{|topic| [topic.name, topic.id]}, {include_blank: true}
+        .control-group
+          .controls
+            = f.submit 'Crear' , class: [:btn, 'btn-primary']
 
-
-				

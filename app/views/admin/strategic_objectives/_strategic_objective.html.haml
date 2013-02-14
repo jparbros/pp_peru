@@ -1,48 +1,51 @@
 %div{id: strategic_objective.id,  class: 'strategic_objective'}
-	%p.actions.right
-		- unless strategic_objective.specific?
-			= link_to add_for_link(strategic_objective), new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn btn-mini btn-primary'
-			= link_to 'Eliminar Seccion', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
-	%dl.dl-horizontal
-		%div.objective_title= best_in_place_for_objectives(strategic_objective, :title)
-		
-		- if strategic_objective.specific?
-			
-			%dt Description:
-			%dd=best_in_place_for_objectives(strategic_objective, :description, type: :textarea, html_attrs:{rows:3, class: :span8})
-			%dt Fecha Del Objetivo:
-			%dd= best_in_place_for_objectives(strategic_objective, :date_objective, type: :date)
-			%dt Objetivo Cumplido?
-			%dd= best_in_place_for_objectives(strategic_objective, :accomplished, type: :checkbox, collection: ["No", "Si"])
-			%dt Tipo de Objetivo:
-			%dd= best_in_place_for_objectives(strategic_objective, :type_id, type: :select, collection: options_for_types_objective)
-			%dt Descripcion del Tipo Objetivo:
-			%dd= best_in_place_for_objectives(strategic_objective, :type_description)
-			%dt Noticas:
-			%dd
-				- if can? :update, strategic_objective
-					%div{id: strategic_objective.id, class: 'objective_news'}
-						= news_for_objectives(strategic_objective)
-					= form_for [:admin, strategic_objective], method: :put, remote: true, html: {id: "form_objective_news_#{strategic_objective.id}", class: :hide} do |f|
-						= f.text_field :paper_tokens, data: {load: strategic_objective.papers}
-				-else
-					= news_for_objectives(strategic_objective, 'Sin Noticias')
-			%dt Asistentes:
-			%dd
-				- if can? :update, strategic_objective
-					%div{id: strategic_objective.id, class: 'objective_attendees'}
-						= attendees_for_objectives(strategic_objective)
-					= form_for [:admin, strategic_objective], method: :put, remote: true, html: {id: "form_objective_attendee_#{strategic_objective.id}", class: :hide} do |f|
-						= f.text_field :attendee_tokens, data: {load: strategic_objective.attendees}
-				-else
-					= attendees_for_objectives(strategic_objective, 'Sin Asistentes')
-			%dt Acciones:
-			%dd
-				= link_to 'Eliminar Objetivo', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
-				= link_to 'Agregar un Comentario', new_admin_strategic_objective_annotation_path(strategic_objective), remote: true, class: 'btn btn-mini btn-primary'
-				= link_to 'Agregar Asistente', '#', class:  'btn btn-mini btn-primary add_attendee', 'data-toggle' => 'button'
+  %p.actions.right
+    - unless strategic_objective.specific?
+      = link_to add_for_link(strategic_objective), new_admin_strategic_objective_path(parent_id: strategic_objective), remote: true, class: 'add_new_objective btn btn-mini btn-primary'
+      = link_to 'Eliminar Seccion', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
+  %dl.dl-horizontal
+    %div.objective_title
+      = best_in_place_for_objectives(strategic_objective, :title) 
+      - if strategic_objective.political_party_objective?
+        %span.pp_objective Objetivo del Partido
+    
+    - if strategic_objective.specific?
+      
+      %dt Description:
+      %dd=best_in_place_for_objectives(strategic_objective, :description, type: :textarea, html_attrs:{rows:3, class: :span8})
+      %dt Fecha Del Objetivo:
+      %dd= best_in_place_for_objectives(strategic_objective, :date_objective, type: :date)
+      %dt Objetivo Cumplido?
+      %dd= best_in_place_for_objectives(strategic_objective, :accomplished, type: :checkbox, collection: ["No", "Si"])
+      %dt Tipo de Objetivo:
+      %dd= best_in_place_for_objectives(strategic_objective, :type_id, type: :select, collection: options_for_types_objective)
+      %dt Descripcion del Tipo Objetivo:
+      %dd= best_in_place_for_objectives(strategic_objective, :type_description)
+      %dt Noticas:
+      %dd
+        - if can? :update, strategic_objective
+          %div{id: strategic_objective.id, class: 'objective_news'}
+            = news_for_objectives(strategic_objective)
+          = form_for [:admin, strategic_objective], method: :put, remote: true, html: {id: "form_objective_news_#{strategic_objective.id}", class: :hide} do |f|
+            = f.text_field :paper_tokens, data: {load: strategic_objective.papers}
+        -else
+          = news_for_objectives(strategic_objective, 'Sin Noticias')
+      %dt Asistentes:
+      %dd
+        - if can? :update, strategic_objective
+          %div{id: strategic_objective.id, class: 'objective_attendees'}
+            = attendees_for_objectives(strategic_objective)
+          = form_for [:admin, strategic_objective], method: :put, remote: true, html: {id: "form_objective_attendee_#{strategic_objective.id}", class: :hide} do |f|
+            = f.text_field :attendee_tokens, data: {load: strategic_objective.attendees}
+        -else
+          = attendees_for_objectives(strategic_objective, 'Sin Asistentes')
+      %dt Acciones:
+      %dd
+        = link_to 'Eliminar Objetivo', admin_strategic_objective_path(strategic_objective), method: :delete, data: {confirm: 'Esta Seguro?'}, class: 'btn btn-danger btn-mini'
+        = link_to 'Agregar un Comentario', new_admin_strategic_objective_annotation_path(strategic_objective), remote: true, class: 'btn btn-mini btn-primary'
+        = link_to 'Agregar Asistente', '#', class:  'btn btn-mini btn-primary add_attendee', 'data-toggle' => 'button'
 
-	#comments.row
-		%ol.comments-list
-			= render strategic_objective.annotations, {strategic_objective: strategic_objective}
-		
+  #comments.row
+    %ol.comments-list
+      = render strategic_objective.annotations, {strategic_objective: strategic_objective}
+    

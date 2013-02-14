@@ -72,7 +72,7 @@ class Annotation < ActiveRecord::Base
   #
   
   def report_annotation(user)
-    user.admin? ? report_by_admin : report_by_user(user)
+    user.admin_access? ? report_by_admin : report_by_user(user)
     self
   end
   
@@ -80,6 +80,13 @@ class Annotation < ActiveRecord::Base
     first_report? or second_report? or third_report?
   end
   
+  def can_show?
+    !(reported_by_admin? || third_report?)
+  end
+  
+  def cant_show?
+    reported_by_admin? || third_report?
+  end
   
   #
   #Private

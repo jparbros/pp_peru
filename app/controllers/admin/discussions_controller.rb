@@ -4,7 +4,7 @@ class Admin::DiscussionsController < Admin::BaseController
   authorize_resource
   
   def index
-    @discussions = Discussion.by_author(current_user)
+    @discussions = Discussion.by_permissions(current_user).recents
   end
   
   def new

@@ -4,7 +4,7 @@ class Admin::ProposalsController < Admin::BaseController
   authorize_resource
   
   def index
-     @proposals = Proposal.by_author(current_user)
+     @proposals = Proposal.by_permissions(current_user).recents
   end
 
    def new

@@ -6,8 +6,7 @@
       %h2.entry-title
         = @news.title
       .entry-date
-        %span= @news.published_day
-        = @news.published_month.upcase
+        %span= @news.published_date
       .entry-content
         = @news.content.html_safe
       %ul.entry-meta
