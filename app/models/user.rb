@@ -120,7 +120,7 @@ class User < ActiveRecord::Base
     when 'member'
       [:members, :public]
     when 'participant', nil
-      :public
+      [:public]
     end
   end
   
