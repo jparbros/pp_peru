@@ -178,8 +178,7 @@ class Paper < ActiveRecord::Base
   private
   def self.format(query)
     query.mb_chars.normalize(:kd).
-      gsub(/[^\x00-\x7F]/n,'').
-      downcase.split(' ').join('|')
+      gsub(/[^\x00-\x7F]/n,'').split(' ').join('|')
   end
 
 end
