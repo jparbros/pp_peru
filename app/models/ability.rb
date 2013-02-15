@@ -3,7 +3,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new(role: 'participant') # guest user
+    user ||= User.new(role_id: 1) # guest user
     can :manage, :all if user.super_admin?
     can :config_site if user.super_admin?
     can :assign_super_admin_role, User if user.super_admin?
