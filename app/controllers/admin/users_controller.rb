@@ -19,10 +19,8 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def create
-    generated_password = Devise.friendly_token.first(6)
     @user = User.new(params[:user])
-    @user.password = generated_password
-    @user.password_confirmation = generated_password
+    generated_password = user_password
     if @user.save
       UserRegistration.welcome(@user, generated_password).deliver
       redirect_to admin_users_path, notice: 'Creado Correctamente'
@@ -54,6 +52,16 @@ class Admin::UsersController < Admin::BaseController
   def valid_user_role!
     if params[:user][:role_id] == 1
       authorize! :assign_super_admin_role, current_user
+    end
+  end
+  
+  def user_password
+    if params[:user][:password].empty?
+      generated_password = Devise.friendly_token.first(6)
+      @user.password = generated_password
+      @user.password_confirmation = generated_password
+    else
+      params[:user][:password]
     end
   end
 end

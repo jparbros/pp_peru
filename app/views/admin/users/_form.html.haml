@@ -1,6 +1,7 @@
 = form_for [:admin, @user], :html => { :class => 'form' } do |f|
   .control-group
     = f.error_messages
+
   .control-group
     = f.label :email, 'Email:',:class => 'control-label'
     = f.text_field :email, :class => 'text_field'
@@ -8,6 +9,14 @@
   .control-group
     = f.label :role, "Role:", class: 'control-label'
     = f.select :role_id, User.roles_by_user(current_user).collect {|role| [role.name.humanize, role.id]}
+
+  .control-group
+    = f.label :password, 'Password: (Opcional) ',:class => 'control-label'
+    = f.password_field :password, :class => 'text_field'
+
+  .control-group
+    = f.label :password_confirmation, 'Password Confirmation: (Opcional)',:class => 'control-label'
+    = f.password_field :password_confirmation, :class => 'text_field'
 
   .form-actions
     = f.submit @user.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
