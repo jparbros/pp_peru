@@ -26,8 +26,8 @@
             - if current_user.admin_access? and annotation.cant_show?
               %li
                 = link_to 'El Comentario no es Inapropieado', annotation_reviews_admins_path(annotation), remote: true, method: :post, id: "reviews_by_admin-#{annotation.id}", title: 'Como Administrador, usted puede establecer un comentario como apropiado', class: 'review_admin_link'
-        - if current_user.admin_access? and annotation.cant_show?
-          .alert.alert-error Este comentario ha sido marcado tres veces como inapropiado o por el administrador y no se muestra a los usuarios.
+            - if current_user.admin_access? and annotation.cant_show?
+              .alert.alert-error Este comentario ha sido marcado tres veces como inapropiado o por el administrador y no se muestra a los usuarios.
   
         -if annotation.third_report? and current_user
           %span#show_annotation
