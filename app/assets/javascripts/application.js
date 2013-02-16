@@ -34,4 +34,7 @@ $(document).ready(function() {
     event.preventDefault();
     $('#login-modal').modal();
   });
+	
+	// for the tree of the right side by topics
+	$('#tree').tree({autoOpen: true, autoEscape: false});
 });
