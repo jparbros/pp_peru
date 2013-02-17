@@ -31,7 +31,7 @@
           .control-label
             = f.label :province_id, 'Provincia'
           .controls
-            = f.collection_select :province_id, Province.all, :id, :name, include_blank: true
+            = f.grouped_collection_select :province_id, State.includes(:provinces), :provinces, :name, :id, :name, include_blank: true 
         
         .control-group
           .control-label
