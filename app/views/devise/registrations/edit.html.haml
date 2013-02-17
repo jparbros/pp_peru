@@ -32,7 +32,13 @@
             = f.label :province_id, 'Provincia'
           .controls
             = f.grouped_collection_select :province_id, State.includes(:provinces), :provinces, :name, :id, :name, include_blank: true 
-        
+
+        .control-group
+          .control-label
+            = f.label :district_id, 'Distrito'
+          .controls
+            = f.grouped_collection_select :district_id, Province.includes(:districts), :districts, :name, :id, :name, include_blank: true 
+
         .control-group
           .control-label
             = f.label :avatar

@@ -10,3 +10,13 @@ jQuery ->
 			$('#user_province_id').html(options)
 		else
 			$('#user_province_id').empty()
+	
+	districts = $('#user_district_id').html()
+	$('#user_province_id').live 
+		'change': ->
+			province = $('#user_province_id :selected').text()
+			options = $(districts).filter("optgroup[label='#{province}']").html()
+			if options
+				$('#user_district_id').html(options)
+			else
+				$('#user_district_id').empty()

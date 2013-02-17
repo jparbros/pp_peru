@@ -23,6 +23,7 @@
 //= require scripts
 //= require bootstrap-datepicker/core
 //= require news
+//= require users
 //= require discussions
 //= require strategic_objectives
 //= require 'admin/tree.jquery'

@@ -15,5 +15,7 @@ class Province < ActiveRecord::Base
   #
   # Associations
   #
+  has_many :districts
   belongs_to :state
+
 end

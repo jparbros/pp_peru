@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role_id, :name, 
-    :avatar, :state_id, :province_id
+    :avatar, :state_id, :province_id, :district_id
 
 
 
@@ -47,6 +47,9 @@ class User < ActiveRecord::Base
   has_many :groups, through: :memberships
   has_many :owned_groups, class_name: 'Group', foreign_key: :owner_id
   belongs_to :role
+  belongs_to :state
+  belongs_to :province
+  belongs_to :district
   
   #
   # Delegates
