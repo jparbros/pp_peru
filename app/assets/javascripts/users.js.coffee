@@ -10,6 +10,7 @@ jQuery ->
 			$('#user_province_id').html(options)
 		else
 			$('#user_province_id').empty()
+		$('#user_province_id').change()
 	
 	districts = $('#user_district_id').html()
 	$('#user_province_id').live 
