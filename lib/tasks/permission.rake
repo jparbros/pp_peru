@@ -25,3 +25,10 @@ task :setup_roles => [:environment] do
     end
   end
 end
+
+task :setup_instances => [:environment, :permission, :create_roles, :setup_roles] do
+  user = User.create(email: 'rsipp@parbros.com', password: 'Passw0rd', password_confirmation: 'Passw0rd')
+  role = Role.find_by_name('super_admin')
+  user.role = role
+  user.save!
+end
