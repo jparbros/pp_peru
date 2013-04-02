@@ -46,6 +46,12 @@
             = image_tag current_user.profile_photo, id: 'profile-avatar' if current_user.avatar.present?
             = f.file_field :avatar
     
+        .control-group
+          .control-label
+            = f.label :charge, 'Cargo'
+          .controls
+            = f.text_field :charge
+    
       %fieldset
         %legend 
           Contraseña
