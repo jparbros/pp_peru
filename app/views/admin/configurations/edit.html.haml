@@ -4,79 +4,93 @@
       .page-header
         %h1 Editar Configuraciones
       = form_for [:admin, @configuration], url: admin_configuration_path, :html => { :class => 'form form-horizontal', multipart: true } do |f|
-        .control-group
-          = f.label :site_name, 'Nombre del sitio:',:class => 'control-label'
-          .controls
-            = f.text_field :site_name, :class => 'text_field'
+        %ul.nav.nav-tabs
+          %li
+            %a{href: '#general', 'data-toggle' => "tab"} General
+          %li
+            %a{href: '#estilos', 'data-toggle' => "tab"} Diseño
+          %li
+            %a{href: '#home', 'data-toggle' => "tab"} Home
+            
+        .tab-content
+          #general.tab-pane.active
+                      
+            .control-group
+              = f.label :site_name, 'Nombre del sitio:',:class => 'control-label'
+              .controls
+                = f.text_field :site_name, :class => 'text_field'
+                
+            .control-group
+              = f.label :comments_limit, 'Limite en los comentarios:',:class => 'control-label'
+              .controls
+                = f.text_field :comments_limit, :class => 'text_field'
+              %span.help-block 
+                Para no limitar el tamaño los comentarios poner 0.
 
-        .control-group
-          = f.label :color1, 'Color 1:',:class => 'control-label'
-          .controls
-            #config-color1.input-append.color{"data-color" => "#{@configuration.color1}", "data-color-format" => "hex"}
-              = f.text_field :color1, :class => 'text_field input-append color'
-              %span.add-on
-                %i{:style => "background-color: #{@configuration.color1}"}
-
-        .control-group
-          = f.label :color2, 'Color 2:',:class => 'control-label'
-          .controls
-            #config-color1.input-append.color{"data-color" => "#{@configuration.color2}", "data-color-format" => "hex"}
-              = f.text_field :color2, :class => 'text_field input-append color'
-              %span.add-on
-                %i{:style => "background-color: #{@configuration.color2}"}
-
-
-        .control-group
-          = f.label :color3, 'Color 3:',:class => 'control-label'
-          .controls
-            #config-color1.input-append.color{"data-color" => "#{@configuration.color3}", "data-color-format" => "hex"}
-              = f.text_field :color3, :class => 'text_field input-append color'
-              %span.add-on
-                %i{:style => "background-color: #{@configuration.color3}"}
-
-
-        .control-group
-          = f.label :color4, 'Color 4:',:class => 'control-label'
-          .controls
-            #config-color1.input-append.color{"data-color" => "#{@configuration.color4}", "data-color-format" => "hex"}
-              = f.text_field :color4, :class => 'text_field input-append color'
-              %span.add-on
-                %i{:style => "background-color: #{@configuration.color4}"}
-
-        .control-group
-          = f.label :color5, 'Color 5:',:class => 'control-label'
-          .controls
-            #config-color1.input-append.color{"data-color" => "#{@configuration.color5}", "data-color-format" => "hex"}
-              = f.text_field :color5, :class => 'text_field input-append color'
-              %span.add-on
-                %i{:style => "background-color: #{@configuration.color5}"}
+            .control-group
+              = f.label :public_registration, 'Registro publico:',:class => 'control-label'
+              .controls
+                = f.check_box :public_registration
+                
 
 
-        .control-group
-          = f.label :comments_limit, 'Limite en los comentarios:',:class => 'control-label'
-          .controls
-            = f.text_field :comments_limit, :class => 'text_field'
-          %span.help-block 
-            Para no limitar el tamaño los comentarios poner 0.
+          #estilos.tab-pane
+            .control-group
+              = f.label :color1, 'Color 1:',:class => 'control-label'
+              .controls
+                #config-color1.input-append.color{"data-color" => "#{@configuration.color1}", "data-color-format" => "hex"}
+                  = f.text_field :color1, :class => 'text_field input-append color'
+                  %span.add-on
+                    %i{:style => "background-color: #{@configuration.color1}"}
 
-        .control-group
-          = f.label :public_registration, 'Registro publico:',:class => 'control-label'
-          .controls
-            = f.check_box :public_registration
+            .control-group
+              = f.label :color2, 'Color 2:',:class => 'control-label'
+              .controls
+                #config-color1.input-append.color{"data-color" => "#{@configuration.color2}", "data-color-format" => "hex"}
+                  = f.text_field :color2, :class => 'text_field input-append color'
+                  %span.add-on
+                    %i{:style => "background-color: #{@configuration.color2}"}
 
-        .control-group
-          = f.label :background_image, 'Imagen principal:',:class => 'control-label'
-          .controls#main-image-controls
-            %button.btn.btn-success#button-main-image
-              %i.icon-upload.icon-white
-              Subir Imagen
-            = hidden_field_tag 'configurable[image_x]'
-            = hidden_field_tag 'configurable[image_y]'
-        
-        .control-group
-          = f.label :home_main_content, 'Contenido del home:', :class => 'control-label'
-          .controls
-            = f.text_area :home_main_content, class: 'tinymce home-main-content'
+
+            .control-group
+              = f.label :color3, 'Color 3:',:class => 'control-label'
+              .controls
+                #config-color1.input-append.color{"data-color" => "#{@configuration.color3}", "data-color-format" => "hex"}
+                  = f.text_field :color3, :class => 'text_field input-append color'
+                  %span.add-on
+                    %i{:style => "background-color: #{@configuration.color3}"}
+
+
+            .control-group
+              = f.label :color4, 'Color 4:',:class => 'control-label'
+              .controls
+                #config-color1.input-append.color{"data-color" => "#{@configuration.color4}", "data-color-format" => "hex"}
+                  = f.text_field :color4, :class => 'text_field input-append color'
+                  %span.add-on
+                    %i{:style => "background-color: #{@configuration.color4}"}
+
+            .control-group
+              = f.label :color5, 'Color 5:',:class => 'control-label'
+              .controls
+                #config-color1.input-append.color{"data-color" => "#{@configuration.color5}", "data-color-format" => "hex"}
+                  = f.text_field :color5, :class => 'text_field input-append color'
+                  %span.add-on
+                    %i{:style => "background-color: #{@configuration.color5}"}
+
+            .control-group
+              = f.label :background_image, 'Imagen principal:',:class => 'control-label'
+              .controls#main-image-controls
+                %button.btn.btn-success#button-main-image
+                  %i.icon-upload.icon-white
+                  Subir Imagen
+                = hidden_field_tag 'configurable[image_x]'
+                = hidden_field_tag 'configurable[image_y]'
+
+          #home.tab-pane
+            .control-group
+              = f.label :home_main_content, 'Contenido del home:', :class => 'control-label'
+              .controls
+                = f.text_area :home_main_content, class: 'tinymce home-main-content'
         
         
         
