@@ -1,4 +1,4 @@
-class UserDecorator < Draper::Base
+class UserDecorator < Draper::Decorator
   decorates :user
 
   # Accessing Helpers
