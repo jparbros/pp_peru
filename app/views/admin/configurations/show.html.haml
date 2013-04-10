@@ -49,7 +49,7 @@
           %tr
             %td Imagen Principal
             %td.center
-              = image_tag SiteConfig.background_image
+              = image_tag SiteConfig.background_image if SiteConfig.background_image.present?
               
           %tr
             %td Contenido del home
