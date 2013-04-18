@@ -1,1 +1,42 @@
-# Place all the behaviors and hooks related to the matching controller here.# All this logic will automatically be available in application.js.# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/jQuery ->  $('#discussion_topic_tokens').tokenInput '/admin/topics.json'    theme: 'facebook'    prePopulate: $('#discussion_topic_tokens').data('load')  $('#discussion_group_tokens').tokenInput '/admin/groups.json'    theme: 'facebook'    prePopulate: $('#discussion_group_tokens').data('load')  $('#discussion_visibility').change ->    if $(@).val() == 'group'      $('#group-tokens').show()    else      $('#group-tokens').hide()  if $('#discussion_visibility').val() == 'group'    $('#group-tokens').show()  $('.discussion_end').datepicker    format: 'dd/mm/yyyy'    autoclose: true    language: 'es'    $('.discussion_end').on 'changeDate', (ev)->    time_now = new Date()    if ev.date.valueOf() < time_now.valueOf()      $("#alert").removeClass('hidden')    else      $("#alert").addClass('hidden')    $("#end_of_discussion").change ->    if $(@).is(':checked')      $('.published_end_div').show()    else      $('.published_end_div').hide()      $("#discussion_published_end_at").val(null)    unless $("#end_of_discussion").is(':checked')    $('.published_end_div').hide()
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+	$('#discussion_topic_tokens').tokenInput '/admin/topics.json',
+		theme: 'facebook',
+		prePopulate: $('#discussion_topic_tokens').data('load')
+
+	$('#discussion_group_tokens').tokenInput '/admin/groups.json',
+		theme: 'facebook',
+		prePopulate: $('#discussion_group_tokens').data('load')
+
+	$('#discussion_visibility').change ->
+		if $(@).val() == 'group'
+			$('#group-tokens').show()
+		else
+			$('#group-tokens').hide()
+
+	if $('#discussion_visibility').val() == 'group'
+		$('#group-tokens').show()
+
+	$('.discussion_end').datepicker
+		format: 'dd/mm/yyyy'
+		autoclose: true
+		language: 'es'
+	
+	$('.discussion_end').on 'changeDate', (ev)->
+		time_now = new Date()
+		if ev.date.valueOf() < time_now.valueOf()
+			$("#alert").removeClass('hidden')
+		else
+			$("#alert").addClass('hidden')
+	
+	$("#end_of_discussion").change ->
+		if $(@).is(':checked')
+			$('.published_end_div').show()
+		else
+			$('.published_end_div').hide()
+			$("#discussion_published_end_at").val(null)
+	
+	unless $("#end_of_discussion").is(':checked')
+		$('.published_end_div').hide()

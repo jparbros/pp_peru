@@ -33,7 +33,7 @@
 		.control-label
 			= f.label :province, 'Providencia:'
 		.controls
-			= f.select :province_id, Province.all.collect {|province| [province.name.humanize, province.id]}
+			= f.select :province_id, Province.all.collect {|province| [province.name.try(:humanize), province.id]}
 
 	.control-group
 		.controls
