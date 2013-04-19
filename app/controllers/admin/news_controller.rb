@@ -1,5 +1,5 @@
 class Admin::NewsController < Admin::BaseController
-  before_filter :find_news, only: [:edit, :show, :destroy, :update]
+  before_filter :find_news, only: [:edit, :show, :detroy, :update]
   before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
  
   def index
