@@ -2,17 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $("[name='date_objective']").bind 'blur', -> 
+  $("body").on blur: -> 
     $(@).datepicker('hide')
     $('.form_in_place').submit()
+  , "[name='date_objective']"
       
   $('.best_in_place').best_in_place()
   
-  $('.date_objective').bind 'focus', ->
+  $('body').on focus: ->
     $(@).datepicker
       format: 'yyyy-mm-dd'
       autoclose: true
       language: 'es'
+  ,'.date_objective'
   
   $('#attendee_birthday').datepicker
     format: 'yyyy-mm-dd'
