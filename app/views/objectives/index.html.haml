@@ -1,6 +1,7 @@
 #documents-container.row
   %section#content.span12
-    %h1 Objetivos del Partido
+    - if Setting.objetivos_subtitle.present?
+      %h1= Setting.objetivos_subtitle
     
     .accordion#buenas-practicas
       - @objetivos.each_with_index do  |objective_root, index|

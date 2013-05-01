@@ -11,6 +11,8 @@
             %a{href: '#estilos', 'data-toggle' => "tab"} Diseño
           %li
             %a{href: '#home', 'data-toggle' => "tab"} Home
+          %li
+            %a{href: '#tabs', 'data-toggle' => "tab"} Secciones
             
         .tab-content
           #general.tab-pane.active
@@ -24,13 +26,14 @@
               = label_tag :comments_limit, 'Limite en los comentarios:',:class => 'control-label'
               .controls
                 = text_field_tag 'setting[comments_limit]', Setting.comments_limit, :class => 'text_field'
-              %span.help-block 
-                Para no limitar el tamaño los comentarios poner 0.
+                %span.help-block 
+                  Para no limitar el tamaño los comentarios poner 0.
 
             .control-group
-              = label_tag :public_registration, 'Registro publico:',:class => 'control-label'
               .controls
-                = check_box_tag 'setting[public_registration]', true, Setting.public_registration
+                %label.checkbox                
+                  = check_box_tag 'setting[public_registration]', true, Setting.public_registration
+                  Registro publico
                 
 
 
@@ -92,8 +95,129 @@
               .controls
                 = text_area_tag 'setting[home_main_content]', Setting.home_main_content, class: 'tinymce home-main-content'
         
-        
-        
+          #tabs.tab-pane
+            %fieldset
+              %legend Centro de noticias
+              .control-group
+                = label_tag :centro_de_noticas_title, 'Titulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[centro_de_noticas_title]', Setting.centro_de_noticas_title, :class => 'text_field input-append', placeholder: 'Centro de noticias'
+                  %span.help-block
+                    Titulo de la secci&oacute;n, se usa para el menu.
+          
+              .control-group
+                = label_tag :centro_de_noticas_subtitle, 'Subtitulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[centro_de_noticas_subtitle]', Setting.centro_de_noticas_subtitle, :class => 'text_field input-append', placeholder: 'Lee las noticias sobre...'
+                  %span.help-block
+                    Si no desea mostrar el subtitulo de la secci&oacute;n dejar en blanco.
+      
+              .control-group
+                .controls
+                  %label.checkbox
+                    = check_box_tag 'setting[centro_de_noticas_visible]', true, Setting.centro_de_noticas_visible
+                    Activo
+                    %span.help-block
+                      ¿Desea mostrar la secci&oacute;n?
+
+            %fieldset
+              %legend Centro educacional
+              .control-group
+                = label_tag :centro_educacional_title, 'Titulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[centro_educacional_title]', Setting.centro_educacional_title, :class => 'text_field input-append', placeholder: 'Centro educacional'
+                  %span.help-block
+                    Titulo de la secci&oacute;n, se usa para el menu.
+          
+              .control-group
+                = label_tag :centro_educacional_subtitle, 'Subtitulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[centro_educacional_subtitle]', Setting.centro_educacional_subtitle, :class => 'text_field input-append', placeholder: 'Lee las propuestas educativas'
+                  %span.help-block
+                    Si no desea mostrar el subtitulo de la secci&oacute;n dejar en blanco.
+      
+              .control-group
+                .controls
+                  %label.checkbox
+                    = check_box_tag 'setting[centro_educacional_visible]', true, Setting.centro_educacional_visible
+                    Activo
+                    %span.help-block
+                      ¿Desea mostrar la secci&oacute;n?
+
+            %fieldset
+              %legend Centro de debates
+              .control-group
+                = label_tag :centro_de_debates_title, 'Titulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[centro_de_debates_title]', Setting.centro_de_debates_title, :class => 'text_field input-append', placeholder: 'Centro de debates'
+                  %span.help-block
+                    Titulo de la secci&oacute;n, se usa para el menu.
+          
+              .control-group
+                = label_tag :centro_de_debates_subtitle, 'Subtitulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[centro_de_debates_subtitle]', Setting.centro_de_debates_subtitle, :class => 'text_field input-append', placeholder: 'Lee y Opina sobre los Debates'
+                  %span.help-block
+                    Si no desea mostrar el subtitulo de la secci&oacute;n "centro de debates" dejar en blanco.
+      
+              .control-group
+                .controls
+                  %label.checkbox
+                    = check_box_tag 'setting[centro_de_debates_visible]', true, Setting.centro_de_debates_visible
+                    Activo
+                    %span.help-block
+                      ¿Desea mostrar la secci&oacute;n centro de debates?
+
+            %fieldset
+              %legend Propuesta ciudadana
+              .control-group
+                = label_tag :propuesta_ciudadana_title, 'Titulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[propuesta_ciudadana_title]', Setting.propuesta_ciudadana_title, :class => 'text_field input-append', placeholder: 'Propuesta ciudadana'
+                  %span.help-block
+                    Titulo de la secci&oacute;n, se usa para el menu.
+          
+              .control-group
+                = label_tag :propuesta_ciudadana_subtitle, 'Subtitulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[propuesta_ciudadana_subtitle]', Setting.propuesta_ciudadana_subtitle, :class => 'text_field input-append', placeholder: 'Propuestas Ciudadanas, Aporta tus ideas'
+                  %span.help-block
+                    Si no desea mostrar el subtitulo de la secci&oacute;n "propuesta ciudadana" dejar en blanco.
+      
+              .control-group
+                .controls
+                  %label.checkbox
+                    = check_box_tag 'setting[propuesta_ciudadana_visible]', true, Setting.propuesta_ciudadana_visible
+                    Activo
+                    %span.help-block
+                      ¿Desea mostrar la secci&oacute;n de propuestas ciudadanas?
+
+
+            %fieldset
+              %legend Objetivos
+              .control-group
+                = label_tag :objetivos_title, 'Titulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[objetivos_title]', Setting.objetivos_title, :class => 'text_field input-append', placeholder: 'Objetivos'
+                  %span.help-block
+                    Titulo de la secci&oacute;n, se usa para el menu.
+          
+              .control-group
+                = label_tag :objetivos_subtitle, 'Subtitulo:', :class => 'control-label'
+                .controls
+                  = text_field_tag 'setting[objetivos_subtitle]', Setting.objetivos_subtitle, :class => 'text_field input-append', placeholder: 'Objetivos del partido'
+                  %span.help-block
+                    Si no desea mostrar el subtitulo de la secci&oacute;n "objetivos" dejar en blanco.
+      
+              .control-group
+                .controls
+                  %label.checkbox
+                    = check_box_tag 'setting[objetivos_visible]', true, Setting.objetivos_visible
+                    Activo
+                    %span.help-block
+                      ¿Desea mostrar la secci&oacute;n de objetivos?
+
+
 
         .form-actions
           = submit_tag 'Actualizar', :class => 'btn btn-primary'

@@ -13,6 +13,7 @@ class Admin::ConfigurationsController < Admin::BaseController
     
     upload_background_image if params[:background_image][:file].present?
     upload_style_images
+    set_boolean_values
     
     params[:setting].each do |setting|
       Setting[setting.first] = setting.last
@@ -32,10 +33,22 @@ class Admin::ConfigurationsController < Admin::BaseController
   end
   
   def upload_style_images
-    settings = params[:setting]
     unless Setting.color1.equal?(settings[:color1]) || Setting.color2.equal?(settings[:color2]) || Setting.color3.equal?(settings[:color3]) || Setting.color4.equal?(settings[:color4]) || Setting.color5.equal?(settings[:color5])
       ImageCreator.new(:footer, Setting.array_colors).upload_images
       ImageCreator.new(:header, Setting.array_colors).upload_images
     end
+  end
+  
+  def set_boolean_values
+    params[:setting][:public_registration] = !!settings[:public_registration]
+    params[:setting][:centro_de_noticas_visible] = !!settings[:centro_de_noticas_visible]
+    params[:setting][:centro_educacional_visible] = !!settings[:centro_educacional_visible]
+    params[:setting][:centro_de_debates_visible] = !!settings[:centro_de_debates_visible]
+    params[:setting][:propuesta_ciudadana_visible] = !!settings[:propuesta_ciudadana_visible]
+    params[:setting][:objetivos_visible] = !!settings[:objetivos_visible]
+  end
+  
+  def settings
+    params[:setting]
   end
 end

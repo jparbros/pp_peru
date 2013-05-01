@@ -57,18 +57,29 @@
       %ul
         %li
           = link_to image_tag('/assets/home.png'), root_path
-        %li{class: "nav-menu-item #{yield(:menu_news)}"}
-          = link_to 'Centro de Noticias', noticias_path
-        %li{class: "nav-menu-item #{yield(:menu_entry)}"}
-          = link_to 'Centro Educacional', entradas_path
-        %li{class: "nav-menu-item #{yield(:menu_discussions)}"}
-          = link_to 'Centro de Debates', :debates
-        %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
-          = link_to 'Propuesta Ciudadana', :propuestas
+
+        - if Setting.centro_de_noticas_visible && Setting.centro_de_noticas_title.present?
+          %li{class: "nav-menu-item #{yield(:menu_news)}"}
+            = link_to Setting.centro_de_noticas_title.humanize, noticias_path
+
+        - if Setting.centro_educacional_visible && Setting.centro_educacional_title.present?
+          %li{class: "nav-menu-item #{yield(:menu_entry)}"}
+            = link_to Setting.centro_educacional_title.humanize, entradas_path
+
+        - if Setting.centro_de_debates_visible && Setting.centro_de_debates_title.present?
+          %li{class: "nav-menu-item #{yield(:menu_discussions)}"}
+            = link_to Setting.centro_de_debates_title.humanize, :debates
+
+        - if Setting.propuesta_ciudadana_visible && Setting.propuesta_ciudadana_title.present?
+          %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
+            = link_to Setting.propuesta_ciudadana_title.humanize, :propuestas
+
         %li{class: "nav-menu-item #{yield(:menu_objetivos)}"}
           = link_to 'Buenas Practicas', buenas_practicas_path
-        %li{class: "nav-menu-item"}
-          = link_to 'Objetivos', objetivos_path
+
+        - if Setting.objetivos_visible && Setting.objetivos_title.present?
+          %li{class: "nav-menu-item"}
+            = link_to Setting.objetivos_title.humanize, objetivos_path
             
 
     .container

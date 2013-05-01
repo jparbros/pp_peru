@@ -2,7 +2,8 @@
 = section_title('Centro De Noticias')
 #documents-container.row
   %section#content.span8
-    %h1 Lee las noticias sobre tu partido politico y opina sobre su actuaci&oacute;n.
+    - if Setting.centro_de_noticas_subtitle.present?
+      %h1= Setting.centro_de_noticas_subtitle
 
     = render @news
 

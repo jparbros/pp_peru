@@ -2,7 +2,9 @@
 = section_title('Centro De Debates')
 #documents-container.row
   %section#content.span8
-    %h1 Lee y Opina sobre los Debates
+    - if Setting.centro_de_debates_subtitle.present?
+      %h1= Setting.centro_de_debates_subtitle
+
     = render partial: 'discussion', collection: @discussions
 
   = render 'shared/right_aside'

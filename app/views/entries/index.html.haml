@@ -2,7 +2,9 @@
 = section_title('Centro Educacional')
 #documents-container.row
   %section#content.span8
-    %h1 Lee las propuestas educativas
+    - if Setting.centro_educacional_subtitle.present?
+      %h1= Setting.centro_educacional_subtitle
+
     = render partial: 'entry', collection: @entries
 
   = render 'shared/right_aside'
