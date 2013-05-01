@@ -11,13 +11,15 @@
         %li
           %a{href: '#estilos', 'data-toggle' => "tab"} Diseño
         %li
+          %a{href: '#tipografia', 'data-toggle' => "tab"} Tipografia
+        %li
           %a{href: '#home', 'data-toggle' => "tab"} Home
         %li
           %a{href: '#tabs', 'data-toggle' => "tab"} Secciones
       
       .tab-content
         #general.tab-pane.active
-          %dl.dl-horizontal
+          %dl
             %dt Nombre del sitio:
             %dd= Setting.site_name
             
@@ -34,7 +36,7 @@
                   No
         
         #estilos.tab-pane
-          %dl.dl-horizontal
+          %dl
             %dt Color 1:
             %dd
               .config-color-sample{style: "background-color: #{Setting.color1};"}
@@ -72,6 +74,39 @@
               %dt Imagen Principal:
               %dd= image_tag Setting.background_image 
         
+        #tipografia.tab-pane
+          .tabbable.tabs-left
+            %ul.nav.nav-tabs
+              %li.active
+                %a{href: '#tipografia_texto', 'data-toggle' => "tab"} Texto
+              %li
+                %a{href: '#tipografia_enlaces', 'data-toggle' => "tab"} Enlaces
+              
+            .tab-content
+              #tipografia_texto.tab-pane.active
+                %dl
+                  %dt Tipografia:
+                  %dd 
+                    %span{style: "font-family:#{raw Setting.text_font_family}"}= Setting.text_font_family_name
+                  
+                  %dt Tamaño:
+                  %dd 
+                    %span{style: "font-size:#{Setting.text_font_size}"}= "#{Setting.text_font_size}px"
+                  
+                  %dt Color:
+                  %dd
+                    %span{style: "color:#{Setting.text_color}"}= Setting.text_color
+              
+              #tipografia_enlaces.tab-pane
+                %dl
+                  %dt Color del enlace:
+                  %dd
+                    %span{style: "color:#{Setting.link_color}"}= Setting.link_color
+                  
+                  %dt Color del enlace activo:
+                  %dd
+                    %span{style: "color:#{Setting.link_color_hover}"}= Setting.link_color_hover
+          
         #home.tab-pane=  Setting.home_main_content.html_safe if Setting.home_main_content.present?
         
         #tabs.tab-pane
@@ -93,7 +128,7 @@
                 .page-header
                   %h3 Centro de noticias
 
-                %dl.dl-horizontal
+                %dl
                   %dt Titulo:
                   %dd= Setting.centro_de_noticas_title.present? ? Setting.centro_de_noticas_title : 'No se esta mostrando'
                   
@@ -118,7 +153,7 @@
                 .page-header
                   %h3 Centro educacional
 
-                %dl.dl-horizontal
+                %dl
                   %dt Titulo:
                   %dd= Setting.centro_educacional_title.present? ? Setting.centro_educacional_title : 'No se esta mostrando'
                   
@@ -144,7 +179,7 @@
                 .page-header
                   %h3 Centro de debates
 
-                %dl.dl-horizontal
+                %dl
                   %dt Titulo:
                   %dd= Setting.centro_de_debates_title.present? ? Setting.centro_de_debates_title : 'No se esta mostrando'
                   
@@ -170,7 +205,7 @@
                 .page-header
                   %h3 Propuesta ciudadana
 
-                %dl.dl-horizontal
+                %dl
                   %dt Titulo:
                   %dd= Setting.propuesta_ciudadana_title.present? ? Setting.propuesta_ciudadana_title : 'No se esta mostrando'
                   
@@ -197,7 +232,7 @@
                 .page-header
                   %h3 Objetivos
 
-                %dl.dl-horizontal
+                %dl
                   %dt Titulo:
                   %dd= Setting.objetivos_title.present? ? Setting.objetivos_title : 'No se esta mostrando'
                   

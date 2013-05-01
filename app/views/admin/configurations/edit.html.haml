@@ -10,6 +10,8 @@
           %li
             %a{href: '#estilos', 'data-toggle' => "tab"} Diseño
           %li
+            %a{href: '#tipografia', 'data-toggle' => "tab"} Tipografia
+          %li
             %a{href: '#home', 'data-toggle' => "tab"} Home
           %li
             %a{href: '#tabs', 'data-toggle' => "tab"} Secciones
@@ -89,6 +91,57 @@
                   Subir Imagen
                 = hidden_field_tag 'background_image[image_x]'
                 = hidden_field_tag 'background_image[image_y]'
+
+          #tipografia.tab-pane
+            .tabbable.tabs-left
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{href: '#tipografia_texto', 'data-toggle' => "tab"} Texto
+                %li
+                  %a{href: '#tipografia_enlaces', 'data-toggle' => "tab"} Enlaces
+                
+              .tab-content
+                #tipografia_texto.tab-pane.active
+                  %fieldset
+                    %legend Texto
+                    .control-group
+                      = label_tag :text_font_family, 'Tipografia:',:class => 'control-label'
+                      .controls
+                        = select_tag 'setting[text_font_family]',  grouped_options_for_select(Setting::WEB_FONTS, Setting.text_font_family, 'Seleccione una tipografia'), :class => 'text_field'
+
+                    .control-group
+                      = label_tag :text_font_size, 'Tamaño de la fuente:',:class => 'control-label'
+                      .controls
+                        = number_field_tag 'setting[text_font_size]', Setting.text_font_size, :class => 'text_field'
+                        
+                    .control-group
+                      = label_tag :text_color, 'Color del texto:',:class => 'control-label'
+                      .controls
+                        #config-color1.input-append.color{"data-color" => "#{Setting.text_color}", "data-color-format" => "hex"}
+                          = text_field_tag 'setting[text_color]', Setting.text_color, :class => 'text_field input-append color'
+                          %span.add-on
+                            %i{:style => "background-color: #{Setting.text_color}"}
+                
+                #tipografia_enlaces.tab-pane
+                  %fieldset
+                    %legend Enlaces
+                        
+                    .control-group
+                      = label_tag :link_color, 'Color del enlace:',:class => 'control-label'
+                      .controls
+                        #config-color1.input-append.color{"data-color" => "#{Setting.link_color}", "data-color-format" => "hex"}
+                          = text_field_tag 'setting[link_color]', Setting.link_color, :class => 'text_field input-append color'
+                          %span.add-on
+                            %i{:style => "background-color: #{Setting.link_color}"}
+
+                    .control-group
+                      = label_tag :link_color_hover, 'Color del enlace activo:',:class => 'control-label'
+                      .controls
+                        #config-color1.input-append.color{"data-color" => "#{Setting.link_color_hover}", "data-color-format" => "hex"}
+                          = text_field_tag 'setting[link_color_hover]', Setting.link_color_hover, :class => 'text_field input-append color'
+                          %span.add-on
+                            %i{:style => "background-color: #{Setting.link_color_hover}"}
+
 
           #home.tab-pane
             = text_area_tag 'setting[home_main_content]', Setting.home_main_content, class: 'tinymce home-main-content'

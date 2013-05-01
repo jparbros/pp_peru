@@ -23,6 +23,37 @@
         color: #{Setting.color1};
         }
 
+      body {
+      - if Setting.text_color.present?
+        color: #{Setting.text_color};  
+      - else
+        color: #333333;
+
+      - if Setting.text_font_family.present?
+        font-family: #{raw Setting.text_font_family};  
+      - else
+        font-family: Trebuchet MS;
+      
+      - if Setting.text_font_size.present?
+        font-size: #{Setting.text_font_size.to_i}px;  
+      - else
+        font-size: 13px;
+      }
+      
+      a {
+      - if Setting.link_color.present?
+        color: #{Setting.link_color};  
+      - else
+        color: #0088cc;
+      }
+      
+      a:hover {
+      - if Setting.link_color_hover.present?
+        color: #{Setting.link_color_hover};  
+      - else
+        color: #005580;
+      }
+
   %body
     %header#header.container-wrap
       #header-container.container
