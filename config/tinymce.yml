@@ -7,3 +7,5 @@ theme_advanced_buttons3_add:
 plugins:
   - table
   - fullscreen
+width: 800
+height: 600

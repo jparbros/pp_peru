@@ -4,54 +4,217 @@
       .page-header
         %h1 Configuraciones
       = link_to 'Editar configuraciones', edit_admin_configuration_path, class: ['btn', 'btn-primary']
-      %table.table.table-striped.table-bordered
-        %thead
-          %tr
-            %th Configuracion
-            %th Valor
-        %tbody
-          %tr
-            %td Nombre del sitio:
-            %td= Setting.site_name
-          %tr
-            %td Color 1
-            %td.center
+      
+      %ul.nav.nav-tabs
+        %li.active
+          %a{href: '#general', 'data-toggle' => "tab"} General
+        %li
+          %a{href: '#estilos', 'data-toggle' => "tab"} Diseño
+        %li
+          %a{href: '#home', 'data-toggle' => "tab"} Home
+        %li
+          %a{href: '#tabs', 'data-toggle' => "tab"} Secciones
+      
+      .tab-content
+        #general.tab-pane.active
+          %dl.dl-horizontal
+            %dt Nombre del sitio:
+            %dd= Setting.site_name
+            
+            %dt Comentarios:
+            %dd= Setting.comments_limit.to_i > 0 ? "#{Setting.comments_limit} caracteres máximo" : 'Ilimitados'
+            
+            %dt Registro publico:
+            %dd
+              - if Setting.public_registration
+                %span.label.label-success
+                  Si
+              - else
+                %span.label.label-important
+                  No
+        
+        #estilos.tab-pane
+          %dl.dl-horizontal
+            %dt Color 1:
+            %dd
               .config-color-sample{style: "background-color: #{Setting.color1};"}
-                = Setting.color1
-          %tr
-            %td Color 2
-            %td.center
+              = Setting.color1
+            
+            %dt Color 2:
+            %dd
               .config-color-sample{style: "background-color: #{Setting.color2};"}
-                = Setting.color2
-          %tr
-            %td Color 3
-            %td.center
+              = Setting.color2
+            
+            %dt Color 3:
+            %dd
               .config-color-sample{style: "background-color: #{Setting.color3};"}
-                = Setting.color3
-          %tr
-            %td Color 4
-            %td.center
+              = Setting.color3
+            
+            %dt Color 4:
+            %dd
               .config-color-sample{style: "background-color: #{Setting.color4};"}
-                = Setting.color4
-          %tr
-            %td Color 5
-            %td.center
+              = Setting.color4
+        
+            %dt Color 5:
+            %dd
               .config-color-sample{style: "background-color: #{Setting.color5};"}
-                = Setting.color5
-          %tr
-            %td Limite en los comentarios
-            %td.center
-              = Setting.comments_limit.to_i > 0 ? Setting.comments_limit : 'Ilimitado'
-          %tr
-            %td Registro publico
-            %td.center
-              = Setting.public_registration ? 'Si' : 'No'
-          %tr
-            %td Imagen Principal
-            %td.center
-              = image_tag Setting.background_image if Setting.background_image.present?
+              = Setting.color5
               
-          %tr
-            %td Contenido del home
-            %td.center
-              =  Setting.home_main_content.html_safe if Setting.home_main_content.present?
+            - if Setting.footer_image.present?
+              %dt Imagen del footer:
+              %dd= image_tag Setting.footer_image
+              
+            - if Setting.header_image.present?
+              %dt Imagen del header:
+              %dd= image_tag Setting.header_image
+
+            - if Setting.background_image.present?
+              %dt Imagen Principal:
+              %dd= image_tag Setting.background_image 
+        
+        #home.tab-pane=  Setting.home_main_content.html_safe if Setting.home_main_content.present?
+        
+        #tabs.tab-pane
+          .tabbable.tabs-left
+            %ul.nav.nav-tabs
+              %li.active
+                %a{href: '#centro_de_noticias', 'data-toggle' => "tab"} Centro de noticias
+              %li
+                %a{href: '#centro_educacional', 'data-toggle' => "tab"} Centro educacional
+              %li
+                %a{href: '#centro_de_debates', 'data-toggle' => "tab"} Centro de debates
+              %li
+                %a{href: '#propuesta_ciudadana', 'data-toggle' => "tab"} Propuesta ciudadana
+              %li
+                %a{href: '#objetivos', 'data-toggle' => "tab"} Objetivos
+              
+            .tab-content
+              #centro_de_noticias.tab-pane.active
+                .page-header
+                  %h3 Centro de noticias
+
+                %dl.dl-horizontal
+                  %dt Titulo:
+                  %dd= Setting.centro_de_noticas_title.present? ? Setting.centro_de_noticas_title : 'No se esta mostrando'
+                  
+                  %dt Subtitulo:
+                  %dd= Setting.centro_de_noticas_subtitle.present? ? Setting.centro_de_noticas_subtitle : 'No se esta mostrando'
+                  
+                  %dt Activo:
+                  %dd
+                    - if Setting.centro_de_noticas_visible
+                      %span.label.label-success
+                        Si
+                    - else
+                      %span.label.label-important
+                        No
+                  
+                - if Setting.centro_de_noticas_title.blank? || !Setting.centro_de_noticas_visible
+                  .alert.alert-error
+                    %strong ¡Atenci&oacute;n!
+                    Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.
+              
+              #centro_educacional.tab-pane
+                .page-header
+                  %h3 Centro educacional
+
+                %dl.dl-horizontal
+                  %dt Titulo:
+                  %dd= Setting.centro_educacional_title.present? ? Setting.centro_educacional_title : 'No se esta mostrando'
+                  
+                  %dt Subtitulo:
+                  %dd= Setting.centro_educacional_subtitle.present? ? Setting.centro_educacional_subtitle : 'No se esta mostrando'
+                  
+                  %dt Activo:
+                  %dd
+                    - if Setting.centro_educacional_visible
+                      %span.label.label-success
+                        Si
+                    - else
+                      %span.label.label-important
+                        No
+                    
+                  
+                - if Setting.centro_educacional_title.blank? || !Setting.centro_educacional_visible
+                  .alert.alert-error
+                    %strong ¡Atenci&oacute;n!
+                    Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.
+              
+              #centro_de_debates.tab-pane
+                .page-header
+                  %h3 Centro de debates
+
+                %dl.dl-horizontal
+                  %dt Titulo:
+                  %dd= Setting.centro_de_debates_title.present? ? Setting.centro_de_debates_title : 'No se esta mostrando'
+                  
+                  %dt Subtitulo:
+                  %dd= Setting.centro_de_debates_subtitle.present? ? Setting.centro_de_debates_subtitle : 'No se esta mostrando'
+                  
+                  %dt Activo:
+                  %dd
+                    - if Setting.centro_de_debates_visible
+                      %span.label.label-success
+                        Si
+                    - else
+                      %span.label.label-important
+                        No
+                    
+                  
+                - if Setting.centro_de_debates_title.blank? || !Setting.centro_de_debates_visible
+                  .alert.alert-error
+                    %strong ¡Atenci&oacute;n!
+                    Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.
+              
+              #propuesta_ciudadana.tab-pane
+                .page-header
+                  %h3 Propuesta ciudadana
+
+                %dl.dl-horizontal
+                  %dt Titulo:
+                  %dd= Setting.propuesta_ciudadana_title.present? ? Setting.propuesta_ciudadana_title : 'No se esta mostrando'
+                  
+                  %dt Subtitulo:
+                  %dd= Setting.propuesta_ciudadana_subtitle.present? ? Setting.propuesta_ciudadana_subtitle : 'No se esta mostrando'
+                  
+                  %dt Activo:
+                  %dd
+                    - if Setting.propuesta_ciudadana_visible
+                      %span.label.label-success
+                        Si
+                    - else
+                      %span.label.label-important
+                        No
+                    
+                  
+                - if Setting.propuesta_ciudadana_title.blank? || !Setting.propuesta_ciudadana_visible
+                  .alert.alert-error
+                    %strong ¡Atenci&oacute;n!
+                    Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.
+
+              
+              #objetivos.tab-pane
+                .page-header
+                  %h3 Objetivos
+
+                %dl.dl-horizontal
+                  %dt Titulo:
+                  %dd= Setting.objetivos_title.present? ? Setting.objetivos_title : 'No se esta mostrando'
+                  
+                  %dt Subtitulo:
+                  %dd= Setting.objetivos_subtitle.present? ? Setting.objetivos_subtitle : 'No se esta mostrando'
+                  
+                  %dt Activo:
+                  %dd
+                    - if Setting.objetivos_visible
+                      %span.label.label-success
+                        Si
+                    - else
+                      %span.label.label-important
+                        No
+                    
+                  
+                - if Setting.objetivos_title.blank? || !Setting.objetivos_visible
+                  .alert.alert-error
+                    %strong ¡Atenci&oacute;n!
+                    Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.

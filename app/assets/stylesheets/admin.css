@@ -19,6 +19,7 @@
  *= require 'admin/jqtree'
  *= require fileuploader
  *= require jquery.Jcrop.min
+ *= require 'admin/bootstrapSwitch'
  *= require_tree ./admin
  */
 
@@ -47,4 +48,10 @@ body .modal {
   line-height: 1;
   color: white;
   margin: 20px;
+}
+
+.config-color-sample {
+  display: inline-block;
+  height: 10px;
+  width: 50px;
 }
