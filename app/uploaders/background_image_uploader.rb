@@ -5,6 +5,8 @@ class BackgroundImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
+  
+  attr_accessor :image_x, :image_y
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -21,7 +23,7 @@ class BackgroundImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/background_image/#{mounted_as}/"
   end
   
   def cache_dir
@@ -33,7 +35,7 @@ class BackgroundImageUploader < CarrierWave::Uploader::Base
   
   def crop
     manipulate! do |img| 
-      img.crop("675X140+#{model.image_x}+#{model.image_y}")
+      img.crop("675X140+#{self.image_x}+#{self.image_y}")
       img 
     end
   end

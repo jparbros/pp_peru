@@ -3,9 +3,9 @@
     .box-content
       .page-header
         %h1 Editar Configuraciones
-      = form_for [:admin, @configuration], url: admin_configuration_path, :html => { :class => 'form form-horizontal', multipart: true } do |f|
+      = form_tag admin_configuration_path, :class => 'form form-horizontal', multipart: true, method: :put do
         %ul.nav.nav-tabs
-          %li
+          %li.active
             %a{href: '#general', 'data-toggle' => "tab"} General
           %li
             %a{href: '#estilos', 'data-toggle' => "tab"} Diseño
@@ -16,87 +16,87 @@
           #general.tab-pane.active
                       
             .control-group
-              = f.label :site_name, 'Nombre del sitio:',:class => 'control-label'
+              = label_tag :site_name, 'Nombre del sitio:',:class => 'control-label'
               .controls
-                = f.text_field :site_name, :class => 'text_field'
+                = text_field_tag 'setting[site_name]', Setting.site_name, :class => 'text_field'
                 
             .control-group
-              = f.label :comments_limit, 'Limite en los comentarios:',:class => 'control-label'
+              = label_tag :comments_limit, 'Limite en los comentarios:',:class => 'control-label'
               .controls
-                = f.text_field :comments_limit, :class => 'text_field'
+                = text_field_tag 'setting[comments_limit]', Setting.comments_limit, :class => 'text_field'
               %span.help-block 
                 Para no limitar el tamaño los comentarios poner 0.
 
             .control-group
-              = f.label :public_registration, 'Registro publico:',:class => 'control-label'
+              = label_tag :public_registration, 'Registro publico:',:class => 'control-label'
               .controls
-                = f.check_box :public_registration
+                = check_box_tag 'setting[public_registration]', true, Setting.public_registration
                 
 
 
           #estilos.tab-pane
             .control-group
-              = f.label :color1, 'Color 1:',:class => 'control-label'
+              = label_tag :color1, 'Color 1:',:class => 'control-label'
               .controls
-                #config-color1.input-append.color{"data-color" => "#{@configuration.color1}", "data-color-format" => "hex"}
-                  = f.text_field :color1, :class => 'text_field input-append color'
+                #config-color1.input-append.color{"data-color" => "#{Setting.color1}", "data-color-format" => "hex"}
+                  = text_field_tag 'setting[color1]', Setting.color1, :class => 'text_field input-append color'
                   %span.add-on
-                    %i{:style => "background-color: #{@configuration.color1}"}
+                    %i{:style => "background-color: #{Setting.color1}"}
 
             .control-group
-              = f.label :color2, 'Color 2:',:class => 'control-label'
+              = label_tag :color2, 'Color 2:',:class => 'control-label'
               .controls
-                #config-color1.input-append.color{"data-color" => "#{@configuration.color2}", "data-color-format" => "hex"}
-                  = f.text_field :color2, :class => 'text_field input-append color'
+                #config-color1.input-append.color{"data-color" => "#{Setting.color2}", "data-color-format" => "hex"}
+                  = text_field_tag 'setting[color2]', Setting.color2, :class => 'text_field input-append color'
                   %span.add-on
-                    %i{:style => "background-color: #{@configuration.color2}"}
-
-
-            .control-group
-              = f.label :color3, 'Color 3:',:class => 'control-label'
-              .controls
-                #config-color1.input-append.color{"data-color" => "#{@configuration.color3}", "data-color-format" => "hex"}
-                  = f.text_field :color3, :class => 'text_field input-append color'
-                  %span.add-on
-                    %i{:style => "background-color: #{@configuration.color3}"}
+                    %i{:style => "background-color: #{Setting.color2}"}
 
 
             .control-group
-              = f.label :color4, 'Color 4:',:class => 'control-label'
+              = label_tag :color3, 'Color 3:',:class => 'control-label'
               .controls
-                #config-color1.input-append.color{"data-color" => "#{@configuration.color4}", "data-color-format" => "hex"}
-                  = f.text_field :color4, :class => 'text_field input-append color'
+                #config-color1.input-append.color{"data-color" => "#{Setting.color3}", "data-color-format" => "hex"}
+                  = text_field_tag 'setting[color3]', Setting.color3, :class => 'text_field input-append color'
                   %span.add-on
-                    %i{:style => "background-color: #{@configuration.color4}"}
+                    %i{:style => "background-color: #{Setting.color3}"}
+
 
             .control-group
-              = f.label :color5, 'Color 5:',:class => 'control-label'
+              = label_tag :color4, 'Color 4:',:class => 'control-label'
               .controls
-                #config-color1.input-append.color{"data-color" => "#{@configuration.color5}", "data-color-format" => "hex"}
-                  = f.text_field :color5, :class => 'text_field input-append color'
+                #config-color1.input-append.color{"data-color" => "#{Setting.color4}", "data-color-format" => "hex"}
+                  = text_field_tag 'setting[color4]', Setting.color4, :class => 'text_field input-append color'
                   %span.add-on
-                    %i{:style => "background-color: #{@configuration.color5}"}
+                    %i{:style => "background-color: #{Setting.color4}"}
 
             .control-group
-              = f.label :background_image, 'Imagen principal:',:class => 'control-label'
+              = label_tag :color5, 'Color 5:',:class => 'control-label'
+              .controls
+                #config-color1.input-append.color{"data-color" => "#{Setting.color5}", "data-color-format" => "hex"}
+                  = text_field_tag 'setting[color5]', Setting.color5, :class => 'text_field input-append color'
+                  %span.add-on
+                    %i{:style => "background-color: #{Setting.color5}"}
+
+            .control-group
+              = label_tag :background_image, 'Imagen principal:',:class => 'control-label'
               .controls#main-image-controls
                 %button.btn.btn-success#button-main-image
                   %i.icon-upload.icon-white
                   Subir Imagen
-                = hidden_field_tag 'configurable[image_x]'
-                = hidden_field_tag 'configurable[image_y]'
+                = hidden_field_tag 'background_image[image_x]'
+                = hidden_field_tag 'background_image[image_y]'
 
           #home.tab-pane
             .control-group
-              = f.label :home_main_content, 'Contenido del home:', :class => 'control-label'
+              = label_tag :home_main_content, 'Contenido del home:', :class => 'control-label'
               .controls
-                = f.text_area :home_main_content, class: 'tinymce home-main-content'
+                = text_area_tag 'setting[home_main_content]', Setting.home_main_content, class: 'tinymce home-main-content'
         
         
         
 
         .form-actions
-          = f.submit 'Actualizar', :class => 'btn btn-primary'
+          = submit_tag 'Actualizar', :class => 'btn btn-primary'
           = link_to 'Cancelar', admin_configuration_path, :class => 'btn'
 
 #main-image-upload.modal.hide.fade
@@ -117,7 +117,7 @@
   
   $('#button-main-image').click(function(event){
   event.preventDefault();
-  fileInput =  $('<input/>').attr('type','file').attr('name','configurable[background_image]').addClass('hide').attr('id','main-image-input');
+  fileInput =  $('<input/>').attr('type','file').attr('name','background_image[file]').addClass('hide').attr('id','main-image-input');
   $('form').append(fileInput);
   
   fileInput.change(function() {
@@ -133,8 +133,8 @@
   allowSelect: false,
   allowResize: false,
   onChange: function(c) {
-  $('#configurable_image_x').val(c.x);
-  $('#configurable_image_y').val(c.y);
+  $('#background_image_image_x').val(c.x);
+  $('#background_image_image_y').val(c.y);
   }
   });
   };

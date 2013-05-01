@@ -31,11 +31,17 @@ class ImageCreator
   
   def upload_images
     if footer?
-      SiteConfig.footer_image = File.open(@name)
+      uploader = FooterImageUploader.new
+      uploader.store!(File.open(@name))
+      Setting.destroy :footer_image
+      Setting.footer_image = uploader.url
     else
-      SiteConfig.header_image = File.open(@name)
+      HeaderImageUploader
+      uploader = HeaderImageUploader.new
+      uploader.store!(File.open(@name))
+      Setting.destroy :header_image
+      Setting.header_image = uploader.url
     end
-    SiteConfig.save
     File.delete(@name)
   end
   

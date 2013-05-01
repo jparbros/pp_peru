@@ -12,46 +12,46 @@
         %tbody
           %tr
             %td Nombre del sitio:
-            %td= SiteConfig.site_name
+            %td= Setting.site_name
           %tr
             %td Color 1
             %td.center
-              .config-color-sample{style: "background-color: #{SiteConfig.color1};"}
-                = SiteConfig.color1
+              .config-color-sample{style: "background-color: #{Setting.color1};"}
+                = Setting.color1
           %tr
             %td Color 2
             %td.center
-              .config-color-sample{style: "background-color: #{SiteConfig.color2};"}
-                = SiteConfig.color2
+              .config-color-sample{style: "background-color: #{Setting.color2};"}
+                = Setting.color2
           %tr
             %td Color 3
             %td.center
-              .config-color-sample{style: "background-color: #{SiteConfig.color3};"}
-                = SiteConfig.color3
+              .config-color-sample{style: "background-color: #{Setting.color3};"}
+                = Setting.color3
           %tr
             %td Color 4
             %td.center
-              .config-color-sample{style: "background-color: #{SiteConfig.color4};"}
-                = SiteConfig.color4
+              .config-color-sample{style: "background-color: #{Setting.color4};"}
+                = Setting.color4
           %tr
             %td Color 5
             %td.center
-              .config-color-sample{style: "background-color: #{SiteConfig.color5};"}
-                = SiteConfig.color5
+              .config-color-sample{style: "background-color: #{Setting.color5};"}
+                = Setting.color5
           %tr
             %td Limite en los comentarios
             %td.center
-              = SiteConfig.comments_limit.to_i > 0 ? SiteConfig.comments_limit : 'Ilimitado'
+              = Setting.comments_limit.to_i > 0 ? Setting.comments_limit : 'Ilimitado'
           %tr
             %td Registro publico
             %td.center
-              = SiteConfig.public_registration ? 'Si' : 'No'
+              = Setting.public_registration ? 'Si' : 'No'
           %tr
             %td Imagen Principal
             %td.center
-              = image_tag SiteConfig.background_image if SiteConfig.background_image.present?
+              = image_tag Setting.background_image if Setting.background_image.present?
               
           %tr
             %td Contenido del home
             %td.center
-              =  SiteConfig.home_main_content.html_safe if SiteConfig.home_main_content.present?
+              =  Setting.home_main_content.html_safe if Setting.home_main_content.present?

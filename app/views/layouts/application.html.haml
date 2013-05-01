@@ -1,26 +1,26 @@
 !!! 5
 %html
   %head
-    %title= SiteConfig.site_name
+    %title= Setting.site_name
     %link{href: 'http://fonts.googleapis.com/css?family=Quicksand:400,700|Playball', rel: 'stylesheet', type: 'text/css'}
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
     
     %style{type: "text/css"}
-      - if SiteConfig.header_image.present?
+      - if Setting.header_image.present?
         header#header {
-        background-image: url("#{SiteConfig.header_image}");
+        background-image: url("#{Setting.header_image}");
         }
 
-      - if SiteConfig.footer_image.present?
+      - if Setting.footer_image.present?
         footer#footer {
-        background-image: url("#{SiteConfig.footer_image}");
+        background-image: url("#{Setting.footer_image}");
         }
       
-      - if SiteConfig.color1.present?
+      - if Setting.color1.present?
         header#header #site-name {
-        color: #{SiteConfig.color1};
+        color: #{Setting.color1};
         }
 
   %body
@@ -28,11 +28,11 @@
       #header-container.container
         #logo
           #site-title{:href => root_url}
-            - if SiteConfig.background_image.present?
-              = image_tag SiteConfig.background_image
+            - if Setting.background_image.present?
+              = image_tag Setting.background_image
             - else
               %img{:alt => "Democracia PE", :src => "/assets/logo.png"}
-            #site-name= SiteConfig.site_name
+            #site-name= Setting.site_name
         #user-profile
           - if current_user
             #profile-avatar-container

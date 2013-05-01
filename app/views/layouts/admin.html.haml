@@ -2,7 +2,7 @@
 %html
   %head
     %title
-      Administracion | #{SiteConfig.site_name}
+      Administracion | #{Setting.site_name}
     = stylesheet_link_tag    "admin", :media => "all"
     = javascript_include_tag "admin"
     = tinymce_assets
@@ -13,7 +13,7 @@
       .row-fluid
         .span12
           #header
-            = link_to SiteConfig.site_name, admin_root_path
+            = link_to Setting.site_name, admin_root_path
             .hright
               .column#userinfo
                 %a{class: 'userinfo dropown-toggle', 'data-toggle' => 'dropdown'}
