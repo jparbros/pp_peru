@@ -33,13 +33,13 @@ class ImageCreator
     if footer?
       uploader = FooterImageUploader.new
       uploader.store!(File.open(@name))
-      Setting.destroy :footer_image
+      Setting.destroy :footer_image if Setting.footer_image.present?
       Setting.footer_image = uploader.url
     else
       HeaderImageUploader
       uploader = HeaderImageUploader.new
       uploader.store!(File.open(@name))
-      Setting.destroy :header_image
+      Setting.destroy :header_image if Setting.header_image.present?
       Setting.header_image = uploader.url
     end
     File.delete(@name)
