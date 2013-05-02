@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role_id, :name, 
-    :avatar, :state_id, :province_id, :district_id
+    :avatar, :state_id, :province_id, :district_id, :dni, :last_name, :middle_name, :date_of_birth
 
 
 
