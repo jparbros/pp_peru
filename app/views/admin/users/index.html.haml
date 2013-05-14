@@ -7,6 +7,7 @@
 					= link_to new_admin_user_path, :class => 'btn-add-resource btn btn-primary' do
 						%i.icon-white.icon-plus
 						Nuevo Usuario
+			= paginate @users
 			%table.table.table-striped.table-bordered
 				%thead
 					%tr
@@ -29,3 +30,4 @@
 									= link_to admin_user_path(user), :method => :delete, :confirm => 'Esta seguro?', :class => 'btn btn-danger btn-mini' do
 										%li.icon-white.icon-remove
 										Eliminar
+			= paginate @users

@@ -4,15 +4,17 @@ class Admin::UsersController < Admin::BaseController
   
   def index
     @users = if params[:q]
-        User.where("name like ? or email like ?", "%#{params[:q]}%", "%#{params[:q]}%")
+        User.where("name like ? or email like ?", "%#{params[:q]}%", "%#{params[:q]}%").page(params[:page])
       else
-        User.all
+        User.page(params[:page])
       end
     respond_to do |format|
       format.html
       format.json{ render json: @users.map(&:group_search) }
     end
   end
+#  @posts = Post.paginate(:page => params[:page])
+
   
   def new
     @user = User.new

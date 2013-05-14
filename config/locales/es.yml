@@ -20,7 +20,13 @@ es:
           attributes:
             name:
               blank: 'El nombre no puede estar vacio'
-
       template:
         header: 'No se puedo Guardar'
         body: 'Intente de nuevo'
+  views:
+    pagination:
+      first: Primero
+      last: Ultimo
+      previous: Previo
+      next: Siguiente
+      truncate: ...

@@ -45,3 +45,4 @@ gem 'client_side_validations'
 gem 'rails-i18n'
 gem 'jbuilder'
 gem "rails-settings-cached", "0.2.4"
+gem 'kaminari'
