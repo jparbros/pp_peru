@@ -13,6 +13,16 @@ class NewsActorsController < ApplicationController
     respond_with({notice: message}, location: noticia_url(@news_actor))
   end
 
+  def index
+    @news_actors = NewsActor.all
+  end
+
+  def show
+    @news_actor = NewsActor.find params[:id]
+  end
+
+
+
   private
 
   def find_news_actor(id_news_actor)

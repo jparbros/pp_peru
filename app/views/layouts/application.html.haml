@@ -111,6 +111,11 @@
         - if Setting.objetivos_visible && Setting.objetivos_title.present?
           %li{class: "nav-menu-item"}
             = link_to Setting.objetivos_title.humanize, objetivos_path
+        
+        - if Setting.candidatos_visible && Setting.candidatos_title.present?
+          %li{class: "nav-menu-item"}
+            = link_to Setting.candidatos_title.humanize, candidatos_path
+
             
 
     .container

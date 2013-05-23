@@ -54,6 +54,10 @@ PpPeru::Application.routes.draw do
     resources :buenas_practicas, controller: :strategic_objectives, only: [:index]
     resources :objetivos, controller: :objectives, only: [:index]
   end
+
+  scope '/actores_politicos' do
+    resources :candidatos, controller: :news_actors, only: [:index, :show]
+  end
   
   
   

@@ -159,6 +159,8 @@
                   %a{href: '#propuesta_ciudadana', 'data-toggle' => "tab"} Propuesta ciudadana
                 %li
                   %a{href: '#objetivos', 'data-toggle' => "tab"} Objetivos
+                %li
+                  %a{href: '#candidatos', 'data-toggle' => 'tab'} Candidatos 
                 
               .tab-content
                 #centro_de_noticias.tab-pane.active
@@ -283,6 +285,31 @@
                       .controls
                         #objetivos_visible_button.switch.switch-small{'data-on' => "success", 'data-off' => "danger", 'data-on-label' => "Si", 'data-off-label' => "No"}
                           = check_box_tag 'setting[objetivos_visible]', true, Setting.objetivos_visible
+                        %span.help-block
+                          ¿Desea mostrar la secci&oacute;n de objetivos?
+
+                #candidatos.tab-pane
+                  %fieldset
+                    %legend Candidatos
+                    .control-group
+                      = label_tag :candidatos_title, 'Titulo:', :class => 'control-label'
+                      .controls
+                        = text_field_tag 'setting[candidatos_title]', Setting.candidatos_title, :class => 'text_field input-append', placeholder: 'Candidatos'
+                        %span.help-block
+                          Titulo de la secci&oacute;n, se usa para el menu.
+          
+                    .control-group
+                      = label_tag :candidatos_subtitle, 'Subtitulo:', :class => 'control-label'
+                      .controls
+                        = text_field_tag 'setting[candidatos_subtitle]', Setting.candidatos_subtitle, :class => 'text_field input-append', placeholder: 'Candidatos Del Partido'
+                        %span.help-block
+                          Si no desea mostrar el subtitulo de la secci&oacute;n "objetivos" dejar en blanco.
+      
+                    .control-group
+                      = label_tag :candidatos_visible_visible, 'Activo:', :class => 'control-label'
+                      .controls
+                        #candidatos_visible_button.switch.switch-small{'data-on' => "success", 'data-off' => "danger", 'data-on-label' => "Si", 'data-off-label' => "No"}
+                          = check_box_tag 'setting[candidatos_visible]', true, Setting.candidatos_visible
                         %span.help-block
                           ¿Desea mostrar la secci&oacute;n de objetivos?
 

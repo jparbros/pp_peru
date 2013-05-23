@@ -1,0 +1,10 @@
+= selected_menu(:menu_entry)
+%section#content
+  #doc-container.row
+    %article.span11
+      %h2.entry-title
+        = image_tag @news_actor.avatar_url(:normal) if @news_actor.avatar?
+        %br
+        = @news_actor.name
+      .entry-content
+        = raw @news_actor.content
