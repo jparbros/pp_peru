@@ -12,7 +12,20 @@
             .accordion-inner
               %ul
                 - objective_root.children.each do |objective|
-                  %li= objective.title
+                  %li 
+                    = objective.title
+                    %ul
+                      - objective.children.each do |objective_s| 
+                        %li
+                          = objective_s.title
+                          - unless objective_s.papers.empty?
+                            %ul
+                              Noticas Relacionadas:
+                              - objective_s.papers.each do |news|
+                                %li= link_to news.title, noticia_path(news), class: [:label]
+                                  
+      
+
               / #timeline
               /   %ul#dates
               /     - objective_root.children.each do |objective|
