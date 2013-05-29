@@ -14,3 +14,9 @@
               %ul
                 - objective_root.children.each do |objective|
                   %li= objective.title
+                    %ul
+                      -debugger
+                      - objetive.children.each do |objetive_s| 
+                      %li= objetive_s.title
+
+

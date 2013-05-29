@@ -101,6 +101,13 @@ nav {
     }
   }
 }
+#main-nav-menu > ul > li.current{
+  
+  a {
+  font-weight:bold;
+  text-decoration:underline;
+  }
+}
 
 /*
  * Footer
