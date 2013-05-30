@@ -1,5 +1,5 @@
 class UserRegistration < ActionMailer::Base
-  default from: "no-responder@#{Setting.site_name.try(:dasherize)}.pe"
+  default from: "RSIPP@#{Setting.site_name.try(:dasherize)}.pe"
   
   def welcome(user, password)
     @site_name = Setting.site_name || ""

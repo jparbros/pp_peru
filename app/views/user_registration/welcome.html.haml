@@ -1,4 +1,4 @@
-%h2= "Bienvenido a #{@site_name}"
+%h2=link_to "Bienvenido a #{@site_name}", root_path
 
 %p
   Se le a invitado a la Red Social para Partidos Politicos. A continuación se le proporciona la información de acceso:
@@ -13,4 +13,7 @@
     Passw0rd:
   = @password
 
-  
+%p
+  = link_to "Visita La Red Social para Partidos Politicos #{@site_name}", root_path 
+%p
+  No responder este mensaje
