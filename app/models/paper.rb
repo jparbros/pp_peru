@@ -76,6 +76,7 @@ class Paper < ActiveRecord::Base
     state :archived
 
     before_transition any => :published, :do => [:publish_timestamp, :setup_activity]
+    after_transition :draft => :published, :do => :send_notification
 
     event :publish do
       transition [:draft, :archived] => :published
@@ -173,6 +174,10 @@ class Paper < ActiveRecord::Base
    
   def group_tokens=(ids)
    self.group_ids = ids.split(',')
+  end
+
+  def send_notification
+    User.send_notifications(self)
   end
   
   private

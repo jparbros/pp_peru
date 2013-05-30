@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     when 'moderator' then Role.by_roles(%w(member participant))
     end
   end
+
+  def self.send_notifications(paper)
+    all.each { |u| UserRegistration.notification(u, paper).deliver } 
+  end
   #
   # Instance methods
   #
