@@ -105,7 +105,7 @@
           %li{class: "nav-menu-item #{yield(:menu_propuesta)}"}
             = link_to Setting.propuesta_ciudadana_title.humanize, :propuestas
 
-        %li{class: "nav-menu-item #{yield(:menu_objetivos)}"}
+        %li{class: "nav-menu-item #{yield(:menu_buenas_practicas)}"}
           = link_to 'Buenas Practicas', buenas_practicas_path
 
         - if Setting.objetivos_visible && Setting.objetivos_title.present?

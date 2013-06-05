@@ -104,9 +104,14 @@ nav {
 #main-nav-menu > ul > li.current{
   
   a {
-  font-weight:bold;
-  text-decoration:underline;
+    font-weight:bold;
+    text-decoration:underline;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 8px 8px 8px 8px;
+    padding:3px 12px;
+
   }
+
 }
 
 #login-button{
