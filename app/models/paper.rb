@@ -76,7 +76,7 @@ class Paper < ActiveRecord::Base
     state :archived
 
     before_transition any => :published, :do => [:publish_timestamp, :setup_activity]
-    after_transition :draft => :published, :do => :send_notification
+   # after_transition :draft => :published, :do => :send_notification
 
     event :publish do
       transition [:draft, :archived] => :published
