@@ -2,7 +2,8 @@ class NewsController < ApplicationController
   respond_to :json, :html
   
   def index
-    @news = News.text_search(params[:query]).published.by_permissions(current_user).by_topics(params[:topic_id]).recents
+    @news = ::News.text_search(params[:query]).published.by_permissions(current_user).by_topics(params[:topic_id]).recents
+    render cms_layout: 'diseno-principal'
   end
 
   def show
@@ -25,6 +26,6 @@ class NewsController < ApplicationController
   private
 
   def find_news(id_news)
-    News.find(id_news)
+    ::News.find(id_news)
   end
 end

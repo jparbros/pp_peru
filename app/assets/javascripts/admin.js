@@ -24,6 +24,13 @@
 //= require fileuploader.min
 //= require jquery.Jcrop.min
 //= require 'admin/bootstrapSwitch'
+//= require 'admin/codemirror'
+//= require 'admin/addon/closetag'
+//= require 'admin/addon/closebrackets'
+//= require 'admin/modes/xml'
+//= require 'admin/modes/css'
+//= require 'admin/modes/javascript'
+//= require 'admin/modes/htmlmixed'
 //= require_tree ./admin
 
 $(document).ready(function() {
@@ -47,7 +54,40 @@ $(document).ready(function() {
               $(this).addClass('open');
           }
       }
-  })
+  });
+  
+  
+  if ($('#layout_content')[0]) {
+    CodeMirror.fromTextArea(document.getElementById("layout_content"), {
+      mode: 'text/html',
+      lineNumbers: true,
+      autoCloseTags: true,
+      readOnly: false
+    });
+  
+    CodeMirror.fromTextArea(document.getElementById("layout_css"), {
+      mode: 'text/css',
+      lineNumbers: true,
+      autoCloseBrackets: true,
+      matchBrackets: true
+    });
+
+    CodeMirror.fromTextArea(document.getElementById("layout_js"), {
+      mode: 'text/javascript',
+      lineNumbers: true,
+      autoCloseBrackets: true,
+      matchBrackets: true
+    });
+  }
+  
+  if ($('#snippet_content')[0]) {
+    CodeMirror.fromTextArea(document.getElementById("snippet_content"), {
+      mode: 'text/html',
+      lineNumbers: true,
+      autoCloseTags: true
+    });
+  }
+  
 });
 
 $(document).on("focus", "[name='date_objective']", '.date_objective', function(e){

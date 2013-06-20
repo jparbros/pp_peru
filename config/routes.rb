@@ -1,5 +1,8 @@
 PpPeru::Application.routes.draw do
 
+  
+  ComfortableMexicanSofa::Routing.admin(:path => '/admin/cms')
+
   get "home/index"
 
   devise_for :users
@@ -100,4 +103,6 @@ PpPeru::Application.routes.draw do
       resources :role_permissions, only: [:index, :create]
     end
   end
+
+  ComfortableMexicanSofa::Routing.content(:path => '/', :sitemap => false)
 end

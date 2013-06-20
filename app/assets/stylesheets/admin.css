@@ -20,6 +20,7 @@
  *= require fileuploader
  *= require jquery.Jcrop.min
  *= require 'admin/bootstrapSwitch'
+ *= require 'admin/codemirror'
  *= require_tree ./admin
  */
 
@@ -54,4 +55,8 @@ body .modal {
   display: inline-block;
   height: 10px;
   width: 50px;
+}
+
+.CodeMirror {
+  border: 1px solid #ccc;
 }

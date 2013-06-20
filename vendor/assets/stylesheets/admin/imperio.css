@@ -991,7 +991,7 @@ a.fc-event,
     padding: 0;
 }
 .inline {
-    display: inline !important;
+    display: inline;
     margin-bottom: 3px !important;
 }
 .center {

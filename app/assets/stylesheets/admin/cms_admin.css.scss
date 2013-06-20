@@ -1,0 +1,6 @@
+.formatted {
+  input[type=text], select {
+    @extend .span6;
+    width: 300px;
+  }
+}

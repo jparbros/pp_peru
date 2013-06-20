@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501235337) do
+ActiveRecord::Schema.define(:version => 20130601031402) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -23,80 +23,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
-
-  create_table "activity_actions", :force => true do |t|
-    t.integer  "actor_id"
-    t.integer  "activity_object_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
-    t.boolean  "follow",             :default => false
-    t.boolean  "author",             :default => false
-    t.boolean  "user_author",        :default => false
-    t.boolean  "owner",              :default => false
-  end
-
-  add_index "activity_actions", ["activity_object_id"], :name => "index_activity_actions_on_activity_object_id"
-  add_index "activity_actions", ["actor_id"], :name => "index_activity_actions_on_actor_id"
-
-  create_table "activity_object_activities", :force => true do |t|
-    t.integer  "activity_id"
-    t.integer  "activity_object_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "object_type"
-  end
-
-  add_index "activity_object_activities", ["activity_id"], :name => "index_activity_object_activities_on_activity_id"
-  add_index "activity_object_activities", ["activity_object_id"], :name => "index_activity_object_activities_on_activity_object_id"
-
-  create_table "activity_object_audiences", :force => true do |t|
-    t.integer  "activity_object_id"
-    t.integer  "relation_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
-  create_table "activity_object_properties", :force => true do |t|
-    t.integer "activity_object_id"
-    t.integer "property_id"
-    t.string  "type"
-  end
-
-  add_index "activity_object_properties", ["activity_object_id"], :name => "index_activity_object_properties_on_activity_object_id"
-  add_index "activity_object_properties", ["property_id"], :name => "index_activity_object_properties_on_property_id"
-
-  create_table "activity_objects", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "object_type",    :limit => 45
-    t.integer  "like_count",                   :default => 0
-    t.string   "title",                        :default => ""
-    t.text     "description"
-    t.integer  "follower_count",               :default => 0
-    t.integer  "visit_count",                  :default => 0
-    t.integer  "comment_count",                :default => 0
-  end
-
-  create_table "activity_verbs", :force => true do |t|
-    t.string   "name",       :limit => 45
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "actors", :force => true do |t|
-    t.string   "name"
-    t.string   "email",              :default => "",   :null => false
-    t.string   "slug"
-    t.string   "subject_type"
-    t.boolean  "notify_by_email",    :default => true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "activity_object_id"
-  end
-
-  add_index "actors", ["activity_object_id"], :name => "index_actors_on_activity_object_id"
-  add_index "actors", ["email"], :name => "index_actors_on_email"
-  add_index "actors", ["slug"], :name => "index_actors_on_slug", :unique => true
 
   create_table "annotations", :force => true do |t|
     t.string   "title"
@@ -129,14 +55,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.integer "attendee_id",            :null => false
   end
 
-  create_table "audiences", :force => true do |t|
-    t.integer "relation_id"
-    t.integer "activity_id"
-  end
-
-  add_index "audiences", ["activity_id"], :name => "index_audiences_on_activity_id"
-  add_index "audiences", ["relation_id"], :name => "index_audiences_on_relation_id"
-
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -147,24 +65,122 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "avatars", :force => true do |t|
-    t.integer  "actor_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.boolean  "active",            :default => true
+  create_table "cms_blocks", :force => true do |t|
+    t.integer  "page_id",    :null => false
+    t.string   "identifier", :null => false
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "avatars", ["actor_id"], :name => "index_avatars_on_actor_id"
+  add_index "cms_blocks", ["page_id", "identifier"], :name => "index_cms_blocks_on_page_id_and_identifier"
 
-  create_table "comments", :force => true do |t|
-    t.integer  "activity_object_id"
+  create_table "cms_categories", :force => true do |t|
+    t.integer "site_id",          :null => false
+    t.string  "label",            :null => false
+    t.string  "categorized_type", :null => false
+  end
+
+  add_index "cms_categories", ["site_id", "categorized_type", "label"], :name => "index_cms_categories_on_site_id_and_categorized_type_and_label", :unique => true
+
+  create_table "cms_categorizations", :force => true do |t|
+    t.integer "category_id",      :null => false
+    t.string  "categorized_type", :null => false
+    t.integer "categorized_id",   :null => false
+  end
+
+  add_index "cms_categorizations", ["category_id", "categorized_type", "categorized_id"], :name => "index_cms_categorizations_on_cat_id_and_catd_type_and_catd_id", :unique => true
+
+  create_table "cms_files", :force => true do |t|
+    t.integer  "site_id",                                          :null => false
+    t.integer  "block_id"
+    t.string   "label",                                            :null => false
+    t.string   "file_file_name",                                   :null => false
+    t.string   "file_content_type",                                :null => false
+    t.integer  "file_file_size",                                   :null => false
+    t.string   "description",       :limit => 2048
+    t.integer  "position",                          :default => 0, :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+  end
+
+  add_index "cms_files", ["site_id", "block_id"], :name => "index_cms_files_on_site_id_and_block_id"
+  add_index "cms_files", ["site_id", "file_file_name"], :name => "index_cms_files_on_site_id_and_file_file_name"
+  add_index "cms_files", ["site_id", "label"], :name => "index_cms_files_on_site_id_and_label"
+  add_index "cms_files", ["site_id", "position"], :name => "index_cms_files_on_site_id_and_position"
+
+  create_table "cms_layouts", :force => true do |t|
+    t.integer  "site_id",                       :null => false
+    t.integer  "parent_id"
+    t.string   "app_layout"
+    t.string   "label",                         :null => false
+    t.string   "identifier",                    :null => false
+    t.text     "content"
+    t.text     "css"
+    t.text     "js"
+    t.integer  "position",   :default => 0,     :null => false
+    t.boolean  "is_shared",  :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "cms_layouts", ["parent_id", "position"], :name => "index_cms_layouts_on_parent_id_and_position"
+  add_index "cms_layouts", ["site_id", "identifier"], :name => "index_cms_layouts_on_site_id_and_identifier", :unique => true
+
+  create_table "cms_pages", :force => true do |t|
+    t.integer  "site_id",                           :null => false
+    t.integer  "layout_id"
+    t.integer  "parent_id"
+    t.integer  "target_page_id"
+    t.string   "label",                             :null => false
+    t.string   "slug"
+    t.string   "full_path",                         :null => false
+    t.text     "content"
+    t.integer  "position",       :default => 0,     :null => false
+    t.integer  "children_count", :default => 0,     :null => false
+    t.boolean  "is_published",   :default => true,  :null => false
+    t.boolean  "is_shared",      :default => false, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "cms_pages", ["parent_id", "position"], :name => "index_cms_pages_on_parent_id_and_position"
+  add_index "cms_pages", ["site_id", "full_path"], :name => "index_cms_pages_on_site_id_and_full_path"
+
+  create_table "cms_revisions", :force => true do |t|
+    t.string   "record_type", :null => false
+    t.integer  "record_id",   :null => false
+    t.text     "data"
     t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
-  add_index "comments", ["activity_object_id"], :name => "index_comments_on_activity_object_id"
+  add_index "cms_revisions", ["record_type", "record_id", "created_at"], :name => "index_cms_revisions_on_record_type_and_record_id_and_created_at"
+
+  create_table "cms_sites", :force => true do |t|
+    t.string  "label",                          :null => false
+    t.string  "identifier",                     :null => false
+    t.string  "hostname",                       :null => false
+    t.string  "path"
+    t.string  "locale",      :default => "en",  :null => false
+    t.boolean "is_mirrored", :default => false, :null => false
+  end
+
+  add_index "cms_sites", ["hostname"], :name => "index_cms_sites_on_hostname"
+  add_index "cms_sites", ["is_mirrored"], :name => "index_cms_sites_on_is_mirrored"
+
+  create_table "cms_snippets", :force => true do |t|
+    t.integer  "site_id",                       :null => false
+    t.string   "label",                         :null => false
+    t.string   "identifier",                    :null => false
+    t.text     "content"
+    t.integer  "position",   :default => 0,     :null => false
+    t.boolean  "is_shared",  :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "cms_snippets", ["site_id", "identifier"], :name => "index_cms_snippets_on_site_id_and_identifier", :unique => true
+  add_index "cms_snippets", ["site_id", "position"], :name => "index_cms_snippets_on_site_id_and_position"
 
   create_table "configurations", :force => true do |t|
     t.string   "site_name"
@@ -184,62 +200,12 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.datetime "updated_at",                :null => false
   end
 
-  create_table "contacts", :force => true do |t|
-    t.integer  "sender_id"
-    t.integer  "receiver_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "inverse_id"
-    t.integer  "ties_count",  :default => 0
-  end
-
-  add_index "contacts", ["inverse_id"], :name => "index_contacts_on_inverse_id"
-  add_index "contacts", ["receiver_id"], :name => "index_contacts_on_receiver_id"
-  add_index "contacts", ["sender_id"], :name => "index_contacts_on_sender_id"
-
-  create_table "conversations", :force => true do |t|
-    t.string   "subject",    :default => ""
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
   create_table "districts", :force => true do |t|
     t.string   "name"
     t.integer  "province_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
-
-  create_table "documents", :force => true do |t|
-    t.string   "type"
-    t.integer  "activity_object_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.string   "file_file_size"
-    t.boolean  "file_processing"
-  end
-
-  add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
-
-  create_table "events", :force => true do |t|
-    t.integer  "activity_object_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.boolean  "all_day"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.integer  "room_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "frequency",          :default => 0
-    t.integer  "interval"
-    t.integer  "days",               :default => 0
-    t.integer  "interval_flag",      :default => 0
-  end
-
-  add_index "events", ["room_id"], :name => "index_events_on_room_id"
 
   create_table "follows", :force => true do |t|
     t.string   "follower_type"
@@ -269,19 +235,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
 
   add_index "likes", ["likeable_id", "likeable_type"], :name => "fk_likeables"
   add_index "likes", ["liker_id", "liker_type"], :name => "fk_likes"
-
-  create_table "links", :force => true do |t|
-    t.integer  "activity_object_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "url"
-    t.string   "callback_url"
-    t.string   "image"
-    t.integer  "width",              :default => 470
-    t.integer  "height",             :default => 353
-  end
-
-  add_index "links", ["activity_object_id"], :name => "index_links_on_activity_object_id"
 
   create_table "memberships", :force => true do |t|
     t.integer  "group_id"
@@ -323,24 +276,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.integer "paper_id",      :null => false
   end
 
-  create_table "notifications", :force => true do |t|
-    t.string   "type"
-    t.text     "body"
-    t.string   "subject",              :default => ""
-    t.integer  "sender_id"
-    t.string   "sender_type"
-    t.integer  "conversation_id"
-    t.boolean  "draft",                :default => false
-    t.datetime "updated_at",                              :null => false
-    t.datetime "created_at",                              :null => false
-    t.integer  "notified_object_id"
-    t.string   "notified_object_type"
-    t.string   "notification_code"
-    t.string   "attachment"
-  end
-
-  add_index "notifications", ["conversation_id"], :name => "index_notifications_on_conversation_id"
-
   create_table "papers", :force => true do |t|
     t.string   "title"
     t.text     "content"
@@ -379,38 +314,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "posts", :force => true do |t|
-    t.integer  "activity_object_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "posts", ["activity_object_id"], :name => "index_posts_on_activity_object_id"
-
-  create_table "profiles", :force => true do |t|
-    t.integer  "actor_id"
-    t.date     "birthday"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "organization", :limit => 45
-    t.string   "phone",        :limit => 45
-    t.string   "mobile",       :limit => 45
-    t.string   "fax",          :limit => 45
-    t.string   "address"
-    t.string   "city"
-    t.string   "zipcode",      :limit => 45
-    t.string   "province",     :limit => 45
-    t.string   "country",      :limit => 45
-    t.integer  "prefix_key"
-    t.string   "description"
-    t.string   "experience"
-    t.string   "website"
-    t.string   "skype",        :limit => 45
-    t.string   "im",           :limit => 45
-  end
-
-  add_index "profiles", ["actor_id"], :name => "index_profiles_on_actor_id"
-
   create_table "provinces", :force => true do |t|
     t.string   "name"
     t.integer  "state_id"
@@ -427,44 +330,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.datetime "updated_at",    :null => false
     t.integer  "paper_id"
   end
-
-  create_table "receipts", :force => true do |t|
-    t.integer  "receiver_id"
-    t.string   "receiver_type"
-    t.integer  "notification_id",                                  :null => false
-    t.boolean  "read",                          :default => false
-    t.boolean  "trashed",                       :default => false
-    t.boolean  "deleted",                       :default => false
-    t.string   "mailbox_type",    :limit => 25
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-  end
-
-  add_index "receipts", ["notification_id"], :name => "index_receipts_on_notification_id"
-
-  create_table "relation_permissions", :force => true do |t|
-    t.integer  "relation_id"
-    t.integer  "permission_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "relation_permissions", ["permission_id"], :name => "index_relation_permissions_on_permission_id"
-  add_index "relation_permissions", ["relation_id"], :name => "index_relation_permissions_on_relation_id"
-
-  create_table "relations", :force => true do |t|
-    t.integer  "actor_id"
-    t.string   "type"
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "sender_type"
-    t.string   "receiver_type"
-    t.string   "ancestry"
-  end
-
-  add_index "relations", ["actor_id"], :name => "index_relations_on_actor_id"
-  add_index "relations", ["ancestry"], :name => "index_relations_on_ancestry"
 
   create_table "reports", :force => true do |t|
     t.integer  "author_id"
@@ -491,15 +356,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  create_table "rooms", :force => true do |t|
-    t.integer  "actor_id"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "rooms", ["actor_id"], :name => "index_rooms_on_actor_id"
 
   create_table "settings", :force => true do |t|
     t.string   "var",                      :null => false
@@ -532,33 +388,6 @@ ActiveRecord::Schema.define(:version => 20130501235337) do
   end
 
   add_index "strategic_objectives", ["ancestry"], :name => "index_strategic_objectives_on_ancestry"
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       :limit => 128
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
-  end
-
-  create_table "ties", :force => true do |t|
-    t.integer  "contact_id"
-    t.integer  "relation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ties", ["contact_id"], :name => "index_ties_on_contact_id"
-  add_index "ties", ["relation_id"], :name => "index_ties_on_relation_id"
 
   create_table "topics", :force => true do |t|
     t.string   "name",       :default => "", :null => false

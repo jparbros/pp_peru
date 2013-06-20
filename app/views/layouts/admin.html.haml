@@ -135,6 +135,40 @@
                   %span.text
                     Configuraciones
 
+            %li{class: active_menu?('layouts')}
+              %a{href: "#{cms_admin_site_layouts_path(@site)}"}
+                %span.ico
+                  %i.icon-edit
+                %span.text
+                  Diseños
+
+            %li{class: active_menu?('cms')}
+              %a{href: ''}
+                %span.ico
+                  %i.icon-file
+                %span.text
+                  CMS
+                %span.indicator
+              %ul
+
+                %li
+                  %a{href: "#{cms_admin_site_pages_path(@site)}"}
+                    %span.ico
+                      %i.icon-file
+                    %span.text Paginas
+
+                %li
+                  %a{href: "#{cms_admin_site_snippets_path(@site)}"}
+                    %span.ico
+                      %i.icon-file
+                    %span.text Fragmentos
+            
+                %li
+                  %a{href: "#{cms_admin_site_files_path(@site)}"}
+                    %span.ico
+                      %i.icon-file
+                    %span.text Archivos
+
 
         #content.span9
           - flash.each do |name, msg|
