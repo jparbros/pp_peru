@@ -4,10 +4,12 @@ class ProposalsController < ApplicationController
   
   def index
     @proposals = Proposal.text_search(params[:query]).published.by_permissions(current_user).by_topics(params[:topic_id]).recents
+    render cms_layout: 'diseno-principal'
   end
   
   def show
     authorize! :read, @proposal
+    render cms_layout: 'diseno-principal'
   end
   
   def create
@@ -23,6 +25,7 @@ class ProposalsController < ApplicationController
   
   def new
     @proposal = Proposal.new
+    render cms_layout: 'diseno-principal'
   end
   
   def find_proposal

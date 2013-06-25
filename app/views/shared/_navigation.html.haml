@@ -1,0 +1,26 @@
+%ul.nav
+  %li
+    = link_to 'Inicio', root_path
+
+  - if Setting.centro_de_noticas_visible && Setting.centro_de_noticas_title.present?
+    %li{class: "#{active_menu?('news')}"}
+      = link_to Setting.centro_de_noticas_title.humanize, noticias_path
+
+  - if Setting.centro_educacional_visible && Setting.centro_educacional_title.present?
+    %li{class: "#{active_menu?('entries')}"}
+      = link_to Setting.centro_educacional_title.humanize, entradas_path
+
+  - if Setting.centro_de_debates_visible && Setting.centro_de_debates_title.present?
+    %li{class: "#{active_menu?('discussions')}"}
+      = link_to Setting.centro_de_debates_title.humanize, :debates
+
+  - if Setting.propuesta_ciudadana_visible && Setting.propuesta_ciudadana_title.present?
+    %li{class: "#{active_menu?('proposals')}"}
+      = link_to Setting.propuesta_ciudadana_title.humanize, :propuestas
+
+  %li{class: "#{active_menu?('strategic_objectives')}"}
+    = link_to 'Buenas Practicas', buenas_practicas_path
+
+  - if Setting.objetivos_visible && Setting.objetivos_title.present?
+    %li{class: ""}
+      = link_to Setting.objetivos_title.humanize, objetivos_path

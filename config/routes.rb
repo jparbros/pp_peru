@@ -7,7 +7,7 @@ PpPeru::Application.routes.draw do
 
   devise_for :users
 
-  root :to => "home#index"
+  # root :to => "home#index"
   
   resources :usuarios, controller: :users do
     resources :seguidores, controller: 'users_activities/followers', only: [:create, :destroy]

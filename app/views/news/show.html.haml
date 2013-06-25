@@ -1,8 +1,9 @@
 = selected_menu(:menu_news)
 = section_title('Centro De Noticias')
-%section#content
-  #doc-container.row
-    %article.span8
+
+%section.content
+  .doc-container
+    %article
       %h2.entry-title
         = @news.title
       .entry-date
@@ -17,7 +18,7 @@
         %li.comments
           %a{:href => "#comments"} #{@news.annotations_count} Comentarios
 
-    #sidebar-doc.span3  
+    .sidebar-doc  
       - if current_user
         %h3 Califica esta noticia:
         %div{:id => "#{@rate}_#{@news.id}", :class => :rate_news}
@@ -33,16 +34,15 @@
               - if current_user
                 %div{:id => "#{actor.ratings.average(:rate)}_#{actor.id}", :class => :rate_actor}
 
-  #comments.row
+  #comments
     %ol.comments-list
       = nested_annotations @news.annotations.includes(:author).arrange(order: :created_at) 
 
   #comment-form
-    .row
-      %span.leave-a-comment
-      %h3.form-title Deja un Comentario
-      %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
-      - if current_user  
-        = render partial: 'annotations/form', locals: {annotable: @news, annotable_url: noticia_comentarios_path(@news)}
-      - else
-        Necesitas iniciar sesion para comentar
+    %span.leave-a-comment
+    %h3.form-title Deja un Comentario
+    %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
+    - if current_user  
+      = render partial: 'annotations/form', locals: {annotable: @news, annotable_url: noticia_comentarios_path(@news)}
+    - else
+      Necesitas iniciar sesion para comentar

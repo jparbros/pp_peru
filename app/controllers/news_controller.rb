@@ -10,6 +10,7 @@ class NewsController < ApplicationController
     @news = find_news(params[:id])
     @rate = @news.ratings.average(:rate) || 0
     authorize! :read, @news
+    render cms_layout: 'diseno-principal'
   end
 
   def rates

@@ -1,7 +1,8 @@
 = selected_menu(:menu_news)
 = section_title('Centro De Noticias')
-#documents-container.row
-  %section#content.span8
+
+#documents-container
+  %section.content
     - if Setting.centro_de_noticas_subtitle.present?
       %h1= Setting.centro_de_noticas_subtitle
 

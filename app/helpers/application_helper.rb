@@ -1,11 +1,15 @@
 module ApplicationHelper
 
   def active_menu?(section)
-    (controller_name == section) ? 'active' : nil
+    (controller_name == section) ? 'active' : controller_name
   end
   
   def selected_menu(menu_element)
-    content_for(menu_element, 'current')
+    content_for(menu_element, 'active')
+  end
+
+  def site_name
+    Setting.site_name
   end
   
   def section_title(title)
