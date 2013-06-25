@@ -1,6 +1,6 @@
 %ul.nav
   %li
-    = link_to 'Inicio', root_path
+    = link_to 'Inicio', '/'
 
   - if Setting.centro_de_noticas_visible && Setting.centro_de_noticas_title.present?
     %li{class: "#{active_menu?('news')}"}
