@@ -1,15 +1,15 @@
-%h2=link_to "Bienvenido a #{@site_name}", root_path
+%h2=link_to "Bienvenido a #{@site_name}", root_url
 %p
   Hola
   = "#{@user.email}!"
 %p
   Existe un nuevo contenido en la Red Social para partidos politicos
-  = link_to @paper.title, noticia_path(@paper) if @paper.type.eql? 'News' 
-  = link_to @paper.title, debate_path(@paper) if @paper.type.eql? 'Discussions' 
-  = link_to @paper.title, entrada_path(@paper) if  @paper.type.eql? 'Entry' 
-  = link_to @paper.title, propuesta_path(@paper) if  @paper.type.eql? 'Proposal' 
+  = link_to @paper.title, noticia_url(@paper) if @paper.type.eql? 'News' 
+  = link_to @paper.title, debate_url(@paper) if @paper.type.eql? 'Discussions' 
+  = link_to @paper.title, entrada_url(@paper) if  @paper.type.eql? 'Entry' 
+  = link_to @paper.title, propuesta_url(@paper) if  @paper.type.eql? 'Proposal' 
 
 %p
-  = link_to "Visita La Red Social para Partidos Politicos #{@site_name}", root_path 
+  = link_to "Visita La Red Social para Partidos Politicos #{@site_name}", root_url
 %p
   No responder este mensaje
