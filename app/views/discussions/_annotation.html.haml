@@ -2,7 +2,7 @@
   %li{id: annotation.id,  class: "comment #{annotation.cant_show? ? 'reported' : '' }"}
     .comment-container.row
       .comment-author.span3
-        %img.avatar{:alt => "Image", :src => "#{annotation.author.profile_photo}"}
+        %img.avatar{:alt => "Image", :src => "#{annotation.try(:author).try(:profile_photo)}"}
         .comment-meta
           %span.author-name
             = annotation.author.name 
