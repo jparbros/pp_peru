@@ -5,9 +5,9 @@
         %img.avatar{:alt => "Image", :src => "#{annotation.try(:author).try(:profile_photo)}"}
         .comment-meta
           %span.author-name
-            = annotation.author.name 
+            = annotation.author.try(:name)
           %br/
-          = link_to annotation.author_email, usuario_path(annotation.author)
+          = link_to annotation.author_email, usuario_path(annotation.author) if annotation.author?
           %br/
           %a.comment-date{:href => "#", :title => "Permalink to this comment"}= annotation.created_at
 

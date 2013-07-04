@@ -6,6 +6,6 @@ class DiscussionsController < ApplicationController
   
   def show
     @discussion = Discussion.find params[:id]
-    authorize! :read, @discussion
+    #authorize! :read, @discussion
   end
 end
