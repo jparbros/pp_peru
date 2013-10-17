@@ -5,6 +5,7 @@ gem 'rails', '3.2.6'
 group :development do
   gem 'annotate'
   gem 'debugger'
+  gem "letter_opener"
 end
 
 group :production do
