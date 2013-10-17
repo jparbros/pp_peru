@@ -2,22 +2,31 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-	$('#discussion_topic_tokens').tokenInput '/admin/topics.json',
-		theme: 'facebook',
-		prePopulate: $('#discussion_topic_tokens').data('load')
+  $('#discussion_topic_tokens').tokenInput '/admin/topics.json',
+    theme: 'facebook',
+    prePopulate: $('#discussion_topic_tokens').data('load')
 
-	$('#discussion_group_tokens').tokenInput '/admin/groups.json',
-		theme: 'facebook',
-		prePopulate: $('#discussion_group_tokens').data('load')
+  $('#discussion_group_tokens').tokenInput '/admin/groups.json',
+    theme: 'facebook',
+    prePopulate: $('#discussion_group_tokens').data('load')
 
-	$('#discussion_visibility').change ->
-		if $(@).val() == 'group'
-			$('#group-tokens').show()
-		else
-			$('#group-tokens').hide()
+  $('#discussion_visibility').change ->
+    if $(@).val() == 'group'
+      $('#group-tokens').show()
+    else
+      $('#group-tokens').hide()
+
+    if $(@).val() == 'public'
+      $('#facebook-comment').show()
+    else
+      $('#facebook-comment').hide()
+    
 
 	if $('#discussion_visibility').val() == 'group'
 		$('#group-tokens').show()
+  
+	if $('#discussion_visibility').val() == 'public'
+		$('#facebook-comment').show()
 
 	$('.discussion_end').datepicker
 		format: 'dd/mm/yyyy'

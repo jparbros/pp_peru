@@ -20,7 +20,7 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at, :group_tokens
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at, :group_tokens, :facebook_comment
   attr_reader :actor_tokens, :topic_tokens, :group_tokens
   
   validates :content, :title, presence: true
@@ -178,6 +178,10 @@ class Paper < ActiveRecord::Base
 
   def send_notification
     User.send_notifications(self)
+  end
+  
+  def facebook_comment_enable?
+    visibility == 'public' && facebook_comment
   end
   
   private

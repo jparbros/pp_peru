@@ -46,7 +46,7 @@ class Admin::NewsController < Admin::BaseController
   private
 
   def find_news
-    @news = News.find params[:id]
+    @news = ::News.find params[:id]
   end
   
   def ensure_author!

@@ -28,6 +28,18 @@
         %i.icon-thumbs-down
         = @proposal.negative_votes
 
+  - if @proposal.facebook_comment_enable?
+    #comments.row
+      <div class="fb-comments" data-href="#{propuesta_path(@proposal)}" data-colorscheme="light" data-numposts="5" data-width="922"></div>
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=287374454607456";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
   #comments.row
     %ol.comments-list
       = nested_annotations @proposal.annotations.includes(:author).arrange(order: :created_at) 
