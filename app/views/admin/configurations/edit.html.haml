@@ -36,8 +36,11 @@
               .controls
                 #public_registration_button.switch.switch-small{'data-on' => "success", 'data-off' => "danger", 'data-on-label' => "Si", 'data-off-label' => "No"}
                   = check_box_tag 'setting[public_registration]', true, Setting.public_registration
-                  
-                
+
+            .control-group
+              = label_tag :ga_tracking_id, 'Google Analytics Tracking ID:',:class => 'control-label'
+              .controls
+                = text_field_tag 'setting[ga_tracking_id]', Setting.ga_tracking_id, :class => 'text_field'
 
 
           #estilos.tab-pane
