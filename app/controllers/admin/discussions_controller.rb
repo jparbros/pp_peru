@@ -1,5 +1,5 @@
 class Admin::DiscussionsController < Admin::BaseController
-  before_filter :find_discussion, only: [:edit, :show, :detroy, :update]
+  before_filter :find_discussion, only: [:edit, :show, :destroy, :update]
   #before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
   authorize_resource
   

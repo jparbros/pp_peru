@@ -9,6 +9,10 @@
 	.control-group
 		= f.label :avatar,'avatar',  :class => 'control-label'
 		= f.file_field :avatar
+	.control-group
+		= f.label :content,'Contenido:',  :class => 'control-label'
+		= f.text_area :content, class: :tinymce
+
 	.form-actions
 		= f.submit @news_actor.new_record? ? 'Crear' : 'Actualizar', :class => 'btn btn-primary'
 		= link_to 'Cancelar', :admin_news_actors, :class => 'btn'

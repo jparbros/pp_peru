@@ -1,4 +1,4 @@
-- if annotation.can_show? || current_user.admin_access?
+- if annotation.can_show? || current_user.try(:admin_access?)
   %li{id: annotation.id,  class: "comment #{annotation.cant_show? ? 'reported' : '' }"}
     .comment-container.row
       .comment-author.span3

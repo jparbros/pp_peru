@@ -122,6 +122,8 @@
                 %a{href: '#propuesta_ciudadana', 'data-toggle' => "tab"} Propuesta ciudadana
               %li
                 %a{href: '#objetivos', 'data-toggle' => "tab"} Objetivos
+              %li
+                %a{href: '#candidatos', 'data-toggle' => 'tab'} Candidatos
               
             .tab-content
               #centro_de_noticias.tab-pane.active
@@ -250,6 +252,32 @@
                     
                   
                 - if Setting.objetivos_title.blank? || !Setting.objetivos_visible
+                  .alert.alert-error
+                    %strong ¡Atenci&oacute;n!
+                    Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.
+
+              #candidatos.tab-pane
+                .page-header
+                  %h3 Candidatos
+
+                %dl
+                  %dt Titulo:
+                  %dd= Setting.candidatos_title.present? ? Setting.candidatos_title : 'No se esta mostrando'
+                  
+                  %dt Subtitulo:
+                  %dd= Setting.candidatos_subtitle.present? ? Setting.candidatos_subtitle : 'No se esta mostrando'
+                  
+                  %dt Activo:
+                  %dd
+                    - if Setting.candidatos_visible
+                      %span.label.label-success
+                        Si
+                    - else
+                      %span.label.label-important
+                        No
+                    
+                  
+                - if Setting.candidatos_title.blank? || !Setting.candidatos_visible
                   .alert.alert-error
                     %strong ¡Atenci&oacute;n!
                     Para habilitar la secci&oacute;n debe de estar activa y tener un titulo.

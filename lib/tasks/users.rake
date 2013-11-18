@@ -7,7 +7,7 @@ task :users_a => [:environment] do
 	p_id = Province.find_by_name('Huamanga').try(:id)
 	d_id = District.find_by_name('Ayacucho').try(:id) 
 	users.each do |u|
-		if u['numero_documento']
+		if u['numero_documento'] and u['correo_electronico']
 			user =	User.new(dni: u['numero_documento'], 
 				middle_name: u['apellido_paterno'],
 				last_name: u['apellido_materno'],
@@ -30,7 +30,7 @@ task :users_b => [:environment] do
 	p_id = Province.find_by_name('Huamanga').try(:id)
 	d_id = District.find_by_name('Ayacucho').try(:id) 
 	users.each do |u|
-		if u['numero_documento']
+		if u['numero_documento'] and u['correo_electronico']
 			user =	User.new(dni: u['numero_documento'], 
 				middle_name: u['apellido_paterno'],
 				last_name: u['apellido_materno'],

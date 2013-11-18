@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130601031402) do
+ActiveRecord::Schema.define(:version => 20131017162405) do
 
   create_table "activities", :force => true do |t|
     t.integer  "trackable_id"
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(:version => 20130601031402) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.integer  "political_party_id"
+    t.text     "content"
   end
 
   create_table "news_actors_papers", :id => false, :force => true do |t|
@@ -288,6 +289,7 @@ ActiveRecord::Schema.define(:version => 20130601031402) do
     t.string   "visibility"
     t.datetime "published_at"
     t.datetime "published_end_at"
+    t.boolean  "facebook_comment"
   end
 
   create_table "papers_strategic_objectives", :id => false, :force => true do |t|

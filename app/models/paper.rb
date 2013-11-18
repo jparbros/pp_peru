@@ -20,7 +20,7 @@ class Paper < ActiveRecord::Base
   #
   # Accessors
   #
-  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at, :group_tokens
+  attr_accessible :author_id, :content, :status, :title, :type, :actor_tokens, :visibility, :topic_tokens, :published_end_at, :group_tokens, :facebook_comment
   attr_reader :actor_tokens, :topic_tokens, :group_tokens
   
   validates :content, :title, presence: true
@@ -76,6 +76,7 @@ class Paper < ActiveRecord::Base
     state :archived
 
     before_transition any => :published, :do => [:publish_timestamp, :setup_activity]
+    after_transition any => :published, :do => :send_notification
 
     event :publish do
       transition [:draft, :archived] => :published
@@ -173,6 +174,14 @@ class Paper < ActiveRecord::Base
    
   def group_tokens=(ids)
    self.group_ids = ids.split(',')
+  end
+
+  def send_notification
+    User.send_notifications(self)
+  end
+  
+  def facebook_comment_enable?
+    visibility == 'public' && facebook_comment
   end
   
   private

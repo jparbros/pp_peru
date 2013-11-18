@@ -1,0 +1,9 @@
+= selected_menu(:menu_candidatos)
+#documents-container.row
+  %section#content.span8
+    - if Setting.candidatos_subtitle.present?
+      %h1= Setting.candidatos_subtitle
+
+    = render @news_actors
+
+  = render 'shared/right_aside'

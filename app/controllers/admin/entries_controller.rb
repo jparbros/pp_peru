@@ -1,6 +1,6 @@
 class Admin::EntriesController < Admin::BaseController
-  before_filter :find_entry, only: [:edit, :show, :detroy, :update]
-  before_filter :ensure_author!, only: [:edit, :show, :detroy, :update]
+  before_filter :find_entry, only: [:edit, :show, :destroy, :update]
+  before_filter :ensure_author!, only: [:edit, :show, :destroy, :update]
   respond_to :html, :js
   authorize_resource
   

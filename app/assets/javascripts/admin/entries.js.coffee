@@ -10,6 +10,18 @@ jQuery ->
   $('#entry_visibility').change ->
     if $(@).val() == 'group'
       $('#group-tokens').show()
+    else
+      $('#group-tokens').hide()
+    
+    if $(@).val() == 'public'
+      $('#facebook-comment').show()
+    else
+      $('#facebook-comment').hide()
+    
 
   if $('#entry_visibility').val() == 'group'
     $('#group-tokens').show()
+  
+  if $('#entry_visibility').val() == 'public'
+    $('#facebook-comment').show()
+  

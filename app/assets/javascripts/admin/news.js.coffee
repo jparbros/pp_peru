@@ -15,6 +15,13 @@ jQuery ->
 			$('#group-tokens').show()
 		else
 			$('#group-tokens').hide()
+      
+		if $(@).val() == 'public'
+			$('#facebook-comment').show()
+		else
+			$('#facebook-comment').hide()
 
 	if $('#news_visibility').val() == 'group'
 		$('#group-tokens').show()
+	if $('#news_visibility').val() == 'public'
+		$('#facebook-comment').show()

@@ -16,6 +16,10 @@
   .controls
     = f.select :visibility, Paper.visibility
 
+  #facebook-comment.control-group.hide
+    = f.label :facebook_comment, "Comentarios de facebook:", class: 'control-label'
+    = f.check_box :facebook_comment
+  
   #group-tokens.control-group.hide
     = f.label :group_tokens, 'Grupos'
     = f.text_field :group_tokens, data: {load: @discussion.groups.map(&:attributes).to_json}

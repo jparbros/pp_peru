@@ -11,7 +11,7 @@
 #
 
 class NewsActor < ActiveRecord::Base
-  attr_accessible :name, :avatar
+  attr_accessible :name, :avatar, :content
   
   mount_uploader :avatar, AvatarUploader
   #

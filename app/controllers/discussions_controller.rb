@@ -7,7 +7,7 @@ class DiscussionsController < ApplicationController
   
   def show
     @discussion = Discussion.find params[:id]
-    authorize! :read, @discussion
+    #authorize! :read, @discussion
     render cms_layout: 'diseno-principal'
   end
 end
