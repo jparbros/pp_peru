@@ -6,3 +6,6 @@
 
       = comfy_form_for @page, :as => :page, :url => {:action => :create}, :html => {:multipart => true} do |form|
         = render form
+
+:javascript
+  CodeMirror.fromTextArea(document.getElementById("page_blocks_attributes_0_content"), {mode: "text/html", lineNumbers: true, styleActiveLine: true, matchBrackets: true});
