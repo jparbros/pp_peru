@@ -1,9 +1,9 @@
 = selected_menu(:menu_news)
 = section_title('Centro De Noticias')
 
-%section.content.col-lg-9.col-md-9
+%section.content
   .doc-container
-    %article
+    %article.col-lg-9.col-md-9
       %h2.entry-title
         = @news.title
       .entry-date
@@ -18,7 +18,7 @@
         %li.comments
           %a{:href => "#comments"} #{@news.annotations_count} Comentarios
 
-    .sidebar-doc  
+    .sidebar-doc.col-lg-3.col-md-3 
       - if current_user
         %h3 Califica esta noticia:
         %div{:id => "#{@rate}_#{@news.id}", :class => :rate_news}

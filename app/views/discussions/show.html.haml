@@ -2,7 +2,7 @@
 = section_title('Centro De Debates')
 %section#content
   #doc-container.row
-    %article.span8
+    %article.col-lg-9.col-md-9
       %header
         %h2.entry-title
           = @discussion.title
@@ -18,7 +18,7 @@
           %li.comments
             %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
 
-    #sidebar-doc.span3  
+    #sidebar-doc.col-lg-3.col-md-3  
       %h3 Vote Por este Debate
       = link_to debate_votes_path(@discussion, tendency: 1), method: :post, class: 'btn btn-success' do
         %i.icon-thumbs-up

@@ -1,8 +1,8 @@
 = selected_menu(:menu_propuesta)
 = section_title('Propuestas Ciudadanas')
-%section#content.col-lg-9.col-md-9
+%section#content
   #doc-container.row
-    %article.span8
+    %article.col-lg-9.col-md-9
       %header
         %h2.entry-title
           = @proposal.title
@@ -18,7 +18,7 @@
           %li.comments
             %a{:href => "#comments"} #{@proposal.annotations_count} Comentarios
 
-    #sidebar-doc.span3  
+    #sidebar-doc.col-lg-3.col-md-3  
       %h3 Vote Por esta propuesta
       = link_to propuesta_votes_path(@proposal, tendency: 1), method: :post, class: 'btn btn-success' do
         %i.icon-thumbs-up
