@@ -58,7 +58,7 @@
     %header#header.container-wrap
       #header-container.container
         #logo
-          #site-title{:href => root_url}
+          #site-title{:href => "/"}
             - if Setting.background_image.present?
               = image_tag Setting.background_image
             - else
@@ -87,7 +87,7 @@
     %nav#main-nav-menu.container
       %ul
         %li
-          = link_to image_tag('/assets/home.png'), root_path
+          = link_to image_tag('/assets/home.png'), "/"
 
         - if Setting.centro_de_noticas_visible && Setting.centro_de_noticas_title.present?
           %li{class: "nav-menu-item #{yield(:menu_news)}"}
