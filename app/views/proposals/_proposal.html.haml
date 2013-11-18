@@ -6,9 +6,10 @@
     = proposal.first_paragraph.html_safe
     = link_to 'Leer mas...', propuesta_path(proposal), class: 'more-link'
   
-  %ul.entry-meta
+  %ul.entry-meta.list-inline
     %li.tags
       Temas:
       - proposal.topics.each do |topic|
-        = link_to topic.name, propuestas_path(topic_id: topic.id), class: :label
+        %span.label.label-primary
+          = link_to topic.name, propuestas_path(topic_id: topic.id), class: :label
     %li.comments= "#{proposal.annotations_count} Comentarios"

@@ -6,10 +6,11 @@
   .entry-content
     = entry.first_paragraph.html_safe
     = link_to 'Leer mas...', entrada_path(entry), class: 'more-link'
-  %ul.entry-meta
+  %ul.entry-meta.list-inline
     %li.tags
       Temas:
       - entry.topics.each do |topic| 
-        = link_to topic.name, index_by_controller(params[:controller], topic_id: topic.id), class: :label
+        %span.label.label-primary
+          = link_to topic.name, index_by_controller(params[:controller], topic_id: topic.id), class: :label
     %li.comments
       %a{:href => "#"} #{entry.annotations_count} Comentarios

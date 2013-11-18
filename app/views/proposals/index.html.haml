@@ -2,7 +2,7 @@
 = section_title('Propuestas Ciudadanas')
 = link_to 'Agrega una Propuesta', :new_propuesta, class: 'btn btn-primary right' if current_user
 #documents-container.row
-  %section#content.span8
+  %section#content.col-lg-9.col-md-9
     - if Setting.propuesta_ciudadana_subtitle.present?
       %h1= Setting.propuesta_ciudadana_subtitle
 

@@ -5,10 +5,11 @@
   .entry-content
     = discussion.first_paragraph.html_safe
     = link_to 'Leer mas...', debate_path(discussion), class: 'more-link'
-  %ul.entry-meta
+  %ul.entry-meta.list-inline
     %li.tags
       Temas:
       - discussion.topics.each do |topic|
-        = link_to topic.name, debates_path(topic_id: topic.id), class: [:label]
+        %span.label.label-primary
+          = link_to topic.name, debates_path(topic_id: topic.id), class: [:label]
     %li.comments
       %a{:href => "#"} #{discussion.annotations.count} Comentarios

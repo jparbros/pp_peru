@@ -3,7 +3,7 @@ PpPeru::Application.routes.draw do
   
   ComfortableMexicanSofa::Routing.admin(:path => '/admin/cms')
 
-  get "home/index"
+  # get "home/index"
 
   devise_for :users
 

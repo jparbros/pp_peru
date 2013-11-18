@@ -6,10 +6,11 @@
     = news.first_paragraph.html_safe
     = link_to 'Leer mas...', noticia_path(news), class: 'more-link'
   
-  %ul.entry-meta
+  %ul.entry-meta.list-inline
     %li.tags
       Temas:
       - news.topics.each do |topic|
-        = link_to topic.name, noticias_path(topic_id: topic.id), class: :label
+        %span.label.label-primary
+          = link_to topic.name, noticias_path(topic_id: topic.id), class: :label
     %li.comments
       %a{:href => "#"} #{news.annotations.count} Comentarios

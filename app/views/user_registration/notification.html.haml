@@ -1,4 +1,4 @@
-%h2=link_to "Bienvenido a #{@site_name}", root_url
+%h2=link_to "Bienvenido a #{@site_name}", "root_url"
 %p
   Hola
   = "#{@user.email}!"
@@ -10,6 +10,6 @@
   = link_to @paper.title, propuesta_url(@paper) if  @paper.type.eql? 'Proposal' 
 
 %p
-  = link_to "Visita La Red Social para Partidos Politicos #{@site_name}", root_url
+  = link_to "Visita La Red Social para Partidos Politicos #{@site_name}", "root_url"
 %p
   No responder este mensaje
