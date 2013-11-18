@@ -2,7 +2,7 @@
 = section_title('Centro De Noticias')
 
 %section.content
-  .doc-container
+  .doc-container.row
     %article.col-lg-9.col-md-9
       %h2.entry-title
         = @news.title
@@ -47,11 +47,11 @@
       }(document, 'script', 'facebook-jssdk'));</script>
   
 
-  #comments
+  #comments.row
     %ol.comments-list
       = nested_annotations @news.annotations.includes(:author).arrange(order: :created_at) 
 
-  #comment-form
+  #comment-form.row
     %span.leave-a-comment
     %h3.form-title Deja un Comentario
     %span.meta.form-tagline ¿Que opinas? Usa el formulario para hacernoslo saber.
