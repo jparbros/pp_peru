@@ -3,20 +3,19 @@
 %section#content
   #doc-container.row
     %article.col-lg-9.col-md-9
-      %header
-        %h2.entry-title
-          = @discussion.title
-        .entry-date
-          %span= @discussion.published_date
-        .entry-content
-          = @discussion.content.html_safe
-        %ul.entry-meta
-          %li.tags
-            Temas:
-            - @discussion.topics.each do |topic|
-              = link_to topic.name, debates_path(topic_id: topic.id), class: [:label]
-          %li.comments
-            %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
+      %h2.entry-title
+        = @discussion.title
+      .entry-date
+        %span= @discussion.published_date
+      .entry-content
+        = @discussion.content.html_safe
+      %ul.entry-meta
+        %li.tags
+          Temas:
+          - @discussion.topics.each do |topic|
+            = link_to topic.name, debates_path(topic_id: topic.id), class: [:label]
+        %li.comments
+          %a{:href => "#comments"} #{@discussion.annotations_count} Comentarios
 
     #sidebar-doc.col-lg-3.col-md-3  
       %h3 Vote Por este Debate
