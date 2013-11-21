@@ -1,7 +1,7 @@
 - if annotation.can_show? || current_user.try(:admin_access?)
   %li{id: annotation.id,  class: "comment #{annotation.cant_show? ? 'reported' : '' }"}
     .comment-container.row
-      .comment-author.span3
+      .comment-author.col-lg-3.col-md-3
         %img.avatar{:alt => "Image", :src => "#{annotation.try(:author).try(:profile_photo)}"}
         .comment-meta
           %span.author-name
@@ -11,7 +11,7 @@
           %br/
           %a.comment-date{:href => "#", :title => "Permalink to this comment"}= annotation.created_at
 
-      .span8.comment_content{class: " #{class_by_annotation(annotation)}"}
+      .col-lg-8.col-md-8.comment_content{class: " #{class_by_annotation(annotation)}"}
         #alert_a.alert.hide
         .comment-body
           = annotation.comment.html_safe
