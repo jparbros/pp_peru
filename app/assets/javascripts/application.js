@@ -18,7 +18,6 @@
 //= require jquery.cookie
 //= require jquery.easing
 //= require jquery.flexslider-min
-//= require jquery.timelinr-0.9.51
 //= require mediaelement.min
 //= require scripts
 //= require bootstrap-datepicker/core
