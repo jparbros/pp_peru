@@ -55,11 +55,11 @@ PpPeru::Application.configure do
   # config.threadsafe!
   
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
+    :address        => ENV['EMAIL_SMTP'],
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_PASSWORD'],
-    :password       => ENV['SENDGRID_USERNAME'],
+    :user_name      => ENV['EMAIL_PASSWORD'],
+    :password       => ENV['EMAIL_USERNAME'],
     :domain         => 'e-quipudemocratico.pe'
   }
   ActionMailer::Base.delivery_method = :smtp

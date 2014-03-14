@@ -177,7 +177,7 @@ class Paper < ActiveRecord::Base
   end
 
   def send_notification
-    User.send_notifications(self)
+    User.send_notifications(self) rescue nil
   end
   
   def facebook_comment_enable?
