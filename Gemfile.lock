@@ -73,7 +73,7 @@ GEM
       request_store (~> 1.0.3)
     dynamic_form (1.1.4)
     erubis (2.7.0)
-    excon (0.20.1)
+    excon (0.71.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.7)
